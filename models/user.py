@@ -18,6 +18,8 @@ class UserModel:
 
         cur.execute("INSERT INTO users VALUES (%s,%s)",(self.username,self.password))
 
+
+        conn.commit()
         conn.close()
 
 

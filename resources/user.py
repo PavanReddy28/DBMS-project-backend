@@ -1,3 +1,5 @@
+import psycopg2
+import os
 from flask_restful import Resource, reqparse
 from models.user import UserModel
 from flask_jwt_extended import create_access_token, create_refresh_token
@@ -42,11 +44,16 @@ class UserList(Resource):
             "users": []
         }
 
-        connection = sqlite3.connect('data.db')
-        cursor = connection.cursor()
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
-        query = "SELECT * FROM users"
-        result = cursor.execute(query)
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM users")
+
+        result = cur.fetchall()
+
+        conn.close()
 
         for row in result:
             userList['users'].append({
@@ -54,7 +61,7 @@ class UserList(Resource):
                 "hashed password": row[1]
                 })
         
-        connection.close()
+        conn.close()
 
         return userList
     
