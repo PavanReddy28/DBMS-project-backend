@@ -98,8 +98,8 @@ class UserLogin(Resource):
             else:
                 return {
                     "message": "wrong password"
-                },401
+                },400
         else:
             return {
                 "message": "username not found"
-            },401
+            },400
