@@ -16,7 +16,7 @@ class UserModel:
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("INSERT INTO users VALUES (%s,%s)",(self.username,self.password))
+        cur.execute("INSERT INTO organizer VALUES (%s,%s)",(self.username,self.password))
 
 
         conn.commit()
@@ -30,7 +30,7 @@ class UserModel:
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("SELECT * FROM users where username = %s",(name,))
+        cur.execute("SELECT * FROM organizer where username = %s",(name,))
 
         row = cur.fetchone()
 
