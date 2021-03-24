@@ -3,7 +3,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
-from resources.user import UserRegister, UserList, UserLogin
+from resources.user import UserRegister, UserList, UserLogin, VerifyJWT
 
 app = Flask(__name__)
 
@@ -18,6 +18,7 @@ CORS(app)
 api.add_resource(UserRegister,"/register")
 api.add_resource(UserList,"/getUsers")
 api.add_resource(UserLogin,"/login")
+api.add_resource(VerifyJWT,"/verify")
 
 
 if __name__ == "__main__":

@@ -2,7 +2,7 @@ import psycopg2
 import os
 from flask_restful import Resource, reqparse
 from models.user import UserModel
-from flask_jwt_extended import create_access_token, create_refresh_token
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required
 from flask_bcrypt import check_password_hash, generate_password_hash
 
 class UserRegister(Resource):
@@ -103,3 +103,17 @@ class UserLogin(Resource):
             return {
                 "message": "username not found"
             },400
+
+class VerifyJWT(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('token',
+                        type=str,
+                        required=True,
+                        help="token can't be blank"
+                        )
+    
+    @jwt_required()
+    def post(self):
+        data = VerifyJWT.parser.parse_args()
+
+        return {"message": "token valid"},200
