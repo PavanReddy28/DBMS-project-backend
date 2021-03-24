@@ -49,7 +49,7 @@ class UserList(Resource):
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("SELECT * FROM users")
+        cur.execute("SELECT * FROM organizer")
 
         result = cur.fetchall()
 
