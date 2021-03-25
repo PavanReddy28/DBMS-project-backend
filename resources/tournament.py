@@ -22,6 +22,12 @@ class Tournament(Resource):
                         required=True,
                         help="college cant be blank"
                         )
+    parser2 = reqparse.RequestParser()
+    parser2.add_argument('tournament_id',
+                        type=int,
+                        required=True,
+                        help="Tournament id cant be blank"
+                        )
 
     @jwt_required()
     def get(self,username):
@@ -55,12 +61,21 @@ class Tournament(Resource):
         data = Tournament.parser.parse_args()
 
         tournament = TournamentModel(data['t_name'],data['location'],data['college'])
-
         tournament.save_to_db(user)
 
-
-
         return tournament.json(),201
+
+    @jwt_required()
+    def delete(self, username):
+        data = Tournament.parser2.parse_args()
+
+        t = TournamentModel.check_for_id(data['tournament_id'])
+
+        if not t:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+
+        TournamentModel.delete_from_db(data['tournament_id'])
+
 
 
 class TournamentList(Resource):

@@ -62,3 +62,32 @@ class TournamentModel:
             return rows
         else:
             return None
+
+    def delete_from_db(id):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("DELETE FROM tournament_org where tournament_id = %s",(id,))
+        conn.commit()
+        cur.execute("DELETE FROM tournament where tournament_id = %s",(id,))
+
+        conn.commit()
+
+        conn.close()
+
+    def check_for_id(id):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM tournament where tournament_id = %s",(id,))
+        row = cur.fetchone
+
+        if row:
+            return row
+        else:
+            return None
+
