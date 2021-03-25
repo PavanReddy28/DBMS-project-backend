@@ -76,6 +76,22 @@ class Tournament(Resource):
 
         TournamentModel.delete_from_db(data['tournament_id'])
 
+    @jwt_required()
+    def put(self, username):
+        dataID = Tournament.parser2.parse_args()
+        data = Tournament.parser.parse_args()
+
+        t = TournamentModel.check_for_id(dataID['tournament_id'])
+
+        if not t:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+
+        t2 = TournamentModel()
+        t3= t2.update(dataID['tournament_id'], data['t_name'],data['location'],data['college'])
+
+        return t3,201
+
+
 
 
 class TournamentList(Resource):

@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 class TournamentModel:
-    def __init__(self,t_name,location,college):
+    def __init__(self,t_name=None,location=None,college=None):
         #self.tournament_id=tournament_id
         self.t_name = t_name
         self.location=location
@@ -11,6 +11,9 @@ class TournamentModel:
 
     def json(self):
         return { "t_name": self.t_name, "location": self.location, "college": self.college}
+    
+    def json(self, id):
+        return {"tournament_id":id, "t_name": self.t_name, "location": self.location, "college": self.college}
 
     def save_to_db(self,username):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
@@ -85,9 +88,26 @@ class TournamentModel:
 
         cur.execute("SELECT * FROM tournament where tournament_id = %s",(id,))
         row = cur.fetchone
+        conn.close()
 
         if row:
             return row
         else:
             return None
 
+    def update(self,id,t_name,location,college):
+        self.t_name = t_name
+        self.location = location
+        self.college = college
+
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("UPDATE tournament SET t_name= %s, location = %s, college = %s WHERE tournament_id = %s",(t_name,location,college,id))
+
+        conn.commit()
+        conn.close()
+
+        return self.json(id)
