@@ -10,9 +10,9 @@ conn = psycopg2.connect(url)
 cur = conn.cursor()
 
 cur.execute("CREATE TABLE IF NOT EXISTS organizer (username text PRIMARY KEY, password text)")
-#replace all varchars with text
-# cur.execute("CREATE TABLE IF NOT EXISTS Tournament (tournament_id integer PRIMARY KEY, t_name varchar(50), location text, college text)")
-# cur.execute("CREATE TABLE IF NOT EXISTS Tournament_Org (tournament_id integer, u_id varchar(20), PRIMARY KEY (tournament_id,u_id), FOREIGN KEY (tournament_id) REFERENCES Tournament (tournament_id), FOREIGN KEY (u_id) REFERENCES Organizer (username))")
+#replace all varchars with text, id ints with serial, lowercase all table names
+cur.execute("CREATE TABLE IF NOT EXISTS tournament (tournament_id serial PRIMARY KEY, t_name text, location text, college text)")
+cur.execute("CREATE TABLE IF NOT EXISTS tournament_org (tournament_id serial, u_id text, PRIMARY KEY (tournament_id,u_id), FOREIGN KEY (tournament_id) REFERENCES tournament (tournament_id), FOREIGN KEY (u_id) REFERENCES organizer (username))")
 # cur.execute("CREATE TABLE IF NOT EXISTS Sport (sportName varchar(20) PRIMARY KEY)")
 # cur.execute("CREATE TABLE IF NOT EXISTS Tourn_Sport (tournament_id integer, sportName varchar(20), PRIMARY KEY (tournament_id,sportName), FOREIGN KEY (tournament_id) REFERENCES Tournament (tournament_id), FOREIGN KEY (sportName) REFERENCES Sport (sportName))")
 # cur.execute("CREATE TABLE IF NOT EXISTS Player (pnum integer PRIMARY KEY, age integer, firstName varchar(25), lastName varchar(25), tournament_id integer, team_id integer, FOREIGN KEY (tournament_id) REFERENCES Tournament (tournament_id))")
