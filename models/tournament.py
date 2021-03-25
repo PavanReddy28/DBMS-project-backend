@@ -45,3 +45,20 @@ class TournamentModel:
             return rows
         else:
             return None
+    
+    def findAll():
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM tournament")
+
+        rows = cur.fetchall()
+
+        conn.close()
+
+        if rows:
+            return rows
+        else:
+            return None

@@ -4,7 +4,7 @@ from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from resources.user import UserRegister, UserList, UserLogin, VerifyJWT
-from resources.tournament import Tournament
+from resources.tournament import Tournament, TournamentList
 
 app = Flask(__name__)
 
@@ -21,7 +21,7 @@ api.add_resource(UserList,"/getUsers")
 api.add_resource(UserLogin,"/login")
 api.add_resource(VerifyJWT,"/verify")
 api.add_resource(Tournament,"/tournaments/<string:username>")
-
+api.add_resource(TournamentList,"/tournamentList")
 
 if __name__ == "__main__":
     app.run(debug = True)

@@ -61,3 +61,26 @@ class Tournament(Resource):
 
 
         return tournament.json(),201
+
+
+class TournamentList(Resource):
+    @jwt_required()
+    def get(self):
+        tournaments = TournamentModel.findAll()
+
+        userTournaments = { 
+            "tournaments": []
+        }
+        
+        for t in tournaments:
+            userTournaments['tournaments'].append({
+                "tournament_id":t[0],
+                "t_name":t[1],
+                "location":t[2],
+                "college":t[3]
+            })
+
+        if tournaments:
+            return userTournaments
+        
+        return {"message": "tournaments not found"},404
