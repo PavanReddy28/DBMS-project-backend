@@ -24,16 +24,28 @@ class Tournament(Resource):
                         )
 
     @jwt_required()
-    def get(self,_id):
-        tournament = TournamentModel.find_by_id(_id)
+    def get(self,username):
+        tournaments = TournamentModel.find_by_id(username)
 
-        if tournament:
-            return tournament.json()
+        userTournaments = { 
+            "tournaments": []
+        }
         
-        return {"message": "tournament not found"},404
+        for t in tournaments:
+            userTournaments['tournaments'].append({
+                "tournament_id":t[0],
+                "t_name":t[1],
+                "location":t[2],
+                "college":t[3]
+            })
+
+        if tournaments:
+            return userTournaments
+        
+        return {"message": "tournaments not found"},404
 
     @jwt_required()
-    def post(self):
+    def post(self, username):
         user = get_jwt_identity()
         #tournament = TournamentModel.find_by_id(_id)
         #if tournament:

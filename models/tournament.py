@@ -12,7 +12,7 @@ class TournamentModel:
     def json(self):
         return { "t_name": self.t_name, "location": self.location, "college": self.college}
 
-    def save_to_db(self,user):
+    def save_to_db(self,username):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)
@@ -21,7 +21,7 @@ class TournamentModel:
         cur.execute("INSERT INTO tournament VALUES (DEFAULT,%s,%s,%s)",(self.t_name, self.location, self.college))
         conn.commit()
 
-        cur.execute("INSERT INTO tournament_org VALUES(DEFAULT,%s)",(user,))
+        cur.execute("INSERT INTO tournament_org VALUES(DEFAULT,%s)",(username,))
 
 
         conn.commit()
@@ -29,19 +29,19 @@ class TournamentModel:
 
 
     @classmethod
-    def find_by_id(cls, id):
+    def find_by_id(cls, username):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("SELECT * FROM tournament where tournament_id = %s",(id,))
+        cur.execute("SELECT * FROM tournament t where t.tournament_id in (SELECT o.tournament_id FROM tournament_org o where o.u_id = %s)",(username,))
 
-        row = cur.fetchone()
+        rows = cur.fetchall()
 
         conn.close()
 
-        if row:
-            return cls(*row)
+        if rows:
+            return rows
         else:
             return None

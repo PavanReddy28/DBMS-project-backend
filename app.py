@@ -20,7 +20,7 @@ api.add_resource(UserRegister,"/register")
 api.add_resource(UserList,"/getUsers")
 api.add_resource(UserLogin,"/login")
 api.add_resource(VerifyJWT,"/verify")
-api.add_resource(Tournament,"/tournament")
+api.add_resource(Tournament,"/tournaments/<string:username>")
 
 
 if __name__ == "__main__":
