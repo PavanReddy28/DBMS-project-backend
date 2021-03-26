@@ -105,15 +105,8 @@ class UserLogin(Resource):
             },400
 
 class VerifyJWT(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('token',
-                        type=str,
-                        required=True,
-                        help="token can't be blank"
-                        )
     
     @jwt_required()
-    def post(self):
-        data = VerifyJWT.parser.parse_args()
+    def get(self):
 
         return {"message": "token valid"},200
