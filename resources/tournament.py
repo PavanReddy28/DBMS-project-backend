@@ -22,30 +22,98 @@ class Tournament(Resource):
                         required=True,
                         help="college cant be blank"
                         )
+    parser2 = reqparse.RequestParser()
+    parser2.add_argument('tournament_id',
+                        type=int,
+                        required=True,
+                        help="Tournament id cant be blank"
+                        )
 
     @jwt_required()
-    def get(self,_id):
-        tournament = TournamentModel.find_by_id(_id)
+    def get(self):
+        user = get_jwt_identity()
+        tournaments = TournamentModel.find_by_user(user)
 
-        if tournament:
-            return tournament.json()
+        userTournaments = { 
+            "tournaments": []
+        }
         
-        return {"message": "tournament not found"},404
+        if tournaments:
+            for t in tournaments:
+                userTournaments['tournaments'].append({
+                    "tournament_id":t[0],
+                    "t_name":t[1],
+                    "location":t[2],
+                    "college":t[3]
+                })
+
+        
+        return userTournaments
+        
+        
 
     @jwt_required()
     def post(self):
         user = get_jwt_identity()
-        #tournament = TournamentModel.find_by_id(_id)
-        #if tournament:
-            # status code indicates bad request from client
-        #   return {"message": "Tournament with id: {} already exists".format(_id)},400
         
         data = Tournament.parser.parse_args()
 
         tournament = TournamentModel(data['t_name'],data['location'],data['college'])
+        id_of_new_row = tournament.save_to_db(user)
+        
 
-        tournament.save_to_db(user)
+        return tournament.json(id_of_new_row),201
+
+    @jwt_required()
+    def delete(self):
+        data = Tournament.parser2.parse_args()
+
+        t = TournamentModel.check_for_id(data['tournament_id'])
+
+        if not t:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+
+        TournamentModel.delete_from_db(data['tournament_id'])
+
+        return {
+            "message":"tournament with {} deleted".format(data["tournament_id"])
+        }
+
+    @jwt_required()
+    def put(self):
+        dataID = Tournament.parser2.parse_args()
+        data = Tournament.parser.parse_args()
+
+        t = TournamentModel.check_for_id(dataID['tournament_id'])
+
+        if not t:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+
+        t2 = TournamentModel()
+        t3= t2.update(dataID['tournament_id'], data['t_name'],data['location'],data['college'])
+
+        return t3,201
 
 
+class TournamentList(Resource):
+    
+    def get(self):
+        tournaments = TournamentModel.findAll()
 
-        return tournament.json(),201
+        userTournaments = { 
+            "tournaments": []
+        }
+        
+        if tournaments:
+            for t in tournaments:
+                userTournaments['tournaments'].append({
+                    "tournament_id":t[0],
+                    "t_name":t[1],
+                    "location":t[2],
+                    "college":t[3]
+                })
+
+        
+        return userTournaments
+        
+        

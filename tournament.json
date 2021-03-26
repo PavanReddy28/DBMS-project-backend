@@ -1,0 +1,275 @@
+{
+	"info": {
+		"_postman_id": "48ac66e8-5682-4d01-b9b3-1ee34ec389c2",
+		"name": "Tournament",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/getUsers",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:5000/getUsers",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"getUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Ishaan\",\r\n    \"password\":\"abcd\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\":\"Pavan\",\r\n    \"password\":\"wxyz\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tournament",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU4OTEyLCJqdGkiOiIzN2Q4MzJhMi04YmYzLTQ5NWUtYTlhZi05MTQ0MGI4MmJjNzIiLCJuYmYiOjE2MTY3NTg5MTIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJQYXZhbiIsImV4cCI6MTYxNjc1OTgxMn0.tEY-hzv6qhCO9H1K85iislCl29Y-yWwMa9-Sf2h2O44",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"t_name\":\"Blitzkrieg\",\r\n    \"location\":\"Hyderabad\",\r\n    \"college\":\"BITS\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/tournament",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"tournament"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tournament",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU5MDMzLCJqdGkiOiI4YWFlY2U3Ni1lMGQ5LTRmMWYtOGI4Ny1kNzE0YTczMDY5MTUiLCJuYmYiOjE2MTY3NTkwMzMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJJc2hhYW4iLCJleHAiOjE2MTY3NTk5MzN9.zW9n98Mv-B_yB-lofTj3XVsAFLduiGwZNCbusZIgy08",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"4\",\r\n    \"t_name\":\"Apogee\",\r\n    \"location\":\"Pilani\",\r\n    \"college\":\"BITS Pilani\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/tournament",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"tournament"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tournament",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU5MDMzLCJqdGkiOiI4YWFlY2U3Ni1lMGQ5LTRmMWYtOGI4Ny1kNzE0YTczMDY5MTUiLCJuYmYiOjE2MTY3NTkwMzMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJJc2hhYW4iLCJleHAiOjE2MTY3NTk5MzN9.zW9n98Mv-B_yB-lofTj3XVsAFLduiGwZNCbusZIgy08",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/tournament",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"tournament"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tournament",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU5MDMzLCJqdGkiOiI4YWFlY2U3Ni1lMGQ5LTRmMWYtOGI4Ny1kNzE0YTczMDY5MTUiLCJuYmYiOjE2MTY3NTkwMzMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJJc2hhYW4iLCJleHAiOjE2MTY3NTk5MzN9.zW9n98Mv-B_yB-lofTj3XVsAFLduiGwZNCbusZIgy08",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\": \"4\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/tournament",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"tournament"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tournamentList",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU3NzEwLCJqdGkiOiI5Y2RjYmFhOS0yYjY4LTQ3OTItYWI2NS04MTQ0NGUyNzA5OWUiLCJuYmYiOjE2MTY3NTc3MTAsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJJc2hhYW4iLCJleHAiOjE2MTY3NTg2MTB9.7I-pk9fRU-qClIKbISRg4VPRTxiorJHZbbFoc4SxeNY",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:5000/tournamentList",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"tournamentList"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -34,7 +34,7 @@ class UserRegister(Resource):
             user.save_to_db()
 
         return {
-            "message":"user with {} added".format(data["username"])
+            "message":"user with id {} added".format(data["username"])
         }
 
     
