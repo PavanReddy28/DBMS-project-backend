@@ -37,20 +37,18 @@ class Tournament(Resource):
         userTournaments = { 
             "tournaments": []
         }
-
-        if not tournaments:
-            return {"message": "No tournaments created"},404
         
-        for t in tournaments:
-            userTournaments['tournaments'].append({
-                "tournament_id":t[0],
-                "t_name":t[1],
-                "location":t[2],
-                "college":t[3]
-            })
-
         if tournaments:
-            return userTournaments
+            for t in tournaments:
+                userTournaments['tournaments'].append({
+                    "tournament_id":t[0],
+                    "t_name":t[1],
+                    "location":t[2],
+                    "college":t[3]
+                })
+
+        
+        return userTournaments
         
         
 
@@ -105,18 +103,17 @@ class TournamentList(Resource):
         userTournaments = { 
             "tournaments": []
         }
-        if not tournaments:
-            return {"message": "No tournaments available"},404
         
-        for t in tournaments:
-            userTournaments['tournaments'].append({
-                "tournament_id":t[0],
-                "t_name":t[1],
-                "location":t[2],
-                "college":t[3]
-            })
-
         if tournaments:
-            return userTournaments
+            for t in tournaments:
+                userTournaments['tournaments'].append({
+                    "tournament_id":t[0],
+                    "t_name":t[1],
+                    "location":t[2],
+                    "college":t[3]
+                })
+
+        
+        return userTournaments
         
         
