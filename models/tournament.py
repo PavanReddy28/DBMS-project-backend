@@ -83,7 +83,7 @@ class TournamentModel:
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM tournament where tournament_id = %s",(id,))
-        row = cur.fetchone
+        row = cur.fetchone()
         conn.close()
 
         if row:

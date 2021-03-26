@@ -116,4 +116,3 @@ class TournamentList(Resource):
         
         return userTournaments
         
-        

@@ -40,7 +40,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"Ishaan\",\r\n    \"password\":\"abcd\"\r\n}"
+					"raw": "{\r\n    \"username\":\"Pavan\",\r\n    \"password\":\"wxyz\"\r\n}"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:5000/login",
@@ -103,7 +103,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU4OTEyLCJqdGkiOiIzN2Q4MzJhMi04YmYzLTQ5NWUtYTlhZi05MTQ0MGI4MmJjNzIiLCJuYmYiOjE2MTY3NTg5MTIsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJQYXZhbiIsImV4cCI6MTYxNjc1OTgxMn0.tEY-hzv6qhCO9H1K85iislCl29Y-yWwMa9-Sf2h2O44",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzczMDI4LCJqdGkiOiI4OThjMmU0ZC1iZmQ5LTQ3YmItYmJmYi1hYzgxNTBmMzNkN2UiLCJuYmYiOjE2MTY3NzMwMjgsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJQYXZhbiIsImV4cCI6MTYxNjc3MzkyOH0.N3nTQFtyTbanNo5VkMS36Kh10mA67ON6_4itXaA0JEk",
 						"type": "text"
 					}
 				],
@@ -180,7 +180,7 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU5MDMzLCJqdGkiOiI4YWFlY2U3Ni1lMGQ5LTRmMWYtOGI4Ny1kNzE0YTczMDY5MTUiLCJuYmYiOjE2MTY3NTkwMzMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJJc2hhYW4iLCJleHAiOjE2MTY3NTk5MzN9.zW9n98Mv-B_yB-lofTj3XVsAFLduiGwZNCbusZIgy08",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzczMDI4LCJqdGkiOiI4OThjMmU0ZC1iZmQ5LTQ3YmItYmJmYi1hYzgxNTBmMzNkN2UiLCJuYmYiOjE2MTY3NzMwMjgsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJQYXZhbiIsImV4cCI6MTYxNjc3MzkyOH0.N3nTQFtyTbanNo5VkMS36Kh10mA67ON6_4itXaA0JEk",
 						"type": "text"
 					}
 				],
@@ -217,13 +217,13 @@
 					},
 					{
 						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU5MDMzLCJqdGkiOiI4YWFlY2U3Ni1lMGQ5LTRmMWYtOGI4Ny1kNzE0YTczMDY5MTUiLCJuYmYiOjE2MTY3NTkwMzMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJJc2hhYW4iLCJleHAiOjE2MTY3NTk5MzN9.zW9n98Mv-B_yB-lofTj3XVsAFLduiGwZNCbusZIgy08",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzYzNDE5LCJqdGkiOiI1YzkwNjc5ZS1lYWU5LTRiMmQtYmQ3Zi01NTIyYjVhYzJmZTkiLCJuYmYiOjE2MTY3NjM0MTksInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJQYXZhbiIsImV4cCI6MTYxNjc2NDMxOX0.PbANgD0P69xImNQ0yFlJ6C9ahUz8k-jyVxqIRb0qSQQ",
 						"type": "text"
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\": \"4\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\": \"5\"\r\n}"
 				},
 				"url": {
 					"raw": "http://127.0.0.1:5000/tournament",
@@ -266,6 +266,123 @@
 					"port": "5000",
 					"path": [
 						"tournamentList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/sports",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2Nzc2NzUzLCJqdGkiOiJkMzAxNjc3Mi03MTcyLTQyNzktYjk3NS1hZWU3MGE5NWY4MzQiLCJuYmYiOjE2MTY3NzY3NTMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJQYXZhbiIsImV4cCI6MTYxNjc3NzY1M30.LSvkUw6yV40wYpTBmgiHQFomek4noRZuJPln8hMRpT0",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/sports",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"sports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/sports",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2Nzc2NzUzLCJqdGkiOiJkMzAxNjc3Mi03MTcyLTQyNzktYjk3NS1hZWU3MGE5NWY4MzQiLCJuYmYiOjE2MTY3NzY3NTMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJQYXZhbiIsImV4cCI6MTYxNjc3NzY1M30.LSvkUw6yV40wYpTBmgiHQFomek4noRZuJPln8hMRpT0",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\": \"1\",\r\n    \"sportName\": \"Tennis\",\r\n    \"sportType\": \"Individual\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/sports",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"sports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/getSports",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2Nzc2NzUzLCJqdGkiOiJkMzAxNjc3Mi03MTcyLTQyNzktYjk3NS1hZWU3MGE5NWY4MzQiLCJuYmYiOjE2MTY3NzY3NTMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJQYXZhbiIsImV4cCI6MTYxNjc3NzY1M30.LSvkUw6yV40wYpTBmgiHQFomek4noRZuJPln8hMRpT0",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
+				},
+				"url": {
+					"raw": "http://127.0.0.1:5000/getSports",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"getSports"
 					]
 				}
 			},
