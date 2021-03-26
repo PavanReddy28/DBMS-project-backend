@@ -9,8 +9,8 @@ class TournamentModel:
         self.location=location
         self.college=college
 
-    def json(self):
-        return { "t_name": self.t_name, "location": self.location, "college": self.college}
+    #def json(self):
+    #    return { "t_name": self.t_name, "location": self.location, "college": self.college}
     
     def json(self, id):
         return {"tournament_id":id, "t_name": self.t_name, "location": self.location, "college": self.college}
@@ -21,24 +21,22 @@ class TournamentModel:
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("INSERT INTO tournament VALUES (DEFAULT,%s,%s,%s)",(self.t_name, self.location, self.college))
-        conn.commit()
-
-        cur.execute("INSERT INTO tournament_org VALUES(DEFAULT,%s)",(username,))
-
-
+        cur.execute("INSERT INTO tournament (tournament_id, t_name, location, college, username) VALUES (DEFAULT,%s,%s,%s,%s) RETURNING tournament_id",(self.t_name, self.location, self.college, username))
+        id_of_new_row = cur.fetchone()[0]
         conn.commit()
         conn.close()
 
+        return id_of_new_row
+
 
     @classmethod
-    def find_by_id(cls, username):
+    def find_by_user(cls, username):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("SELECT * FROM tournament t where t.tournament_id in (SELECT o.tournament_id FROM tournament_org o where o.u_id = %s)",(username,))
+        cur.execute("SELECT * FROM tournament where username = %s",(username,))
 
         rows = cur.fetchall()
 
@@ -72,8 +70,6 @@ class TournamentModel:
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("DELETE FROM tournament_org where tournament_id = %s",(id,))
-        conn.commit()
         cur.execute("DELETE FROM tournament where tournament_id = %s",(id,))
 
         conn.commit()

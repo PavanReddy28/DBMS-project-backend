@@ -30,8 +30,9 @@ class Tournament(Resource):
                         )
 
     @jwt_required()
-    def get(self,username):
-        tournaments = TournamentModel.find_by_id(username)
+    def get(self):
+        user = get_jwt_identity()
+        tournaments = TournamentModel.find_by_user(user)
 
         userTournaments = { 
             "tournaments": []
@@ -51,22 +52,19 @@ class Tournament(Resource):
         return {"message": "tournaments not found"},404
 
     @jwt_required()
-    def post(self, username):
+    def post(self):
         user = get_jwt_identity()
-        #tournament = TournamentModel.find_by_id(_id)
-        #if tournament:
-            # status code indicates bad request from client
-        #   return {"message": "Tournament with id: {} already exists".format(_id)},400
         
         data = Tournament.parser.parse_args()
 
         tournament = TournamentModel(data['t_name'],data['location'],data['college'])
-        tournament.save_to_db(user)
+        id_of_new_row = tournament.save_to_db(user)
+        
 
-        return tournament.json(),201
+        return tournament.json(id_of_new_row),201
 
     @jwt_required()
-    def delete(self, username):
+    def delete(self):
         data = Tournament.parser2.parse_args()
 
         t = TournamentModel.check_for_id(data['tournament_id'])
@@ -76,8 +74,12 @@ class Tournament(Resource):
 
         TournamentModel.delete_from_db(data['tournament_id'])
 
+        return {
+            "message":"tournament with {} deleted".format(data["tournament_id"])
+        }
+
     @jwt_required()
-    def put(self, username):
+    def put(self):
         dataID = Tournament.parser2.parse_args()
         data = Tournament.parser.parse_args()
 
@@ -95,7 +97,7 @@ class Tournament(Resource):
 
 
 class TournamentList(Resource):
-    @jwt_required()
+    
     def get(self):
         tournaments = TournamentModel.findAll()
 
