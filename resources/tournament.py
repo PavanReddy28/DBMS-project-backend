@@ -37,6 +37,9 @@ class Tournament(Resource):
         userTournaments = { 
             "tournaments": []
         }
+
+        if not tournaments:
+            return {"message": "No tournaments created"},404
         
         for t in tournaments:
             userTournaments['tournaments'].append({
@@ -49,7 +52,7 @@ class Tournament(Resource):
         if tournaments:
             return userTournaments
         
-        return {"message": "tournaments not found"},404
+        
 
     @jwt_required()
     def post(self):
@@ -94,8 +97,6 @@ class Tournament(Resource):
         return t3,201
 
 
-
-
 class TournamentList(Resource):
     
     def get(self):
@@ -104,6 +105,8 @@ class TournamentList(Resource):
         userTournaments = { 
             "tournaments": []
         }
+        if not tournaments:
+            return {"message": "No tournaments available"},404
         
         for t in tournaments:
             userTournaments['tournaments'].append({
@@ -116,4 +119,4 @@ class TournamentList(Resource):
         if tournaments:
             return userTournaments
         
-        return {"message": "tournaments not found"},404
+        
