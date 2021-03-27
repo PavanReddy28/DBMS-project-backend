@@ -2,6 +2,7 @@ import psycopg2
 import os
 from flask_restful import Resource, reqparse
 from models.tournament import TournamentModel
+from models.sport import SportModel
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 class Tournament(Resource):
@@ -12,18 +13,44 @@ class Tournament(Resource):
                         required=True,
                         help="Tournament name cant be blank"
                         )
-    parser.add_argument('location',
+    parser.add_argument('address',
                         type=str,
                         required=True,
-                        help="location cant be blank"
+                        help="address cant be blank"
                         )
     parser.add_argument('college',
                         type=str,
                         required=True,
                         help="college cant be blank"
                         )
-    parser2 = reqparse.RequestParser()
-    parser2.add_argument('tournament_id',
+    parser.add_argument('city',
+                        type=str,
+                        required=True,
+                        help="city cant be blank"
+                        )
+    parser.add_argument('region',
+                        type=str,
+                        required=True,
+                        help="region cant be blank"
+                        )
+    parser.add_argument('zip',
+                        type=str,
+                        required=True,
+                        help="zip cant be blank"
+                        )
+    parser.add_argument('country',
+                        type=str,
+                        required=True,
+                        help="country cant be blank"
+                        )                  
+    parser.add_argument('sports',
+                        type=str,
+                        required=False,
+                        action = 'append'
+                        #help="sports cant be blank"
+                        )
+    idParser = reqparse.RequestParser()
+    idParser.add_argument('tournament_id',
                         type=int,
                         required=True,
                         help="Tournament id cant be blank"
@@ -43,8 +70,12 @@ class Tournament(Resource):
                 userTournaments['tournaments'].append({
                     "tournament_id":t[0],
                     "t_name":t[1],
-                    "location":t[2],
-                    "college":t[3]
+                    "address":t[2],
+                    "college":t[3],
+                    "city": t[4],
+                    "region": t[5],
+                    "zip": t[6],
+
                 })
 
         
@@ -58,15 +89,21 @@ class Tournament(Resource):
         
         data = Tournament.parser.parse_args()
 
-        tournament = TournamentModel(data['t_name'],data['location'],data['college'])
+        tournament = TournamentModel(data['t_name'],data['college'],data['address'],data['city'],data['region'],data['zip'],data['country'])
         id_of_new_row = tournament.save_to_db(user)
-        
 
-        return tournament.json(id_of_new_row),201
+
+        for s in data['sports']:
+            print(s)
+            SportModel.save_to_db(id_of_new_row, s)
+        
+        ret = tournament.json(id_of_new_row)
+        ret['sports']= data['sports']
+        return ret, 201
 
     @jwt_required()
     def delete(self):
-        data = Tournament.parser2.parse_args()
+        data = Tournament.idParser.parse_args()
 
         t = TournamentModel.check_for_id(data['tournament_id'])
 
@@ -81,7 +118,7 @@ class Tournament(Resource):
 
     @jwt_required()
     def put(self):
-        dataID = Tournament.parser2.parse_args()
+        dataID = Tournament.idParser.parse_args()
         data = Tournament.parser.parse_args()
 
         t = TournamentModel.check_for_id(dataID['tournament_id'])
@@ -90,7 +127,10 @@ class Tournament(Resource):
             return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
 
         t2 = TournamentModel()
-        t3= t2.update(dataID['tournament_id'], data['t_name'],data['location'],data['college'])
+        t3= t2.update(dataID['tournament_id'], data['t_name'],data['address'],data['college'],data['city'],data['region'],data['zip'])
+        SportModel.update(dataID['tournament_id'],data['sports'])
+
+        t3['sports']= data['sports']
 
         return t3,201
 
@@ -115,5 +155,4 @@ class TournamentList(Resource):
 
         
         return userTournaments
-        
         
