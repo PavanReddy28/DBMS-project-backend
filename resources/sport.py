@@ -40,7 +40,7 @@ class Sport(Resource):
 
         return getSports
 
-    @jwt_required()
+    """ @jwt_required()
     def post(self):         # posts the chosen sports for the chosen tournament into the tourn_sports table
         data = Sport.parser.parse_args()
 
@@ -55,7 +55,7 @@ class Sport(Resource):
         return {        
                "message":"sport {} already exists in tournament {}".format(data["sportName"],data["tournament_id"])
         }
-
+ """
 class SportList(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('tournament_id',

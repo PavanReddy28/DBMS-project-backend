@@ -2,6 +2,7 @@ import psycopg2
 import os
 from flask_restful import Resource, reqparse
 from models.tournament import TournamentModel
+from models.sport import SportModel
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 class Tournament(Resource):
@@ -21,6 +22,12 @@ class Tournament(Resource):
                         type=str,
                         required=True,
                         help="college cant be blank"
+                        )
+    parser.add_argument('sports',
+                        type=str,
+                        required=False,
+                        action = 'append'
+                        #help="sports cant be blank"
                         )
     parser2 = reqparse.RequestParser()
     parser2.add_argument('tournament_id',
@@ -60,6 +67,11 @@ class Tournament(Resource):
 
         tournament = TournamentModel(data['t_name'],data['location'],data['college'])
         id_of_new_row = tournament.save_to_db(user)
+
+
+        for s in data['sports']:
+            print(s)
+            SportModel.save_to_db(id_of_new_row, s)
         
 
         return tournament.json(id_of_new_row),201

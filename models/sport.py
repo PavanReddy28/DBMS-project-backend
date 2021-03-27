@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 class SportModel:
-    def __init__(self,sportName,sportType):
+    def __init__(self,sportName=None,sportType=None):
         self.sportName = sportName
         self.sportType = sportType
 
@@ -21,13 +21,13 @@ class SportModel:
 
         return rows 
 
-    def save_to_db(self, id):
+    def save_to_db(id, sportName):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("INSERT INTO tourn_sport VALUES (%s,%s)",(id, self.sportName))
+        cur.execute("INSERT INTO tourn_sport VALUES (%s,%s)",(id, sportName))
 
         conn.commit()
         conn.close()
