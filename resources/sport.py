@@ -59,7 +59,7 @@ class Sport(Resource):
 class SportList(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('tournament_id',
-                        type=str,
+                        type=int,
                         required=True,
                         help="Tournament id cant be blank"
                         )

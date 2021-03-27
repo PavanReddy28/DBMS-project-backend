@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "48ac66e8-5682-4d01-b9b3-1ee34ec389c2",
+		"_postman_id": "b9510bef-be5b-4ef0-a7d2-642194781845",
 		"name": "Tournament",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -52,7 +52,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"Ishaan\",\r\n    \"password\":\"abcd\"\r\n}"
+					"raw": "{\r\n    \"username\":\"Pavan\",\r\n    \"password\":\"wxyz\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/login",
@@ -111,7 +111,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"t_name\":\"Blitzkrieg\",\r\n    \"location\":\"Hyderabad\",\r\n    \"college\":\"BITS\",\r\n    \"sports\":[\"Football\",\"Badminton\",\"Tennis\"]\r\n\r\n}"
+					"raw": "{\r\n    \"t_name\":\"Blitzkrieg\",\r\n    \"address\":\"Some random place\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Hyderabad\",\r\n    \"region\":\"Telangana\",\r\n    \"zip\":\"5434342\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Football\",\"Badminton\",\"Tennis\"]\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -211,7 +211,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\": \"5\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\": \"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -305,7 +305,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"11\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/getSports",

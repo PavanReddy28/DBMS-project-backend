@@ -48,13 +48,13 @@ class SportModel:
         else:
             return None
 
-    def findSports(id):
+    def findSports(id_):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("SELECT sportName from tourn_sport where tournament_id = %s",(id,))
+        cur.execute("SELECT sportName from tourn_sport where tournament_id = %s",(id_,))
         rows = cur.fetchall()
         
         conn.close()
