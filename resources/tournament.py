@@ -73,8 +73,9 @@ class Tournament(Resource):
             print(s)
             SportModel.save_to_db(id_of_new_row, s)
         
-
-        return tournament.json(id_of_new_row),201
+        ret = tournament.json(id_of_new_row)
+        ret['sports']= data['sports']
+        return ret, 201
 
     @jwt_required()
     def delete(self):
@@ -103,6 +104,9 @@ class Tournament(Resource):
 
         t2 = TournamentModel()
         t3= t2.update(dataID['tournament_id'], data['t_name'],data['location'],data['college'])
+        SportModel.update(dataID['tournament_id'],data['sports'])
+
+        t3['sports']= data['sports']
 
         return t3,201
 

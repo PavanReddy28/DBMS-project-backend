@@ -74,9 +74,7 @@ class SportList(Resource):
         
         if sports:
             for s in sports:
-                tSports['sports'].append({
-                    "sportName":s[0]
-                })
+                tSports['sports'].append(s[0])
 
         
         return tSports

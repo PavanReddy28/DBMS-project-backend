@@ -63,3 +63,17 @@ class SportModel:
             return rows
         else:
             return None
+
+    def update(id, sports):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("DELETE from tourn_sport where tournament_id = %s",(id,))
+        conn.commit()
+        for s in sports:
+            cur.execute("INSERT INTO tourn_sport VALUES (%s,%s)",(id, s))
+
+        conn.commit()
+        conn.close()
