@@ -40,7 +40,7 @@ class Tournament(Resource):
                         )
     parser.add_argument('country',
                         type=str,
-                        required=True,
+                        required=False,
                         help="country cant be blank"
                         )                  
     parser.add_argument('sports',
@@ -135,7 +135,7 @@ class Tournament(Resource):
 
 
 class TournamentList(Resource):
-    
+
     def get(self):
         tournaments = TournamentModel.findAll()
 

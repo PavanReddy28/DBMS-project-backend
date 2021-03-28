@@ -111,7 +111,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"t_name\":\"Blitzkrieg\",\r\n    \"address\":\"Some random place\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Hyderabad\",\r\n    \"region\":\"Telangana\",\r\n    \"zip\":\"5434342\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Football\",\"Badminton\",\"Tennis\"]\r\n}"
+					"raw": "{\r\n    \"t_name\":\"Spree\",\r\n    \"address\":\"some other place\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Goa\",\r\n    \"region\":\"Goa\",\r\n    \"zip\":\"69696969\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Basketball\",\"Hockey\",\"Tennis\"]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -306,7 +306,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/getSports",
@@ -332,14 +332,15 @@
 						"type": "text"
 					},
 					{
-						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}",
-						"type": "text"
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_name\": \"Team1\",\r\n    \"college\": \"IIT\",\r\n    \"num_players\": \"2\",\r\n    \"captain\": {\r\n        \"fname\":\"Bob\",\r\n        \"lname\":\"A\",\r\n        \"age\":\"23\"\r\n    },\r\n    \"sportName\":\"Tennis\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_name\": \"Lakers\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"5\",\r\n    \"captain\": {\r\n        \"fname\":\"Rahul\",\r\n        \"lname\":\"B\",\r\n        \"age\":\"22\"\r\n    },\r\n    \"sportName\":\"Basketball\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -354,7 +355,7 @@
 			"response": []
 		},
 		{
-			"name": "/team/player",
+			"name": "/player",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -364,24 +365,90 @@
 						"type": "text"
 					},
 					{
-						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}",
+						"key": "",
+						"value": "",
 						"type": "text",
 						"disabled": true
 					}
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"2\",\r\n    \"players\":[\r\n        {\"fname\":\"jon\",\"lname\":\"R\",\"age\":25}\r\n    ]\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"3\",\r\n    \"players\":[\r\n        {\"fname\":\"jon\",\"lname\":\"R\",\"age\":25},\r\n        {\"fname\":\"jack\",\"lname\":\"T\",\"age\":24},\r\n        {\"fname\":\"rick\",\"lname\":\"M\",\"age\":25},\r\n        {\"fname\":\"alan\",\"lname\":\"W\",\"age\":21}\r\n    ]\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/team/player",
+					"raw": "{{url}}/player",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"team",
 						"player"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/teams",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/teams",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/team",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"team_id\":\"2\",\r\n    \"status_update_to\":\"REJECTED\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/team",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"team"
 					]
 				}
 			},

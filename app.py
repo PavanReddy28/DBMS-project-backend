@@ -6,8 +6,8 @@ from flask_jwt_extended import JWTManager
 from resources.user import UserRegister, UserList, UserLogin, VerifyJWT
 from resources.tournament import Tournament, TournamentList
 from resources.sport import Sport, SportList
-from resources.team import TeamRegister
-from resources.player import PlayerRegister
+from resources.team import TeamList,Team
+from resources.player import Player
 
 app = Flask(__name__)
 
@@ -27,8 +27,8 @@ api.add_resource(Tournament,"/tournament")
 api.add_resource(TournamentList,"/tournamentList")
 api.add_resource(Sport,"/sports")
 api.add_resource(SportList,"/tournament/getSports")
-api.add_resource(TeamRegister,"/teamRegister")
-api.add_resource(PlayerRegister,"/teamRegister/player")
-
+api.add_resource(Team,"/team")
+api.add_resource(Player,"/player")
+api.add_resource(TeamList, "/teams")
 if __name__ == "__main__":
     app.run(debug = True)

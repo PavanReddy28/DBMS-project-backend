@@ -6,7 +6,7 @@ from models.team import TeamModel
 from models.player import PlayerModel
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
-class PlayerRegister(Resource):
+class Player(Resource):
 
     parser = reqparse.RequestParser()
     parser.add_argument('tournament_id',

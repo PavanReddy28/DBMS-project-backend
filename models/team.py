@@ -51,3 +51,33 @@ class TeamModel:
         conn.close()
 
         return row
+
+    def findAll(ID):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM team where captain in(SELECT pnum from PLAYER where tournament_id = %s)",(ID,))
+
+        rows = cur.fetchall()
+
+        conn.close()
+
+        if rows:
+            return rows
+        else:
+            return None
+
+    def updateStatus(self, id, stat):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("UPDATE team SET status = %s where team_id = %s",(stat,id))
+
+        conn.commit()
+        conn.close()
+
+
