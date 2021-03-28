@@ -70,7 +70,11 @@ class Team(Resource):
         data = Team.parser2.parse_args()
         TeamModel().updateStatus(data['team_id'],data['status_update_to'])
 
-        return data
+        return data,201
+
+    """ @jwt_required()
+    def delete(self): """
+
 
 class TeamList(Resource):
 
