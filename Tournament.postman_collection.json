@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b9510bef-be5b-4ef0-a7d2-642194781845",
+		"_postman_id": "48ac66e8-5682-4d01-b9b3-1ee34ec389c2",
 		"name": "Tournament",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -52,7 +52,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"Pavan\",\r\n    \"password\":\"wxyz\"\r\n}"
+					"raw": "{\r\n    \"username\":\"Ishaan\",\r\n    \"password\":\"abcd\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/login",
@@ -111,7 +111,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"t_name\":\"Blitzkrieg\",\r\n    \"address\":\"Some random place\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Hyderabad\",\r\n    \"region\":\"Telangana\",\r\n    \"zip\":\"5434342\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Football\",\"Badminton\",\"Tennis\"]\r\n\r\n}"
+					"raw": "{\r\n    \"t_name\":\"Blitzkrieg\",\r\n    \"address\":\"Some random place\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Hyderabad\",\r\n    \"region\":\"Telangana\",\r\n    \"zip\":\"5434342\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Football\",\"Badminton\",\"Tennis\"]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -143,7 +143,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"11\",\r\n    \"t_name\":\"Spree\",\r\n    \"location\":\"Goa\",\r\n    \"college\":\"BITS\",\r\n    \"sports\":[\"Cricket\",\"Hockey\"]\r\n\r\n}"
+					"raw": "{\r\n    \"tournament_id\": 1,\r\n    \"t_name\": \"Arena\",\r\n    \"address\": \"Shamirpet\",\r\n    \"college\": \"BITS\",\r\n    \"city\": \"Hyderabad\",\r\n    \"region\": \"Telangana\",\r\n    \"zip\": \"5434342\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Football\",\"Badminton\",\"Tennis\",\"Cricket\"]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -211,7 +211,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\": \"1\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\": \"5\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -285,7 +285,7 @@
 			"response": []
 		},
 		{
-			"name": "/getSports",
+			"name": "/tournament/getSports",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -295,7 +295,8 @@
 					{
 						"key": "Authorization",
 						"value": "Bearer {{jwt_token}}",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					},
 					{
 						"key": "Content-Type",
@@ -308,12 +309,79 @@
 					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/getSports",
+					"raw": "{{url}}/tournament/getSports",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
+						"tournament",
 						"getSports"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/team",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_name\": \"Team1\",\r\n    \"college\": \"IIT\",\r\n    \"num_players\": \"2\",\r\n    \"captain\": {\r\n        \"fname\":\"Bob\",\r\n        \"lname\":\"A\",\r\n        \"age\":\"23\"\r\n    },\r\n    \"sportName\":\"Tennis\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/team",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"team"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/team/player",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"2\",\r\n    \"players\":[\r\n        {\"fname\":\"jon\",\"lname\":\"R\",\"age\":25}\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/team/player",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"team",
+						"player"
 					]
 				}
 			},

@@ -64,7 +64,7 @@ class SportList(Resource):
                         help="Tournament id cant be blank"
                         )
 
-    def get(self):           # gets all sports for a given tournament
+    def get(self):           # gets all sports for a given tournament  # put it in get tournaments
         data = SportList.parser.parse_args()
         sports = SportModel.findSports(data["tournament_id"])
 
