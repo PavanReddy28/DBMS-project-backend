@@ -1,0 +1,17 @@
+POST /register : registers a user    
+POST /login : logs in a user      
+GET /getUsers : returns all organizers    
+POST /tournament : enter a tournament into db   [[jwt req]]
+PUT /tournament : update tournament details     [[jwt req]]
+GET /tournament : get tournament details organized by the user     [[jwt req]]
+DEL /tournament : delete tournament (deletes all corresponding entries)   [[jwt req]]
+GET /tournamentList : returns list of tournaments
+GET /sports : returns all sports available for organizing a tournament   [[jwt req]]
+GET /tournament/getSports : returns sports in a given tournament  
+POST /team : enter team and captain details   
+POST /player : enter remaining player details
+GET /teams : returns teams in a tournament     [[jwt req]]
+PUT /team : update status of team by organizers  [[jwt req]]
+DEL /team : deletes all teams with status 'REJECTED' in a given tournament   [[jwt req]]
+GET /tournament/playerList : all participants in a tournament
+GET /team : gets team details along with all players in the team in a given tournament
