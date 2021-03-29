@@ -24,7 +24,7 @@ cur.execute("INSERT INTO sport VALUES('Badminton', 'Individual') ON CONFLICT DO 
 cur.execute("CREATE TABLE IF NOT EXISTS tourn_sport (tournament_id integer, sportName text, PRIMARY KEY (tournament_id,sportName), FOREIGN KEY (tournament_id) REFERENCES tournament (tournament_id), FOREIGN KEY (sportName) REFERENCES sport (sportName))")
 cur.execute("CREATE TABLE IF NOT EXISTS player (pnum serial PRIMARY KEY, firstName text, lastName text, age integer, tournament_id integer, team_id integer)")
 cur.execute("ALTER TABLE player ADD FOREIGN KEY (tournament_id) REFERENCES tournament (tournament_id) ON DELETE CASCADE")
-cur.execute("CREATE TABLE IF NOT EXISTS team (team_id serial PRIMARY KEY, team_name text, college text, num_players integer, captain integer, sportName text, status text, FOREIGN KEY (sportName) REFERENCES sport (sportName))")
+cur.execute("CREATE TABLE IF NOT EXISTS team (team_id serial PRIMARY KEY, team_name text, college text, num_players integer, captain integer, sportName text, status text, contact text, FOREIGN KEY (sportName) REFERENCES sport (sportName))")
 cur.execute("ALTER TABLE team ADD FOREIGN KEY (captain) REFERENCES player (pnum) ON DELETE CASCADE")
 cur.execute("ALTER TABLE player ADD FOREIGN KEY (team_id) REFERENCES team (team_id) ON DELETE CASCADE")
 # cur.execute("CREATE TABLE IF NOT EXISTS Match (match_id integer PRIMARY KEY, match_date date, start_time time, tournament_id integer, sportName varchar(20), FOREIGN KEY (tournament_id) REFERENCES Tournament (tournament_id), FOREIGN KEY (sportName) REFERENCES Sport (sportName))")

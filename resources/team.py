@@ -39,6 +39,11 @@ class Team(Resource):
                         required=True,
                         help="sport cant be blank"
                         )
+    parser.add_argument('contact',
+                        type=str,
+                        required=True,
+                        help="contact cant be blank"
+                        )
 
     parser2 = reqparse.RequestParser()
     parser2.add_argument('tournament_id',
@@ -70,6 +75,7 @@ class Team(Resource):
                 "num_players":team[3],
                 "captain ID":team[4],
                 "sportName":team[5],
+                "contact":team[6],
                 "players": []
             }
         else:
@@ -91,7 +97,7 @@ class Team(Resource):
     def post(self):
         data = Team.parser.parse_args()
 
-        team = TeamModel(data['team_name'],data['college'],data['num_players'],data['sportName'])
+        team = TeamModel(data['team_name'],data['college'],data['num_players'],data['sportName'],data['contact'])
         tID = team.save_to_db(data['tournament_id'])
 
         if not tID:
@@ -154,7 +160,8 @@ class TeamList(Resource):
                     "num_players":t[3],
                     "captain_id":t[4],
                     "sportName":t[5],
-                    "status":t[6]
+                    "status":t[6],
+                    "contact":t[7]
                 })
 
         return resTeams,200

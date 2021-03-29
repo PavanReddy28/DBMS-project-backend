@@ -143,7 +143,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\": 1,\r\n    \"t_name\": \"Arena\",\r\n    \"address\": \"Shamirpet\",\r\n    \"college\": \"BITS\",\r\n    \"city\": \"Hyderabad\",\r\n    \"region\": \"Telangana\",\r\n    \"zip\": \"5434342\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Football\",\"Badminton\",\"Tennis\",\"Cricket\"]\r\n}"
+					"raw": "{\r\n    \"tournament_id\": 2,\r\n    \"t_name\": \"Spree\",\r\n    \"address\": \"some other place\",\r\n    \"college\": \"BITS\",\r\n    \"city\": \"Goa\",\r\n    \"region\": \"Goa\",\r\n    \"zip\": \"69696969\",\r\n    \"country\": \"India\",\r\n    \"sports\":[\"Football\",\"Basketball\",\"Tennis\",\"Hockey\"]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -341,7 +341,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_name\": \"Bulls\",\r\n    \"college\": \"IIT\",\r\n    \"num_players\": \"5\",\r\n    \"captain\": {\r\n        \"fname\":\"Mohan\",\r\n        \"lname\":\"G\",\r\n        \"age\":\"21\"\r\n    },\r\n    \"sportName\":\"Basketball\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_name\": \"Super Kings\",\r\n    \"college\": \"NIT\",\r\n    \"num_players\": \"3\",\r\n    \"captain\": {\r\n        \"fname\":\"Bhanu\",\r\n        \"lname\":\"M\",\r\n        \"age\":\"27\"\r\n    },\r\n    \"sportName\":\"Tennis\",\r\n    \"contact\":\"9999999999\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -374,7 +374,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"5\",\r\n    \"players\":[\r\n        {\"fname\":\"dave\",\"lname\":\"P\",\"age\":22},\r\n        {\"fname\":\"simon\",\"lname\":\"K\",\"age\":21},\r\n        {\"fname\":\"J\",\"lname\":\"Paul\",\"age\":25},\r\n        {\"fname\":\"shiva\",\"lname\":\"N\",\"age\":21}\r\n    ]\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"8\",\r\n    \"players\":[\r\n        {\"fname\":\"roger\",\"lname\":\"F\",\"age\":26},\r\n        {\"fname\":\"Rafa\",\"lname\":\"N\",\"age\":24}\r\n    ]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/player",
@@ -409,7 +409,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/teams",
@@ -441,7 +441,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"4\",\r\n    \"status_update_to\":\"REGISTERED\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"8\",\r\n    \"status_update_to\":\"REGISTERED\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -503,7 +503,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/playerList",
@@ -534,7 +534,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"team_id\":\"5\"\r\n}"
+					"raw": "{\r\n    \"team_id\":\"8\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
