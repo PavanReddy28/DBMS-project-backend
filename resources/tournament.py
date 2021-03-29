@@ -40,7 +40,7 @@ class Tournament(Resource):
                         )
     parser.add_argument('country',
                         type=str,
-                        required=True,
+                        required=False,
                         help="country cant be blank"
                         )                  
     parser.add_argument('sports',
@@ -81,8 +81,6 @@ class Tournament(Resource):
         
         return userTournaments
         
-        
-
     @jwt_required()
     def post(self):
         user = get_jwt_identity()
@@ -94,7 +92,6 @@ class Tournament(Resource):
 
 
         for s in data['sports']:
-            print(s)
             SportModel.save_to_db(id_of_new_row, s)
         
         ret = tournament.json(id_of_new_row)
@@ -136,7 +133,7 @@ class Tournament(Resource):
 
 
 class TournamentList(Resource):
-    
+
     def get(self):
         tournaments = TournamentModel.findAll()
 
@@ -149,8 +146,12 @@ class TournamentList(Resource):
                 userTournaments['tournaments'].append({
                     "tournament_id":t[0],
                     "t_name":t[1],
-                    "location":t[2],
-                    "college":t[3]
+                    "address":t[2],
+                    "college":t[3],
+                    "city":t[4],
+                    "region":t[5],
+                    "zip":t[6],
+                    "country":t[7]
                 })
 
         

@@ -17,7 +17,7 @@ class TournamentModel:
     #    return { "t_name": self.t_name, "location": self.location, "college": self.college}
     
     def json(self, id):
-        return {"tournament_id":id, "t_name": self.t_name, "address": self.address, "college": self.college, "city":self.city, "region":self.region, "zip":self.zip}
+        return {"tournament_id":id, "t_name": self.t_name, "address": self.address, "college": self.college, "city":self.city, "region":self.region, "zip":self.zip, "country":self.country}
 
     def save_to_db(self,username):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
