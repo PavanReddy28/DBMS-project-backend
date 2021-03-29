@@ -306,7 +306,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/getSports",
@@ -408,7 +408,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/teams",
@@ -440,7 +440,39 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"team_id\":\"2\",\r\n    \"status_update_to\":\"REJECTED\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"3\",\r\n    \"status_update_to\":\"REJECTED\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/team",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"team"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/team",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",

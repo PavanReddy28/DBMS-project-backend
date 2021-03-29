@@ -80,18 +80,16 @@ class TeamModel:
         conn.commit()
         conn.close()
         
-    """ def removeRejected():
+    def removeRejected(self,id):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("SELECT team_id FROM team where status = 'REJECTED'")
-        rows = cur.fetchall()
+        cur.execute("DELETE FROM team t where t.status = 'REJECTED' AND t.team_id IN (SELECT p.team_id from player p where p.tournament_id =%s)",(id,))
 
-        for row in rows:
-            ("DELETE from player where team_id")
+        conn.commit()
 
-        conn.close() """
+        conn.close() 
 
 

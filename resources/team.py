@@ -3,6 +3,7 @@ import os
 from flask_restful import Resource, reqparse
 from models.team import TeamModel
 from models.player import PlayerModel
+from models.tournament import TournamentModel
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 class Team(Resource):
@@ -40,14 +41,19 @@ class Team(Resource):
                         )
 
     parser2 = reqparse.RequestParser()
+    parser2.add_argument('tournament_id',
+                        type=int,
+                        required=False,
+                        help="Tournament id cant be blank"
+                        )
     parser2.add_argument('team_id',
                         type=int,
-                        required=True,
+                        required=False,
                         help="Team id. cant be blank"
                         )
-    parser2.add_argument('status_update_to',
+    parser2.add_argument('status_update_to',   # has to be either REJECTED or REGISTERED
                         type=str,
-                        required=True,
+                        required=False,
                         help="Status cant be blank"
                         )
 
@@ -72,8 +78,17 @@ class Team(Resource):
 
         return data,201
 
-    """ @jwt_required()
-    def delete(self): """
+    @jwt_required()
+    def delete(self):
+        data = Team.parser2.parse_args()
+
+        t = TournamentModel.check_for_id(data['tournament_id'])
+        if not t:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+
+        TeamModel().removeRejected(data['tournament_id'])
+
+        return {"message": "rejected teams in tournament with id: {} deleted".format(data['tournament_id'])},201
 
 
 class TeamList(Resource):
