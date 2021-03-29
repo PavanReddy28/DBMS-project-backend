@@ -28,6 +28,23 @@ class TeamModel:
 
         return id_of_new_team
 
+    def find_by_id(id):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM team where team_id = %s",(id,))
+
+        row = cur.fetchone()
+
+        conn.close()
+
+        if row:
+            return row
+        else:
+            return None
+
     def updateCaptainID(self, cID,tID):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
@@ -69,7 +86,7 @@ class TeamModel:
         else:
             return None
 
-    def updateStatus(self, id, stat):
+    def updateStatus( id, stat):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)

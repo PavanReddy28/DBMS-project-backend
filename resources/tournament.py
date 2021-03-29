@@ -81,8 +81,6 @@ class Tournament(Resource):
         
         return userTournaments
         
-        
-
     @jwt_required()
     def post(self):
         user = get_jwt_identity()

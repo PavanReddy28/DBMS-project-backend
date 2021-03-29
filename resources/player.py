@@ -56,3 +56,34 @@ class Player(Resource):
         } 
 
         return regPlayers, 201
+
+
+class PlayerList(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('tournament_id',
+                        type=int,
+                        required=True,
+                        help="Tournament id cant be blank"
+                        )
+
+    def get(self):
+        data = PlayerList.parser.parse_args()
+        participants = PlayerModel.findAll(data['tournament_id'],"tour")
+
+        p = { 
+            "players": []
+        }
+        
+        if participants:
+            for pp in participants:
+                p['players'].append({
+                    "pnum":pp[0],
+                    "firstname":pp[1],
+                    "lastname":pp[2],
+                    "age":pp[3],
+                    "tournament_id":pp[4],
+                    "team_id":pp[5]
+                })
+
+        
+        return participants,200

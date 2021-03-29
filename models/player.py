@@ -36,3 +36,23 @@ class PlayerModel:
         conn.close()
 
         return row
+
+    def findAll(id, type):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+        
+        if type == "tour":
+            cur.execute("SELECT * FROM player where tournament_id = %s",(id,))
+        elif type == "team":
+            cur.execute("SELECT * FROM player where team_id = %s",(id,))
+
+        rows = cur.fetchall()
+
+        conn.close()
+
+        if rows:
+            return rows
+        else:
+            return None

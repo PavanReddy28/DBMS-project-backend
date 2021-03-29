@@ -7,7 +7,7 @@ from resources.user import UserRegister, UserList, UserLogin, VerifyJWT
 from resources.tournament import Tournament, TournamentList
 from resources.sport import Sport, SportList
 from resources.team import TeamList,Team
-from resources.player import Player
+from resources.player import Player, PlayerList
 
 app = Flask(__name__)
 
@@ -30,5 +30,7 @@ api.add_resource(SportList,"/tournament/getSports")
 api.add_resource(Team,"/team")
 api.add_resource(Player,"/player")
 api.add_resource(TeamList, "/teams")
+api.add_resource(PlayerList,"/tournament/playerList")
+
 if __name__ == "__main__":
     app.run(debug = True)

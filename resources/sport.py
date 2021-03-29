@@ -38,9 +38,9 @@ class Sport(Resource):
                     "sportType":s[1],
                 })
 
-        return getSports
+        return getSports,200
 
-    """ @jwt_required()
+    """ @jwt_required()   # has been shifted to tournament post request
     def post(self):         # posts the chosen sports for the chosen tournament into the tourn_sports table
         data = Sport.parser.parse_args()
 

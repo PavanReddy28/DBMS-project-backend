@@ -57,7 +57,37 @@ class Team(Resource):
                         help="Status cant be blank"
                         )
 
-    #@jwt_required()
+    def get(self):
+        data = Team.parser2.parse_args()
+        team = TeamModel.find_by_id(data['team_id'])
+        participants = PlayerModel.findAll(data['team_id'],"team")
+
+        if team:
+            p = {
+                "team_id":team[0],
+                "team_name":team[1],
+                "college":team[2],
+                "num_players":team[3],
+                "captain ID":team[4],
+                "sportName":team[5],
+                "players": []
+            }
+        else:
+            return {"message": "team with id: {} does not exist".format(data['team_id'])},400
+        
+        if participants:
+            for pp in participants:
+                p['players'].append({
+                    "pnum":pp[0],
+                    "firstname":pp[1],
+                    "lastname":pp[2],
+                    "age":pp[3],
+                    "tournament_id":pp[4],
+                    "team_id":pp[5]
+                })
+
+        return p,200
+
     def post(self):
         data = Team.parser.parse_args()
 
@@ -74,8 +104,11 @@ class Team(Resource):
     @jwt_required()
     def put(self):
         data = Team.parser2.parse_args()
-        TeamModel().updateStatus(data['team_id'],data['status_update_to'])
-
+        t = TeamModel.find_by_id(data['team_id'])
+        if not t:
+            return {"message": "team with id: {} does not exist".format(data['team_id'])},400
+        
+        TeamModel.updateStatus(data['team_id'],data['status_update_to'])
         return data,201
 
     @jwt_required()
@@ -121,7 +154,7 @@ class TeamList(Resource):
                     "status":t[6]
                 })
 
-        return resTeams
+        return resTeams,200
 
     
 
