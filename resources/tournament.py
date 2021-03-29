@@ -67,7 +67,7 @@ class Tournament(Resource):
         
         if tournaments:
             for t in tournaments:
-                userTournaments['tournaments'].append({
+                data = {
                     "tournament_id":t[0],
                     "t_name":t[1],
                     "address":t[2],
@@ -75,8 +75,11 @@ class Tournament(Resource):
                     "city": t[4],
                     "region": t[5],
                     "zip": t[6],
+                    "country": t[7],
+                    "sports": [sport[0] for sport in SportModel.findSports(t[0])]
 
-                })
+                }
+                userTournaments['tournaments'].append(data)
 
         
         return userTournaments
