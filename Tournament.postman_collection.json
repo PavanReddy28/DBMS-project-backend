@@ -211,7 +211,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\": \"5\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\": \"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -409,7 +409,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/teams",
@@ -503,7 +503,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/playerList",

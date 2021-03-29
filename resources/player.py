@@ -69,6 +69,8 @@ class PlayerList(Resource):
     def get(self):
         data = PlayerList.parser.parse_args()
         participants = PlayerModel.findAll(data['tournament_id'],"tour")
+        if not participants:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
 
         p = { 
             "players": []
