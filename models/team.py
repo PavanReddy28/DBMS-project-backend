@@ -14,11 +14,19 @@ class TeamModel:
     def json(self, tID,cID):
         return {"team_id":tID, "team_name": self.team_name, "college": self.college, "num_players":self.num_players, "captain_ID":cID, "sportName":self.sportName}
 
-    def save_to_db(self):
+    def save_to_db(self,tID):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
+        cur.execute("SELECT team_name FROM team where captain IN (SELECT pnum FROM player where tournament_id = %s)",(tID,))
+        teams = cur.fetchall()
+        print(teams)
+
+        for team in teams:
+            if team[0] == self.team_name:
+                conn.close()
+                return None
 
         cur.execute("INSERT INTO team (team_id, team_name, college, num_players, sportName, status) VALUES (DEFAULT,%s,%s,%s,%s,%s) RETURNING team_id",(self.team_name, self.college, self.num_players,self.sportName, "PENDING"))
         id_of_new_team = cur.fetchone()[0]

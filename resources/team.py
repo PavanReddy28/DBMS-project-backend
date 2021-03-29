@@ -92,7 +92,10 @@ class Team(Resource):
         data = Team.parser.parse_args()
 
         team = TeamModel(data['team_name'],data['college'],data['num_players'],data['sportName'])
-        tID = team.save_to_db()
+        tID = team.save_to_db(data['tournament_id'])
+
+        if not tID:
+            return {"message": "team with name {} already exists in tournament {}".format(data['team_name'], data['tournament_id'])},400
 
         captain = PlayerModel(data['captain']['fname'], data['captain']['lname'], data['captain']['age'], data['tournament_id'],tID)
         cID = captain.save_to_db()
