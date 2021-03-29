@@ -75,7 +75,7 @@ class Team(Resource):
                 "num_players":team[3],
                 "captain ID":team[4],
                 "sportName":team[5],
-                "contact":team[6],
+                "contact":team[7],
                 "players": []
             }
         else:
