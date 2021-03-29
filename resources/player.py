@@ -88,4 +88,4 @@ class PlayerList(Resource):
                 })
 
         
-        return participants,200
+        return p,200
