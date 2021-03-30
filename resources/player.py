@@ -4,6 +4,7 @@ import json
 from flask_restful import Resource, reqparse
 from models.team import TeamModel
 from models.player import PlayerModel
+from models.tournament import TournamentModel
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 class Player(Resource):
@@ -88,4 +89,44 @@ class PlayerList(Resource):
                 })
 
         
+        return p,200
+
+class PlayerSports(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('tournament_id',
+                        type=int,
+                        required=True,
+                        help="Tournament id cant be blank"
+                        )
+    parser.add_argument('sportName',
+                        type=str,
+                        required=True,
+                        help="Sport cant be blank"
+                        )           
+
+    def get(self):
+        data = PlayerSports.parser.parse_args()
+        t = TournamentModel.check_for_id(data['tournament_id'])      
+        if not t:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+
+        participants = PlayerModel.find_by_sport(data['tournament_id'], data['sportName'])
+
+        p = { 
+            "players": []
+        }
+        
+        if participants:
+            for pp in participants:
+                p['players'].append({
+                    "pnum":pp[0],
+                    "firstname":pp[1],
+                    "lastname":pp[2],
+                    "age":pp[3],
+                    "tournament_id":pp[4],
+                    "team_id":pp[5]
+                })
+        else:
+            return {"message": "sport {} does not exist in tournament {}".format(data['sportName'],data['tournament_id'])},400
+
         return p,200

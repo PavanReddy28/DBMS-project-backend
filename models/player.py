@@ -56,3 +56,19 @@ class PlayerModel:
             return rows
         else:
             return None
+
+    def find_by_sport(tID,sport):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("SELECT * FROM player p where p.tournament_id = %s AND p.team_id IN (SELECT t.team_id from team t where t.sportName = %s)",(tID,sport))
+
+        rows = cur.fetchall()
+        conn.close()
+
+        if rows:
+            return rows
+        else:
+            return None

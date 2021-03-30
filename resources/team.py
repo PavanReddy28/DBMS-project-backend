@@ -167,7 +167,47 @@ class TeamList(Resource):
         return resTeams,200
 
     
+class TeamSports(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('tournament_id',
+                        type=int,
+                        required=True,
+                        help="Tournament id cant be blank"
+                        )
+    parser.add_argument('sportName',
+                        type=str,
+                        required=True,
+                        help="Sport cant be blank"
+                        )           
 
+    def get(self):
+        data = TeamSports.parser.parse_args()
+        ts = TournamentModel.check_for_id(data['tournament_id'])      
+        if not ts:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+
+        teams = TeamModel.find_by_sport(data['tournament_id'], data['sportName'])
+
+        resTeams = { 
+            "teams": []
+        }
+        
+        if teams:
+            for t in teams:
+                resTeams['teams'].append({
+                    "team_id":t[0],
+                    "team_name":t[1],
+                    "college":t[2],
+                    "num_players":t[3],
+                    "captain_id":t[4],
+                    "sportName":t[5],
+                    "status":t[6],
+                    "contact":t[7]
+                })
+        else:
+            return {"message": "sport {} does not exist in tournament {}".format(data['sportName'],data['tournament_id'])},400
+
+        return resTeams,200
     
 
 

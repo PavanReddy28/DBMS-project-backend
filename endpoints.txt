@@ -15,3 +15,5 @@ PUT /team : update status of team by organizers  [[jwt req]]
 DEL /team : deletes all teams with status 'REJECTED' in a given tournament   [[jwt req]]
 GET /tournament/playerList : all participants in a tournament
 GET /team : gets team details along with all players in the team in a given tournament
+GET /sport/teams : gets all teams of a given sport in a given tournament
+GET /sport/players : gets all players of a given sport in a given tournament

@@ -547,6 +547,68 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/sport/teams",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Tennis\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/sport/teams",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"sport",
+						"teams"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/sport/players",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Basketball\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/sport/players",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"sport",
+						"players"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
