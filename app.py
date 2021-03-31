@@ -8,6 +8,7 @@ from resources.tournament import Tournament, TournamentList
 from resources.sport import Sport, SportList
 from resources.team import TeamList,Team, TeamSports
 from resources.player import Player, PlayerList, PlayerSports
+from resources.match import Match
 
 app = Flask(__name__)
 
@@ -33,6 +34,7 @@ api.add_resource(TeamList, "/teams")
 api.add_resource(PlayerList,"/tournament/playerList")
 api.add_resource(TeamSports, "/sport/teams")
 api.add_resource(PlayerSports, "/sport/players")
+api.add_resource(Match, "/match")
 
 if __name__ == "__main__":
     app.run(debug = True)
