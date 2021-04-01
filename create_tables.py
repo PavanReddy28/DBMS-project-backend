@@ -10,7 +10,7 @@ conn = psycopg2.connect(url)
 cur = conn.cursor()
 
 cur.execute("CREATE TABLE IF NOT EXISTS organizer (username text PRIMARY KEY, password text)")
-#replace all varchars with text, id ints with serial, lowercase all table names, add on delete cascade to some fks [[IMPORTANT]]
+#replace all varchars with text, id ints with serial, lowercase all table names, add on delete cascade to some fks [[IMPORTANT]], change time to time with timezone
 cur.execute("CREATE TABLE IF NOT EXISTS tournament (tournament_id serial PRIMARY KEY, t_name text, address text, college text, city text, region text, zip text, country text, username text, FOREIGN KEY (username) REFERENCES organizer (username))")
 # [[REMOVED]] cur.execute("CREATE TABLE IF NOT EXISTS tournament_org (tournament_id serial, u_id text, PRIMARY KEY (tournament_id,u_id), FOREIGN KEY (tournament_id) REFERENCES tournament (tournament_id), FOREIGN KEY (u_id) REFERENCES organizer (username))")
 cur.execute("CREATE TABLE IF NOT EXISTS sport (sportName text PRIMARY KEY, sportType text)")

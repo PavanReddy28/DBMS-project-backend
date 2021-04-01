@@ -534,7 +534,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"team_id\":\"9\"\r\n}"
+					"raw": "{\r\n    \"team_id\":\"4\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -644,6 +644,38 @@
 		},
 		{
 			"name": "/match",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"match_id\":\"5\",\r\n    \"date\":\"2021-03-31T17:45:00+05:30\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -664,7 +696,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Basketball\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Tennis\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",

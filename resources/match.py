@@ -48,6 +48,17 @@ class Match(Resource):
                         required=True,
                         help="sport cant be blank"
                         )
+    parser3 = reqparse.RequestParser()
+    parser3.add_argument('match_id',
+                        type=int,
+                        required=True,
+                        help="Match id cant be blank"
+                        )
+    parser3.add_argument('date',
+                        type=str,#inputs.datetime_from_iso8601,
+                        required=True,
+                        help="date cant be blank"
+                        )
 
     @jwt_required()
     def post(self):
@@ -60,6 +71,21 @@ class Match(Resource):
         m['team2_id']=data['team2_id']
         
         return m, 201
+
+    @jwt_required()
+    def put(self):
+        data = Match.parser3.parse_args()
+        print(data)
+        dt = (inputs.datetime_from_iso8601(data['date'])).date()
+        tm = (inputs.datetime_from_iso8601(data['date'])).timetz()
+
+        flag = MatchModel.findTeamsByMID(data['match_id'])
+        if not flag:
+            return {"message": "match with id: {} does not exist".format(data['match_id'])},400
+        m = MatchModel().update(data['match_id'],dt,tm)
+
+        return m, 201
+
 
     def get(self):
         data = Match.parser2.parse_args()
@@ -82,7 +108,7 @@ class Match(Resource):
                 }
                 sMatches['matches'].append(mat)
 
-        return sMatches
+        return sMatches,200
 
 
 class MatchList(Resource):
@@ -114,7 +140,7 @@ class MatchList(Resource):
                 }
                 tourMatches['matches'].append(mat)
 
-        return tourMatches
+        return tourMatches,200
 
 
 
