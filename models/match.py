@@ -28,3 +28,52 @@ class MatchModel:
         conn.close()
 
         return self.json(match_num)
+
+    def findMatchesTour(tID):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+        
+        cur.execute("SELECT * from match where tournament_id = %s ORDER BY match_date,start_time",(tID,))
+        rows = cur.fetchall()
+
+        conn.close()
+
+        if rows:
+            return rows
+        else:
+            return None
+    
+    def findMatchesSport(tID,sport):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+        
+        cur.execute("SELECT * from match where tournament_id = %s and sportName = %s ORDER BY match_date,start_time",(tID,sport))
+        rows = cur.fetchall()
+
+        conn.close()
+
+        if rows:
+            return rows
+        else:
+            return None
+
+    def findTeamsByMID(mID):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+        
+        cur.execute("SELECT team_id from teamMatch where match_id = %s ",(mID,))
+        rows = cur.fetchall()
+        #print( rows[0])
+
+        conn.close()
+
+        if rows:
+            return rows
+        else:
+            return None

@@ -36,6 +36,18 @@ class Match(Resource):
                         required=True,
                         help="date cant be blank"
                         ) 
+    
+    parser2 = reqparse.RequestParser()
+    parser2.add_argument('tournament_id',
+                        type=int,
+                        required=True,
+                        help="Tournament id cant be blank"
+                        )
+    parser2.add_argument('sportName',
+                        type=str,
+                        required=True,
+                        help="sport cant be blank"
+                        )
 
     @jwt_required()
     def post(self):
@@ -47,5 +59,64 @@ class Match(Resource):
         m['team1_id']=data['team1_id']
         m['team2_id']=data['team2_id']
         
-
         return m, 201
+
+    def get(self):
+        data = Match.parser2.parse_args()
+        matches = MatchModel.findMatchesSport(data['tournament_id'],data['sportName'])
+
+        sMatches = { 
+            "matches": []
+        }
+        
+        if matches:
+            for m in matches:
+                teams = MatchModel.findTeamsByMID(m[0])
+                mat = {
+                    "match_id":m[0],
+                    "date":str(m[1]),
+                    "startTime":str(m[2]),
+                    #"sportName":m[4],
+                    "team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
+                    "team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
+                }
+                sMatches['matches'].append(mat)
+
+        return sMatches
+
+
+class MatchList(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('tournament_id',
+                        type=int,
+                        required=True,
+                        help="Tournament id cant be blank"
+                        )
+
+    def get(self):
+        data = MatchList.parser.parse_args()
+        matches = MatchModel.findMatchesTour(data['tournament_id'])
+
+        tourMatches = { 
+            "matches": []
+        }
+        
+        if matches:
+            for m in matches:
+                teams = MatchModel.findTeamsByMID(m[0])
+                mat = {
+                    "match_id":m[0],
+                    "date":str(m[1]),
+                    "startTime":str(m[2]),
+                    "sportName":m[4],
+                    "team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
+                    "team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
+                }
+                tourMatches['matches'].append(mat)
+
+        return tourMatches
+
+
+
+
+        
