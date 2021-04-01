@@ -89,7 +89,7 @@ class MatchModel:
 
         cur.execute("SELECT * from match where match_id = %s",(mID,))
         row = cur.fetchone()
-        
+
         conn.close()
         self.date = row[1]
         self.startTime = row[2]
@@ -97,3 +97,14 @@ class MatchModel:
         self.sportName = row[4]
 
         return self.json(row[0])
+
+    def delete_from_db(mID):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("DELETE from match where match_id = %s",(mID,))
+
+        conn.commit()
+        conn.close()

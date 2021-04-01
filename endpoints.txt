@@ -19,6 +19,7 @@ GET /sport/teams : gets all teams of a given sport in a given tournament
 GET /sport/players : gets all players of a given sport in a given tournament
 POST /match : enter a match of a sport of a tournametn between 2 teams   [[jwt req]]
 PUT /match : update date and time of match   [[jwt req]]
+DEL /match : delete a match of given id    [jwt req]]
 GET /match : get all matches of a sport from a tournament
 GET /tournament/matchList : get all matches in a tournament in order
 

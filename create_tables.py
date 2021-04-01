@@ -28,7 +28,7 @@ cur.execute("CREATE TABLE IF NOT EXISTS team (team_id serial PRIMARY KEY, team_n
 cur.execute("ALTER TABLE team ADD FOREIGN KEY (captain) REFERENCES player (pnum) ON DELETE CASCADE")
 cur.execute("ALTER TABLE player ADD FOREIGN KEY (team_id) REFERENCES team (team_id) ON DELETE CASCADE")
 cur.execute("CREATE TABLE IF NOT EXISTS match (match_id serial PRIMARY KEY, match_date date, start_time time, tournament_id integer, sportName text, FOREIGN KEY (tournament_id) REFERENCES tournament (tournament_id) ON DELETE CASCADE, FOREIGN KEY (sportName) REFERENCES sport (sportName))")
-cur.execute("CREATE TABLE IF NOT EXISTS teamMatch (team_id integer, match_id integer, PRIMARY KEY (team_id,match_id), FOREIGN KEY (team_id) REFERENCES team (team_id), FOREIGN KEY (match_id) REFERENCES match (match_id))")
+cur.execute("CREATE TABLE IF NOT EXISTS teamMatch (team_id integer, match_id integer, PRIMARY KEY (team_id,match_id), FOREIGN KEY (team_id) REFERENCES team (team_id), FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
 # cur.execute("CREATE TABLE IF NOT EXISTS Result (winner integer, match_id integer, round varchar(20), PRIMARY KEY(winner, match_id), FOREIGN KEY (match_id) REFERENCES Match (match_id))")
 # cur.execute("CREATE TABLE IF NOT EXISTS Team1Score (winner integer, match_id integer, score_1 integer, PRIMARY KEY(winner, match_id,score_1), FOREIGN KEY (winner) REFERENCES Result(winner), FOREIGN KEY (match_id) REFERENCES Result (match_id))")
 # cur.execute("CREATE TABLE IF NOT EXISTS Team2Score (winner integer, match_id integer, score_2 integer, PRIMARY KEY(winner, match_id,score_2), FOREIGN KEY (winner) REFERENCES Result(winner), FOREIGN KEY (match_id) REFERENCES Result (match_id))")

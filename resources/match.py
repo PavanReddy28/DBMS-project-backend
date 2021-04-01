@@ -56,7 +56,7 @@ class Match(Resource):
                         )
     parser3.add_argument('date',
                         type=str,#inputs.datetime_from_iso8601,
-                        required=True,
+                        required=False,
                         help="date cant be blank"
                         )
 
@@ -75,7 +75,6 @@ class Match(Resource):
     @jwt_required()
     def put(self):
         data = Match.parser3.parse_args()
-        print(data)
         dt = (inputs.datetime_from_iso8601(data['date'])).date()
         tm = (inputs.datetime_from_iso8601(data['date'])).timetz()
 
@@ -85,6 +84,21 @@ class Match(Resource):
         m = MatchModel().update(data['match_id'],dt,tm)
 
         return m, 201
+
+    @jwt_required()
+    def delete(self):
+        data = Match.parser3.parse_args()
+
+        flag = MatchModel.findTeamsByMID(data['match_id'])
+        if not flag:
+            return {"message": "match with id: {} does not exist".format(data['match_id'])},400
+
+        MatchModel.delete_from_db(data['match_id'])
+
+        return {
+            "message":"match with id {} deleted".format(data["match_id"])
+        }
+
 
 
     def get(self):
