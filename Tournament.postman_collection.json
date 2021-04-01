@@ -641,6 +641,73 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "/match",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Basketball\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tournament/matchList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/tournament/matchList",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tournament",
+						"matchList"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
