@@ -231,8 +231,8 @@
 				"method": "GET",
 				"header": [
 					{
-						"key": "Authorization",
-						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjE2NzU3NzEwLCJqdGkiOiI5Y2RjYmFhOS0yYjY4LTQ3OTItYWI2NS04MTQ0NGUyNzA5OWUiLCJuYmYiOjE2MTY3NTc3MTAsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiJJc2hhYW4iLCJleHAiOjE2MTY3NTg2MTB9.7I-pk9fRU-qClIKbISRg4VPRTxiorJHZbbFoc4SxeNY",
+						"key": "",
+						"value": "",
 						"type": "text",
 						"disabled": true
 					}
@@ -661,6 +661,38 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"match_id\":\"5\",\r\n    \"date\":\"2021-03-31T17:45:00+05:30\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"match_id\":\"6\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
