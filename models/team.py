@@ -117,6 +117,18 @@ class TeamModel:
 
         conn.close() 
 
+    def removeTeam(self,tId):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("DELETE FROM team t where t.team_id=%s",(tId,))
+
+        conn.commit()
+
+        conn.close()
+
     def find_by_sport(tID,sport):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 

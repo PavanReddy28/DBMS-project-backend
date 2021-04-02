@@ -128,9 +128,9 @@ class Team(Resource):
         if not t:
             return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
 
-        TeamModel().removeRejected(data['tournament_id'])
+        TeamModel().removeTeam(data['team_id'])
 
-        return {"message": "rejected teams in tournament with id: {} deleted".format(data['tournament_id'])},201
+        return {"message": "team with id: {} deleted".format(data['team_id'])},201
 
 
 class TeamList(Resource):
@@ -165,6 +165,18 @@ class TeamList(Resource):
                 })
 
         return resTeams,200
+
+    @jwt_required()
+    def delete(self):
+        data = TeamList.parser.parse_args()
+
+        t = TournamentModel.check_for_id(data['tournament_id'])
+        if not t:
+            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+
+        TeamModel().removeRejected(data['tournament_id'])
+
+        return {"message": "rejected teams in tournament with id: {} deleted".format(data['tournament_id'])},201
 
     
 class TeamSports(Resource):
