@@ -341,7 +341,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_name\": \"Sunrisers\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"2\",\r\n    \"captain\": {\r\n        \"fname\":\"Vineet\",\r\n        \"lname\":\"V\",\r\n        \"age\":\"19\"\r\n    },\r\n    \"sportName\":\"Tennis\",\r\n    \"contact\":\"8888888888\"\r\n\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_name\": \"abcd\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"VX\",\r\n        \"lname\":\"abcd\",\r\n        \"age\":\"19\"\r\n    },\r\n    \"sportName\":\"Tennis\",\r\n    \"contact\":\"8888788888\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -441,7 +441,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"9\",\r\n    \"status_update_to\":\"REGISTERED\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"11\",\r\n    \"status_update_to\":\"REJECTED\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -450,6 +450,38 @@
 					],
 					"path": [
 						"team"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/teams",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/teams",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"teams"
 					]
 				}
 			},
@@ -473,7 +505,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"10\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",

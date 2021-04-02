@@ -12,7 +12,8 @@ POST /team : enter team and captain details
 POST /player : enter remaining player details
 GET /teams : returns teams in a tournament     [[jwt req]]
 PUT /team : update status of team by organizers  [[jwt req]]
-DEL /team : deletes all teams with status 'REJECTED' in a given tournament   [[jwt req]]
+DEL /team : delete a team of given teamID [[jwt req]]
+DEL /teams : deletes all teams with status 'REJECTED' in a given tournament   [[jwt req]]
 GET /tournament/playerList : all participants in a tournament
 GET /team : gets team details along with all players in the team in a given tournament
 GET /sport/teams : gets all teams of a given sport in a given tournament
