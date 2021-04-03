@@ -26,7 +26,9 @@ GET /tournament/matchList : get all matches in a tournament in order
 POST /match/team/result : enter the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
 GET /match/team/result : returns the score of a match of sport Football,basketbal,hockey given the match ID
 POST /match/net/result : enter the scores for a match of sport tennis,badminton,tabletennis   [[jwt req]]
+GET /match/net/result : returns the score for a match of sport tennis,badminton,tabletennis  given the match ID
 POST /match/cricket/result : enter the scores for a match of sport cricket   [[jwt req]]
+GET /match/cricket/result : returns the score for a match of sport cricket  given the match ID
 
 
 

@@ -840,6 +840,44 @@
 			"response": []
 		},
 		{
+			"name": "/match/team/result",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"match_id\":\"4\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/team/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"team",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/match/net/result",
 			"request": {
 				"method": "POST",
@@ -874,6 +912,43 @@
 			"response": []
 		},
 		{
+			"name": "/match/net/result",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"match_id\":\"7\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/net/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"net",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/match/cricket/result",
 			"request": {
 				"method": "POST",
@@ -891,7 +966,44 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"9\",\r\n    \"match_id\":\"7\",\r\n    \"t1runs\":\"193\",\r\n    \"t1wickets\":\"2\",\r\n    \"t2runs\":\"186\",\r\n    \"t2wickets\":\"8\"\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"9\", \r\n    \"match_id\":\"7\",\r\n    \"t1runs\":\"193\",\r\n    \"t1wickets\":\"2\",\r\n    \"t2runs\":\"186\",\r\n    \"t2wickets\":\"8\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/cricket/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"cricket",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/cricket/result",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"match_id\":\"7\" \r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/cricket/result",
