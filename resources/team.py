@@ -208,7 +208,41 @@ class TeamSports(Resource):
             return {"message": "sport {} does not exist in tournament {}".format(data['sportName'],data['tournament_id'])},400
 
         return resTeams,200
-    
+
+class TeamStatus(Resource):
+
+    @jwt_required()
+    def get(self,status):
+
+        username = get_jwt_identity()
+
+        teams = TeamModel.find_by_status(username,status)
+
+        data = {}
+
+        if teams:
+
+            for team in teams:
+                print(team[0])
+
+                team_data = {
+                        "team_id": team[0],
+                        "team_name": team[1],
+                        "college": team[2],
+                        "num_players": team[3],
+                        "captain_f_name": team[18],
+                        "captain_l_name": team[19],
+                        "sport": team[5],
+                        "contact": team[6]
+                    }
+
+                if team[9] in data:
+                    data[team[9]].append(team_data)
+                else:
+                    data[team[9]] = [team_data]
+        
+        return data
+
 
 
 
