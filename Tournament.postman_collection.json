@@ -52,7 +52,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"Ishaan\",\r\n    \"password\":\"abcd\"\r\n}"
+					"raw": "{\r\n    \"username\":\"Pavan\",\r\n    \"password\":\"wxyz\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/login",
@@ -111,7 +111,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"t_name\":\"Spree\",\r\n    \"address\":\"some other place\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Goa\",\r\n    \"region\":\"Goa\",\r\n    \"zip\":\"69696969\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Basketball\",\"Hockey\",\"Tennis\"]\r\n}"
+					"raw": "{\r\n    \"t_name\":\"Arena\",\r\n    \"address\":\"Shamirpet\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Hyderabad\",\r\n    \"region\":\"Telangana\",\r\n    \"zip\":\"5000028\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Basketball\",\"Hockey\",\"Tennis\",\"Cricket\"]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -307,7 +307,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/getSports",
@@ -341,7 +341,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":2,\r\n    \"team_name\": \"xyzw\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"hd\",\r\n        \"lname\":\"abcd\",\r\n        \"age\":\"19\"\r\n    },\r\n    \"sportName\":\"Tennis\",\r\n    \"contact\":\"8888789888\"\r\n\r\n}"
+					"raw": "{\r\n    \"tournament_id\":1,\r\n    \"team_name\": \"TT2\",\r\n    \"college\": \"VIT\",\r\n    \"num_players\": \"2\",\r\n    \"captain\": {\r\n        \"fname\":\"N\",\r\n        \"lname\":\"Reddy\",\r\n        \"age\":\"22\"\r\n    },\r\n    \"sportName\":\"Table Tennis\",\r\n    \"contact\":\"9933544444\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -374,7 +374,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"9\",\r\n    \"players\":[\r\n        {\"fname\":\"Novak\",\"lname\":\"D\",\"age\":23}\r\n    ]\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"4\",\r\n    \"players\":[\r\n        {\"fname\":\"S\",\"lname\":\"Rao\",\"age\":22},\r\n        {\"fname\":\"P\",\"lname\":\"Reddy\",\"age\":18},\r\n        {\"fname\":\"M\",\"lname\":\"damodar\",\"age\":22},\r\n        {\"fname\":\"R\",\"lname\":\"Rao\",\"age\":23}\r\n    ]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/player",
@@ -409,7 +409,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/teams",
@@ -441,7 +441,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"11\",\r\n    \"status_update_to\":\"REJECTED\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"7\",\r\n    \"status_update_to\":\"REJECTED\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -473,7 +473,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/teams",
@@ -505,7 +505,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"10\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"5\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -535,7 +535,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/playerList",
@@ -596,7 +596,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Tennis\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"sportName\":\"Cricket\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/sport/teams",
@@ -627,7 +627,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Tennis\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"sportName\":\"Basketball\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/sport/players",
@@ -660,7 +660,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team1_id\":\"8\",\r\n    \"team2_id\":\"9\",\r\n    \"sportName\":\"Tennis\",\r\n    \"date\":\"2021-04-02T18:00:00+05:30\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team1_id\":\"1\",\r\n    \"team2_id\":\"2\",\r\n    \"sportName\":\"Cricket\",\r\n    \"date\":\"2021-04-06T10:30:00+05:30\",\r\n    \"round\":\"QF\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -724,7 +724,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"6\"\r\n}"
+					"raw": "{\r\n    \"match_id\":\"2\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -760,7 +760,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Tennis\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"sportName\":\"Cricket\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -790,7 +790,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/matchList",
@@ -823,7 +823,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"4\",\r\n    \"match_id\":\"4\",\r\n    \"t1Score\":\"104\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"4\",\r\n    \"match_id\":\"3\",\r\n    \"t1Score\":\"104\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/team/result",
@@ -861,7 +861,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"4\"\r\n\r\n}"
+					"raw": "{\r\n    \"match_id\":\"3\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/team/result",
@@ -966,7 +966,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"9\", \r\n    \"match_id\":\"7\",\r\n    \"t1runs\":\"193\",\r\n    \"t1wickets\":\"2\",\r\n    \"t2runs\":\"186\",\r\n    \"t2wickets\":\"8\"\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"1\", \r\n    \"match_id\":\"4\",\r\n    \"t1runs\":\"193\",\r\n    \"t1wickets\":\"2\",\r\n    \"t2runs\":\"186\",\r\n    \"t2wickets\":\"8\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/cricket/result",
@@ -1003,7 +1003,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"7\" \r\n\r\n}"
+					"raw": "{\r\n    \"match_id\":\"4\" \r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/cricket/result",

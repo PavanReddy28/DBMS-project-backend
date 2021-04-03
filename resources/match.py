@@ -36,6 +36,12 @@ class Match(Resource):
                         required=True,
                         help="date cant be blank"
                         ) 
+    parser.add_argument('round',
+                        type=str,
+                        required=True,
+                        help="round cant be blank"
+                        ) 
+        
     
     parser2 = reqparse.RequestParser()
     parser2.add_argument('tournament_id',
@@ -66,7 +72,7 @@ class Match(Resource):
         dt = (inputs.datetime_from_iso8601(data['date'])).date()
         tm = (inputs.datetime_from_iso8601(data['date'])).timetz()
 
-        m = MatchModel(dt,tm,data['tournament_id'],data['sportName']).save_to_db(data['team1_id'],data['team2_id'])
+        m = MatchModel(dt,tm,data['tournament_id'],data['sportName'],data['round']).save_to_db(data['team1_id'],data['team2_id'])
         m['team1_id']=data['team1_id']
         m['team2_id']=data['team2_id']
         
@@ -117,6 +123,7 @@ class Match(Resource):
                     "date":str(m[1]),
                     "startTime":str(m[2]),
                     #"sportName":m[4],
+                    "round":m[5],
                     "team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
                     "team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
                 }
@@ -149,6 +156,7 @@ class MatchList(Resource):
                     "date":str(m[1]),
                     "startTime":str(m[2]),
                     "sportName":m[4],
+                    "round":m[5],
                     "team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
                     "team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
                 }
