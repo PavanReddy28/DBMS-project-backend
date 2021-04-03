@@ -1,0 +1,31 @@
+import psycopg2
+import os
+from dotenv import load_dotenv
+
+class ResultModel:
+    def __init__(self,winner=None,match_id=None,score=None):
+        self.winner=winner
+        self.match_id=match_id
+        #self.score=score
+
+    def insertTeam(self,t1,t2):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("INSERT INTO resultTeam VALUES (%s,%s,ROW(%s,%s))",(self.winner,self.match_id,t1,t2))
+        
+        conn.commit()
+        conn.close()
+
+    def insertNet(self,s1t1,s1t2,s2t1,s2t2,s3t1=None,s3t2=None):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("INSERT INTO resultNet VALUES (%s,%s,ROW(%s,%s,%s,%s,%s,%s))",(self.winner,self.match_id,s1t1,s1t2,s2t1,s2t2,s3t1,s3t2))
+        
+        conn.commit()
+        conn.close()

@@ -341,7 +341,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_name\": \"abcd\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"VX\",\r\n        \"lname\":\"abcd\",\r\n        \"age\":\"19\"\r\n    },\r\n    \"sportName\":\"Tennis\",\r\n    \"contact\":\"8888788888\"\r\n\r\n}"
+					"raw": "{\r\n    \"tournament_id\":2,\r\n    \"team_name\": \"xyzw\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"hd\",\r\n        \"lname\":\"abcd\",\r\n        \"age\":\"19\"\r\n    },\r\n    \"sportName\":\"Tennis\",\r\n    \"contact\":\"8888789888\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -800,6 +800,74 @@
 					"path": [
 						"tournament",
 						"matchList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/team/result",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"4\",\r\n    \"match_id\":\"4\",\r\n    \"t1Score\":\"104\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/team/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"team",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/team/result Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"9\",\r\n    \"match_id\":\"7\",\r\n    \"set1team1\":\"6\",\r\n    \"set1team2\":\"2\",\r\n    \"set2team1\":\"7\",\r\n    \"set2team2\":\"6\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/net/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"net",
+						"result"
 					]
 				}
 			},
