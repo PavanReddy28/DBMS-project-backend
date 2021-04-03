@@ -29,3 +29,14 @@ class ResultModel:
         
         conn.commit()
         conn.close()
+
+    def insertCricket(self,t1r,t1w,t2r,t2w):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("INSERT INTO resultCricket VALUES (%s,%s,ROW(%s,%s,%s,%s))",(self.winner,self.match_id,t1r,t1w,t2r,t2w))
+        
+        conn.commit()
+        conn.close()

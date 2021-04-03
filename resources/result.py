@@ -87,3 +87,41 @@ class ResultNet(Resource):
             res.insertNet(data['set1team1'],data['set1team2'],data['set2team1'],data['set2team2'])
         
         
+class ResultCricket(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument('winner_id',
+                        type=int,
+                        required=True,
+                        help="winner_id cant be blank"
+                        )
+    parser.add_argument('match_id',
+                        type=int,
+                        required=True,
+                        help="match_id cant be blank"
+                        )
+    parser.add_argument('t1runs',
+                        type=int,
+                        required=True,
+                        help="runs cant be blank"
+                        )
+    parser.add_argument('t1wickets',
+                        type=int,
+                        required=True,
+                        help="wickets cant be blank"
+                        )
+    parser.add_argument('t2runs',
+                        type=int,
+                        required=True,
+                        help="runs cant be blank"
+                        )
+    parser.add_argument('t2wickets',
+                        type=int,
+                        required=True,
+                        help="wickets cant be blank"
+                        )
+
+    @jwt_required()
+    def post(self):
+        data = ResultCricket.parser.parse_args()
+        res = ResultModel(data['winner_id'],data['match_id'])
+        res.insertCricket(data['t1runs'],data['t1wickets'],data['t2runs'],data['t2wickets'])

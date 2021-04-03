@@ -840,7 +840,7 @@
 			"response": []
 		},
 		{
-			"name": "/match/team/result Copy",
+			"name": "/match/net/result",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -867,6 +867,40 @@
 					"path": [
 						"match",
 						"net",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/cricket/result",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"9\",\r\n    \"match_id\":\"7\",\r\n    \"t1runs\":\"193\",\r\n    \"t1wickets\":\"2\",\r\n    \"t2runs\":\"186\",\r\n    \"t2wickets\":\"8\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/cricket/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"cricket",
 						"result"
 					]
 				}
