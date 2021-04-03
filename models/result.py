@@ -40,3 +40,24 @@ class ResultModel:
         
         conn.commit()
         conn.close()
+
+    def check_for_id(mID,type):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        if type=='net':
+            cur.execute("SELECT * FROM resultNet where match_id =%s",(mID,))
+        elif type=='team':
+            cur.execute("SELECT * FROM resultTeam where match_id =%s",(mID,))
+        elif type=='cricket':
+            cur.execute("SELECT * FROM resultCricket where match_id =%s",(mID,))
+
+        row =cur.fetchone()
+        conn.close()
+
+        if row:
+            return row
+        else:
+            return None

@@ -27,12 +27,32 @@ class ResultTeam(Resource):
                         required=True,
                         help="t2Score cant be blank"
                         )
+    parser2 = reqparse.RequestParser()                    
+    parser2.add_argument('match_id',
+                        type=int,
+                        required=True,
+                        help="match_id cant be blank"
+                        )
 
     @jwt_required()
     def post(self):
         data = ResultTeam.parser.parse_args()
         res = ResultModel(data['winner_id'],data['match_id'])
         res.insertTeam(data['t1Score'],data['t2Score'])
+
+    def get(self):
+        data = ResultTeam.parser2.parse_args()
+        r = ResultModel.check_for_id(data['match_id'],'team')
+        if not r:
+            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+        m = MatchModel().find_by_id(data['match_id'])
+        m['winner_id']=r[0]
+        m['score']=r[2]
+
+        return m
+
+        
+
 
 class ResultNet(Resource):
     parser = reqparse.RequestParser()

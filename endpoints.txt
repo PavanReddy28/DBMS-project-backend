@@ -1,6 +1,3 @@
-Go to the resources files and see the inputs required and the key names for those inputs
-
-
 POST /register : registers a user    
 POST /login : logs in a user      
 GET /getUsers : returns all organizers    
@@ -27,6 +24,12 @@ DEL /match : delete a match of given id    [jwt req]]
 GET /match : get all matches of a sport from a tournament
 GET /tournament/matchList : get all matches in a tournament in order
 POST /match/team/result : enter the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
+GET /match/team/result : returns the score of a match of sport Football,basketbal,hockey given the match ID
 POST /match/net/result : enter the scores for a match of sport tennis,badminton,tabletennis   [[jwt req]]
 POST /match/cricket/result : enter the scores for a match of sport cricket   [[jwt req]]
+
+
+
+
+Go to the resources files and see the inputs required and the key names for those inputs
 
