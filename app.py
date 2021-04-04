@@ -9,6 +9,7 @@ from resources.sport import Sport, SportList
 from resources.team import TeamList,Team, TeamSports, TeamStatus
 from resources.player import Player, PlayerList, PlayerSports
 from resources.match import Match, MatchList
+from resources.result import ResultTeam,ResultNet,ResultCricket
 
 app = Flask(__name__)
 
@@ -36,6 +37,9 @@ api.add_resource(TeamSports, "/sport/teams")
 api.add_resource(PlayerSports, "/sport/players")
 api.add_resource(Match, "/match")
 api.add_resource(MatchList, "/tournament/matchList")
+api.add_resource(ResultTeam,"/match/team/result")
+api.add_resource(ResultNet,"/match/net/result")
+api.add_resource(ResultCricket,"/match/cricket/result")
 api.add_resource(TeamStatus,"/team/<string:status>")
 
 if __name__ == "__main__":

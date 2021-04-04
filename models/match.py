@@ -3,15 +3,16 @@ import os
 from dotenv import load_dotenv
 
 class MatchModel:
-    def __init__(self,date=None,startTime=None,tournament_id=None,sportName=None):
+    def __init__(self,date=None,startTime=None,tournament_id=None,sportName=None,round=None):
         #self.match_id=match_id
         self.date = date
         self.startTime=startTime
         self.tournament_id=tournament_id
         self.sportName=sportName
+        self.round=round
     
     def json(self,ID):
-        return {"date":str(self.date), "startTime": str(self.startTime), "tournament_id": self.tournament_id, "sportName":self.sportName,"match_id":ID}
+        return {"date":str(self.date), "startTime": str(self.startTime), "tournament_id": self.tournament_id, "sportName":self.sportName,"round":self.round,"match_id":ID}
 
     def save_to_db(self, t1,t2):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
@@ -19,7 +20,7 @@ class MatchModel:
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("INSERT INTO match VALUES (DEFAULT,%s,%s,%s,%s) RETURNING match_id", (self.date,self.startTime,self.tournament_id,self.sportName))
+        cur.execute("INSERT INTO match VALUES (DEFAULT,%s,%s,%s,%s,%s) RETURNING match_id", (self.date,self.startTime,self.tournament_id,self.sportName,self.round))
         match_num = cur.fetchone()[0]
         conn.commit()
         cur.execute("INSERT INTO teamMatch VALUES (%s,%s)",(t1,match_num))
@@ -95,6 +96,7 @@ class MatchModel:
         self.startTime = row[2]
         self.tournament_id = row[3]
         self.sportName = row[4]
+        self.round = row[5]
 
         return self.json(row[0])
 
@@ -108,3 +110,22 @@ class MatchModel:
 
         conn.commit()
         conn.close()
+
+    def find_by_id(self,mID):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("SELECT * from match where match_id = %s",(mID,))
+        row = cur.fetchone()
+
+        conn.close()
+
+        self.date = row[1]
+        self.startTime = row[2]
+        self.tournament_id = row[3]
+        self.sportName = row[4]
+        self.round = row[5]
+
+        return self.json(row[0])

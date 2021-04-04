@@ -52,7 +52,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\":\"Ishaan\",\r\n    \"password\":\"abcd\"\r\n}"
+					"raw": "{\r\n    \"username\":\"Pavan\",\r\n    \"password\":\"wxyz\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/login",
@@ -111,7 +111,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"t_name\":\"Spree\",\r\n    \"address\":\"some other place\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Goa\",\r\n    \"region\":\"Goa\",\r\n    \"zip\":\"69696969\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Basketball\",\"Hockey\",\"Tennis\"]\r\n}"
+					"raw": "{\r\n    \"t_name\":\"Arena\",\r\n    \"address\":\"Shamirpet\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Hyderabad\",\r\n    \"region\":\"Telangana\",\r\n    \"zip\":\"5000028\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Basketball\",\"Hockey\",\"Tennis\",\"Cricket\"]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -307,7 +307,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/getSports",
@@ -341,7 +341,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_name\": \"abcd\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"VX\",\r\n        \"lname\":\"abcd\",\r\n        \"age\":\"19\"\r\n    },\r\n    \"sportName\":\"Tennis\",\r\n    \"contact\":\"8888788888\"\r\n\r\n}"
+					"raw": "{\r\n    \"tournament_id\":2,\r\n    \"team_name\": \"C2\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"Ben\",\r\n        \"lname\":\"R\",\r\n        \"age\":\"23\"\r\n    },\r\n    \"sportName\":\"Cricket\",\r\n    \"contact\":\"9933484744\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -374,7 +374,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"9\",\r\n    \"players\":[\r\n        {\"fname\":\"Novak\",\"lname\":\"D\",\"age\":23}\r\n    ]\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"4\",\r\n    \"players\":[\r\n        {\"fname\":\"S\",\"lname\":\"Rao\",\"age\":22},\r\n        {\"fname\":\"P\",\"lname\":\"Reddy\",\"age\":18},\r\n        {\"fname\":\"M\",\"lname\":\"damodar\",\"age\":22},\r\n        {\"fname\":\"R\",\"lname\":\"Rao\",\"age\":23}\r\n    ]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/player",
@@ -441,7 +441,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"11\",\r\n    \"status_update_to\":\"REJECTED\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"16\",\r\n    \"status_update_to\":\"REGISTERED\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -473,7 +473,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/teams",
@@ -505,7 +505,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team_id\":\"10\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"5\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -535,7 +535,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/playerList",
@@ -596,7 +596,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Tennis\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Cricket\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/sport/teams",
@@ -627,7 +627,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Tennis\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"sportName\":\"Basketball\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/sport/players",
@@ -660,7 +660,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team1_id\":\"8\",\r\n    \"team2_id\":\"9\",\r\n    \"sportName\":\"Tennis\",\r\n    \"date\":\"2021-04-02T18:00:00+05:30\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team1_id\":\"15\",\r\n    \"team2_id\":\"16\",\r\n    \"sportName\":\"Cricket\",\r\n    \"date\":\"2021-04-10T11:30:00+05:30\",\r\n    \"round\":\"Final\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -724,7 +724,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"6\"\r\n}"
+					"raw": "{\r\n    \"match_id\":\"2\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -760,7 +760,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Tennis\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Basketball\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -790,7 +790,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament/matchList",
@@ -800,6 +800,322 @@
 					"path": [
 						"tournament",
 						"matchList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/team/result",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"14\",\r\n    \"match_id\":\"7\",\r\n    \"t1Score\":\"104\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/team/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"team",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/team/result",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"14\",\r\n    \"match_id\":\"7\",\r\n    \"t1Score\":\"105\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/team/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"team",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/team/result",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"match_id\":\"7\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/team/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"team",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/net/result",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"match_id\":\"6\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/net/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"net",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/net/result",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"match_id\":\"6\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/net/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"net",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/net/result",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"match_id\":\"6\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/net/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"net",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/cricket/result",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"15\", \r\n    \"match_id\":\"8\",\r\n    \"t1Innings\":{\"runs\":155,\"wickets\":5},\r\n    \"t2Innings\":{\"runs\":132,\"wickets\":10}\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/cricket/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"cricket",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/cricket/result",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"16\", \r\n    \"match_id\":\"8\",\r\n    \"t1Innings\":{\"runs\":155,\"wickets\":5},\r\n    \"t2Innings\":{\"runs\":157,\"wickets\":2}\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/cricket/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"cricket",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/cricket/result",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"match_id\":\"8\" \r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/cricket/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"cricket",
+						"result"
 					]
 				}
 			},
