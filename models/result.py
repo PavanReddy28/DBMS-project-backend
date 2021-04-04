@@ -62,6 +62,27 @@ class ResultModel:
         else:
             return None
 
+    def get_scores(mID,type):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        if type=='net':
+            cur.execute("SELECT winner,(score).s1t1,(score).s1t2,(score).s2t1,(score).s2t2,(score).s3t1,(score).s3t2 FROM resultNet where match_id =%s",(mID,))
+        elif type=='team':
+            cur.execute("SELECT * FROM resultTeam where match_id =%s",(mID,))
+        elif type=='cricket':
+            cur.execute("SELECT * FROM resultCricket where match_id =%s",(mID,))
+
+        row =cur.fetchone()
+        conn.close()
+
+        if row:
+            return row
+        else:
+            return None
+
     def updateTeam(self,t1,t2):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 

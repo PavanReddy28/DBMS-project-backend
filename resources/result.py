@@ -85,35 +85,23 @@ class ResultNet(Resource):
                         required=True,
                         help="match_id cant be blank"
                         )
-    parser.add_argument('set1team1',
+    parser.add_argument('set1',
                         type=int,
                         required=True,
-                        help="Score cant be blank"
+                        action='append',
+                        help="Set 1 cant be blank"
                         )
-    parser.add_argument('set1team2',
+    parser.add_argument('set2',
                         type=int,
                         required=True,
-                        help="t2Score cant be blank"
+                        action='append',
+                        help="Set 2 cant be blank"
                         )
-    parser.add_argument('set2team1',
-                        type=int,
-                        required=True,
-                        help="Score cant be blank"
-                        )
-    parser.add_argument('set2team2',
-                        type=int,
-                        required=True,
-                        help="t2Score cant be blank"
-                        )
-    parser.add_argument('set3team1',
+    parser.add_argument('set3',
                         type=int,
                         required=False,
-                        help="Score cant be blank"
-                        )
-    parser.add_argument('set3team2',
-                        type=int,
-                        required=False,
-                        help="t2Score cant be blank"
+                        action='append',
+                        help="Set 3 cant be blank"
                         )
 
     parser2 = reqparse.RequestParser()                    
@@ -127,22 +115,41 @@ class ResultNet(Resource):
     def post(self):
         data = ResultNet.parser.parse_args()
         res = ResultModel(data['winner_id'],data['match_id'])
-        if data['set3team1']:
-            res.insertNet(data['set1team1'],data['set1team2'],data['set2team1'],data['set2team2'],data['set3team1'],data['set3team2'])
+        if data['set3']:
+            res.insertNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1],data['set3'][0],data['set3'][1])
         else:
-            res.insertNet(data['set1team1'],data['set1team2'],data['set2team1'],data['set2team2'])
+            res.insertNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1])
+
+        m = MatchModel().find_by_id(data['match_id'])
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
+        m['winner_id']=data['winner_id']
+        m['set1']=data['set1']
+        m['set2']=data['set2']
+        if data['set3']:
+            m['set3']=data['set3']
+
+        return m,200
     
     def get(self):
         data = ResultNet.parser2.parse_args()
-        r = ResultModel.check_for_id(data['match_id'],'net')
+        r = ResultModel.get_scores(data['match_id'],'net')
         if not r:
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+
         m = MatchModel().find_by_id(data['match_id'])
         teams = MatchModel.findTeamsByMID(data['match_id'])
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
-        m['score']=r[2]
+        m['set1']=[]
+        m['set2']=[]
+        m['set3']=[]
+        print(r)
+        m['set1'].extend([r[1],r[2]])
+        m['set2'].extend([r[3],r[4]])
+        m['set3'].extend([r[5],r[6]])
 
         return m,200
 
@@ -154,17 +161,21 @@ class ResultNet(Resource):
         if not r:
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
 
-        if data['set3team1']:
-            res.updateNet(data['set1team1'],data['set1team2'],data['set2team1'],data['set2team2'],data['set3team1'],data['set3team2'])
+        if data['set3']:
+            res.updateNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1],data['set3'][0],data['set3'][1])
         else:
-            res.updateNet(data['set1team1'],data['set1team2'],data['set2team1'],data['set2team2'])
+            res.updateNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1])
+
         m = MatchModel().find_by_id(data['match_id'])
         r = ResultModel.check_for_id(data['match_id'],'net')
         teams = MatchModel.findTeamsByMID(data['match_id'])
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
-        m['winner_id']=r[0]
-        m['score']=r[2]
+        m['winner_id']=data['winner_id']
+        m['set1']=data['set1']
+        m['set2']=data['set2']
+        if data['set3']:
+            m['set3']=data['set3']
 
         return m,201
         
