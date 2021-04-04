@@ -46,6 +46,9 @@ class ResultTeam(Resource):
         if not r:
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
         m = MatchModel().find_by_id(data['match_id'])
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
         m['score']=r[2]
 
@@ -61,6 +64,9 @@ class ResultTeam(Resource):
         res.updateTeam(data['t1Score'],data['t2Score'])
         m = MatchModel().find_by_id(data['match_id'])
         r = ResultModel.check_for_id(data['match_id'],'team')
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
         m['score']=r[2]
 
@@ -132,6 +138,9 @@ class ResultNet(Resource):
         if not r:
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
         m = MatchModel().find_by_id(data['match_id'])
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
         m['score']=r[2]
 
@@ -151,6 +160,9 @@ class ResultNet(Resource):
             res.updateNet(data['set1team1'],data['set1team2'],data['set2team1'],data['set2team2'])
         m = MatchModel().find_by_id(data['match_id'])
         r = ResultModel.check_for_id(data['match_id'],'net')
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
         m['score']=r[2]
 
@@ -209,6 +221,9 @@ class ResultCricket(Resource):
         if not r:
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
         m = MatchModel().find_by_id(data['match_id'])
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
         m['score']=r[2]
 
@@ -224,6 +239,9 @@ class ResultCricket(Resource):
         res.updateCricket(data['t1runs'],data['t1wickets'],data['t2runs'],data['t2wickets'])
         m = MatchModel().find_by_id(data['match_id'])
         r = ResultModel.check_for_id(data['match_id'],'cricket')
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
         m['score']=r[2]
 
