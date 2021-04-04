@@ -61,3 +61,36 @@ class ResultModel:
             return row
         else:
             return None
+
+    def updateTeam(self,t1,t2):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("UPDATE resultTeam SET winner =%s,score = ROW(%s,%s) where match_id = %s",(self.winner,t1,t2,self.match_id))
+        
+        conn.commit()
+        conn.close()
+
+    def updateNet(self,s1t1,s1t2,s2t1,s2t2,s3t1=None,s3t2=None):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("UPDATE resultNet SET winner =%s,score =ROW(%s,%s,%s,%s,%s,%s) where match_id =%s",(self.winner,s1t1,s1t2,s2t1,s2t2,s3t1,s3t2,self.match_id))
+        
+        conn.commit()
+        conn.close()
+
+    def updateCricket(self,t1r,t1w,t2r,t2w):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+
+        cur.execute("UPDATE resultCricket SET winner =%s,score =ROW(%s,%s,%s,%s) where match_id = %s",(self.winner,t1r,t1w,t2r,t2w,self.match_id))
+        
+        conn.commit()
+        conn.close()

@@ -341,7 +341,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":1,\r\n    \"team_name\": \"TT2\",\r\n    \"college\": \"VIT\",\r\n    \"num_players\": \"2\",\r\n    \"captain\": {\r\n        \"fname\":\"N\",\r\n        \"lname\":\"Reddy\",\r\n        \"age\":\"22\"\r\n    },\r\n    \"sportName\":\"Table Tennis\",\r\n    \"contact\":\"9933544444\"\r\n\r\n}"
+					"raw": "{\r\n    \"tournament_id\":1,\r\n    \"team_name\": \"TT2\",\r\n    \"college\": \"VIT\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"M\",\r\n        \"lname\":\"Rao\",\r\n        \"age\":\"24\"\r\n    },\r\n    \"sportName\":\"Table Tennis\",\r\n    \"contact\":\"9933547744\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -841,6 +841,40 @@
 		},
 		{
 			"name": "/match/team/result",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"4\",\r\n    \"match_id\":\"3\",\r\n    \"t1Score\":\"104\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/team/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"team",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/team/result",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -895,7 +929,41 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"9\",\r\n    \"match_id\":\"7\",\r\n    \"set1team1\":\"6\",\r\n    \"set1team2\":\"2\",\r\n    \"set2team1\":\"7\",\r\n    \"set2team2\":\"6\"\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"9\",\r\n    \"match_id\":\"5\",\r\n    \"set1team1\":\"11\",\r\n    \"set1team2\":\"2\",\r\n    \"set2team1\":\"11\",\r\n    \"set2team2\":\"6\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/net/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"net",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/net/result",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"9\",\r\n    \"match_id\":\"5\",\r\n    \"set1team1\":\"11\",\r\n    \"set1team2\":\"3\",\r\n    \"set2team1\":\"11\",\r\n    \"set2team2\":\"6\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/net/result",
@@ -932,7 +1000,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"7\"\r\n\r\n}"
+					"raw": "{\r\n    \"match_id\":\"5\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/net/result",
@@ -967,6 +1035,40 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"winner_id\":\"1\", \r\n    \"match_id\":\"4\",\r\n    \"t1runs\":\"193\",\r\n    \"t1wickets\":\"2\",\r\n    \"t2runs\":\"186\",\r\n    \"t2wickets\":\"8\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/cricket/result",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"cricket",
+						"result"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/cricket/result",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"2\", \r\n    \"match_id\":\"4\",\r\n    \"t1runs\":\"186\",\r\n    \"t1wickets\":\"2\",\r\n    \"t2runs\":\"187\",\r\n    \"t2wickets\":\"8\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/cricket/result",

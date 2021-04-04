@@ -50,10 +50,23 @@ class ResultTeam(Resource):
         m['score']=r[2]
 
         return m,200
+    
+    @jwt_required()
+    def put(self):
+        data = ResultTeam.parser.parse_args()
+        res = ResultModel(data['winner_id'],data['match_id'])
+        r = ResultModel.check_for_id(data['match_id'],'team')
+        if not r:
+            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+        res.updateTeam(data['t1Score'],data['t2Score'])
+        m = MatchModel().find_by_id(data['match_id'])
+        r = ResultModel.check_for_id(data['match_id'],'team')
+        m['winner_id']=r[0]
+        m['score']=r[2]
+
+        return m,201
 
         
-
-
 class ResultNet(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('winner_id',
@@ -123,6 +136,25 @@ class ResultNet(Resource):
         m['score']=r[2]
 
         return m,200
+
+    @jwt_required()
+    def put(self):
+        data = ResultNet.parser.parse_args()
+        res = ResultModel(data['winner_id'],data['match_id'])
+        r = ResultModel.check_for_id(data['match_id'],'net')
+        if not r:
+            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+
+        if data['set3team1']:
+            res.updateNet(data['set1team1'],data['set1team2'],data['set2team1'],data['set2team2'],data['set3team1'],data['set3team2'])
+        else:
+            res.updateNet(data['set1team1'],data['set1team2'],data['set2team1'],data['set2team2'])
+        m = MatchModel().find_by_id(data['match_id'])
+        r = ResultModel.check_for_id(data['match_id'],'net')
+        m['winner_id']=r[0]
+        m['score']=r[2]
+
+        return m,201
         
         
 class ResultCricket(Resource):
@@ -181,3 +213,18 @@ class ResultCricket(Resource):
         m['score']=r[2]
 
         return m,200
+
+    @jwt_required()
+    def put(self):
+        data = ResultCricket.parser.parse_args()
+        res = ResultModel(data['winner_id'],data['match_id'])
+        r = ResultModel.check_for_id(data['match_id'],'cricket')
+        if not r:
+            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+        res.updateCricket(data['t1runs'],data['t1wickets'],data['t2runs'],data['t2wickets'])
+        m = MatchModel().find_by_id(data['match_id'])
+        r = ResultModel.check_for_id(data['match_id'],'cricket')
+        m['winner_id']=r[0]
+        m['score']=r[2]
+
+        return m,201
