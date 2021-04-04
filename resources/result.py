@@ -40,9 +40,19 @@ class ResultTeam(Resource):
         res = ResultModel(data['winner_id'],data['match_id'])
         res.insertTeam(data['t1Score'],data['t2Score'])
 
+        m = MatchModel().find_by_id(data['match_id'])
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
+        m['winner_id']=data['winner_id']
+        m['t1Score']=data['t1Score']
+        m['t2Score']=data['t2Score']
+
+        return m,201
+
     def get(self):
         data = ResultTeam.parser2.parse_args()
-        r = ResultModel.check_for_id(data['match_id'],'team')
+        r = ResultModel.get_scores(data['match_id'],'team')
         if not r:
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
         m = MatchModel().find_by_id(data['match_id'])
@@ -50,7 +60,8 @@ class ResultTeam(Resource):
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
-        m['score']=r[2]
+        m['t1score']=r[1]
+        m['t2score']=r[2]
 
         return m,200
     
@@ -67,10 +78,11 @@ class ResultTeam(Resource):
         teams = MatchModel.findTeamsByMID(data['match_id'])
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
-        m['winner_id']=r[0]
-        m['score']=r[2]
+        m['winner_id']=data['winner_id']
+        m['t1Score']=data['t1Score']
+        m['t2Score']=data['t2Score']
 
-        return m,201
+        return m,200
 
         
 class ResultNet(Resource):
@@ -130,7 +142,7 @@ class ResultNet(Resource):
         if data['set3']:
             m['set3']=data['set3']
 
-        return m,200
+        return m,201
     
     def get(self):
         data = ResultNet.parser2.parse_args()

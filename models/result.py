@@ -71,7 +71,7 @@ class ResultModel:
         if type=='net':
             cur.execute("SELECT winner,(score).s1t1,(score).s1t2,(score).s2t1,(score).s2t2,(score).s3t1,(score).s3t2 FROM resultNet where match_id =%s",(mID,))
         elif type=='team':
-            cur.execute("SELECT * FROM resultTeam where match_id =%s",(mID,))
+            cur.execute("SELECT winner,(score).t1,(score).t2 FROM resultTeam where match_id =%s",(mID,))
         elif type=='cricket':
             cur.execute("SELECT * FROM resultCricket where match_id =%s",(mID,))
 
