@@ -74,7 +74,6 @@ class ResultTeam(Resource):
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
         res.updateTeam(data['t1Score'],data['t2Score'])
         m = MatchModel().find_by_id(data['match_id'])
-        r = ResultModel.check_for_id(data['match_id'],'team')
         teams = MatchModel.findTeamsByMID(data['match_id'])
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
@@ -158,7 +157,6 @@ class ResultNet(Resource):
         m['set1']=[]
         m['set2']=[]
         m['set3']=[]
-        print(r)
         m['set1'].extend([r[1],r[2]])
         m['set2'].extend([r[3],r[4]])
         m['set3'].extend([r[5],r[6]])
@@ -179,7 +177,6 @@ class ResultNet(Resource):
             res.updateNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1])
 
         m = MatchModel().find_by_id(data['match_id'])
-        r = ResultModel.check_for_id(data['match_id'],'net')
         teams = MatchModel.findTeamsByMID(data['match_id'])
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
@@ -204,25 +201,15 @@ class ResultCricket(Resource):
                         required=True,
                         help="match_id cant be blank"
                         )
-    parser.add_argument('t1runs',
-                        type=int,
+    parser.add_argument('t1Innings',
+                        type=dict,
                         required=True,
-                        help="runs cant be blank"
+                        help="score cant be blank"
                         )
-    parser.add_argument('t1wickets',
-                        type=int,
+    parser.add_argument('t2Innings',
+                        type=dict,
                         required=True,
-                        help="wickets cant be blank"
-                        )
-    parser.add_argument('t2runs',
-                        type=int,
-                        required=True,
-                        help="runs cant be blank"
-                        )
-    parser.add_argument('t2wickets',
-                        type=int,
-                        required=True,
-                        help="wickets cant be blank"
+                        help="score cant be blank"
                         )
                         
     parser2 = reqparse.RequestParser()                    
@@ -236,11 +223,21 @@ class ResultCricket(Resource):
     def post(self):
         data = ResultCricket.parser.parse_args()
         res = ResultModel(data['winner_id'],data['match_id'])
-        res.insertCricket(data['t1runs'],data['t1wickets'],data['t2runs'],data['t2wickets'])
+        res.insertCricket(data['t1Innings']['runs'],data['t1Innings']['wickets'],data['t2Innings']['runs'],data['t2Innings']['wickets'])
+
+        m = MatchModel().find_by_id(data['match_id'])
+        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m['team1ID']=teams[0][0]
+        m['team2ID']=teams[1][0]
+        m['winner_id']=data['winner_id']
+        m['t1Innings']=data['t1Innings']
+        m['t2Innings']=data['t2Innings']
+
+        return m,201
 
     def get(self):
         data = ResultCricket.parser2.parse_args()
-        r = ResultModel.check_for_id(data['match_id'],'cricket')
+        r = ResultModel.get_scores(data['match_id'],'cricket')
         if not r:
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
         m = MatchModel().find_by_id(data['match_id'])
@@ -248,7 +245,12 @@ class ResultCricket(Resource):
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
-        m['score']=r[2]
+        m['t1Innings']={}
+        m['t2Innings']={}
+        m['t1Innings']['runs']=r[1]
+        m['t1Innings']['wickets']=r[2]
+        m['t2Innings']['runs']=r[3]
+        m['t2Innings']['wickets']=r[4]
 
         return m,200
 
@@ -259,13 +261,14 @@ class ResultCricket(Resource):
         r = ResultModel.check_for_id(data['match_id'],'cricket')
         if not r:
             return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
-        res.updateCricket(data['t1runs'],data['t1wickets'],data['t2runs'],data['t2wickets'])
+        res.updateCricket(data['t1Innings']['runs'],data['t1Innings']['wickets'],data['t2Innings']['runs'],data['t2Innings']['wickets'])
         m = MatchModel().find_by_id(data['match_id'])
-        r = ResultModel.check_for_id(data['match_id'],'cricket')
         teams = MatchModel.findTeamsByMID(data['match_id'])
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
-        m['winner_id']=r[0]
-        m['score']=r[2]
+        m['winner_id']=data['winner_id']
+        m['t1Innings']=data['t1Innings']
+        m['t2Innings']=data['t2Innings']
+
 
         return m,201
