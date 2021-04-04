@@ -135,17 +135,9 @@ class Team(Resource):
 
 class TeamList(Resource):
 
-    parser = reqparse.RequestParser()
-    parser.add_argument('tournament_id',
-                        type=int,
-                        required=True,
-                        help="Tournament id cant be blank"
-                        )
-
     @jwt_required()
-    def get(self):
-        data = TeamList.parser.parse_args()
-        teams = TeamModel.findAll(data["tournament_id"])
+    def get(self,id_):
+        teams = TeamModel.findAll(id_)
 
         resTeams = { 
             "teams": []
@@ -167,10 +159,9 @@ class TeamList(Resource):
         return resTeams,200
 
     @jwt_required()
-    def delete(self):
-        data = TeamList.parser.parse_args()
+    def delete(self,id_):
 
-        t = TournamentModel.check_for_id(data['tournament_id'])
+        t = TournamentModel.check_for_id(id_)
         if not t:
             return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
 
