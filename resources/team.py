@@ -230,10 +230,11 @@ class TeamStatus(Resource):
                         "team_name": team[1],
                         "college": team[2],
                         "num_players": team[3],
-                        "captain_f_name": team[18],
-                        "captain_l_name": team[19],
-                        "sport": team[5],
-                        "contact": team[6]
+                        "sport": team[4],
+                        "captain_f_name": team[5],
+                        "captain_l_name": team[6],
+                        "contact": team[7],
+                        "tournament_id": team[8]
                     }
 
                 if team[9] in data:

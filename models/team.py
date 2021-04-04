@@ -139,7 +139,7 @@ class TeamModel:
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("SELECT * from team te,tournament t,player p WHERE te.captain = p.pnum and t.tournament_id = p.tournament_id and te.status =%s and t.username = %s",(status,username))
+        cur.execute("SELECT te.team_id, te.team_name, te.college, te.num_players, te.sportname, p.firstname, p.lastname, te.contact, t.tournament_id, t.t_name from team te,tournament t,player p WHERE te.captain = p.pnum and t.tournament_id = p.tournament_id and te.status =%s and t.username = %s",(status,username))
 
         rows = cur.fetchall()
         conn.close()
