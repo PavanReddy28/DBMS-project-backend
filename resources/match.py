@@ -133,16 +133,16 @@ class Match(Resource):
 
 
 class MatchList(Resource):
-    parser = reqparse.RequestParser()
+    """ parser = reqparse.RequestParser()
     parser.add_argument('tournament_id',
                         type=int,
                         required=True,
                         help="Tournament id cant be blank"
-                        )
+                        ) """
 
-    def get(self):
-        data = MatchList.parser.parse_args()
-        matches = MatchModel.findMatchesTour(data['tournament_id'])
+    def get(self,id_):
+        #data = MatchList.parser.parse_args()
+        matches = MatchModel.findMatchesTour(id_)
 
         tourMatches = { 
             "matches": []

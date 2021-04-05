@@ -51,21 +51,21 @@ class Team(Resource):
                         required=False,
                         help="Tournament id cant be blank"
                         )
-    parser2.add_argument('team_id',
-                        type=int,
-                        required=False,
-                        help="Team id. cant be blank"
-                        )
+    # parser2.add_argument('team_id',
+    #                     type=int,
+    #                     required=False,
+    #                     help="Team id. cant be blank"
+    #                     )
     parser2.add_argument('status_update_to',   # has to be either REJECTED or REGISTERED
                         type=str,
                         required=False,
                         help="Status cant be blank"
                         )
 
-    def get(self):
-        data = Team.parser2.parse_args()
-        team = TeamModel.find_by_id(data['team_id'])
-        participants = PlayerModel.findAll(data['team_id'],"team")
+    """ def get(self):
+        #data = Team.parser2.parse_args()
+        team = TeamModel.find_by_id(tid_)
+        participants = PlayerModel.findAll(tid_,"team")
 
         if team:
             p = {
@@ -79,7 +79,7 @@ class Team(Resource):
                 "players": []
             }
         else:
-            return {"message": "team with id: {} does not exist".format(data['team_id'])},400
+            return {"message": "team with id: {} does not exist".format(tid_)},400
         
         if participants:
             for pp in participants:
@@ -92,7 +92,7 @@ class Team(Resource):
                     "team_id":pp[5]
                 })
 
-        return p,200
+        return p,200 """
 
     def post(self):
         data = Team.parser.parse_args()
@@ -171,7 +171,7 @@ class TeamList(Resource):
 
     
 class TeamSports(Resource):
-    parser = reqparse.RequestParser()
+    """ parser = reqparse.RequestParser()
     parser.add_argument('tournament_id',
                         type=int,
                         required=True,
@@ -181,15 +181,15 @@ class TeamSports(Resource):
                         type=str,
                         required=True,
                         help="Sport cant be blank"
-                        )           
+                        )   """         
 
-    def get(self):
-        data = TeamSports.parser.parse_args()
-        ts = TournamentModel.check_for_id(data['tournament_id'])      
+    def get(self,id_,sport):
+        #data = TeamSports.parser.parse_args()
+        ts = TournamentModel.check_for_id(id_)      
         if not ts:
-            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+            return {"message": "tournament with id: {} does not exist".format(id_)},400
 
-        teams = TeamModel.find_by_sport(data['tournament_id'], data['sportName'])
+        teams = TeamModel.find_by_sport(id_, sport)
 
         resTeams = { 
             "teams": []
@@ -208,7 +208,7 @@ class TeamSports(Resource):
                     "contact":t[7]
                 })
         else:
-            return {"message": "sport {} does not exist in tournament {}".format(data['sportName'],data['tournament_id'])},400
+            return {"message": "sport {} does not exist in tournament {}".format(sport,id_)},400
 
         return resTeams,200
 
@@ -246,6 +246,41 @@ class TeamStatus(Resource):
                     data[team[9]] = [team_data]
         
         return data
+
+class TeamDetails(Resource):
+
+    def get(self,tid_):
+        #data = Team.parser2.parse_args()
+        team = TeamModel.find_by_id(tid_)
+        participants = PlayerModel.findAll(tid_,"team")
+
+        if team:
+            p = {
+                "team_id":team[0],
+                "team_name":team[1],
+                "college":team[2],
+                "num_players":team[3],
+                "captain ID":team[4],
+                "sportName":team[5],
+                "contact":team[7],
+                "players": []
+            }
+        else:
+            return {"message": "team with id: {} does not exist".format(tid_)},400
+        
+        if participants:
+            for pp in participants:
+                p['players'].append({
+                    "pnum":pp[0],
+                    "firstname":pp[1],
+                    "lastname":pp[2],
+                    "age":pp[3],
+                    "tournament_id":pp[4],
+                    "team_id":pp[5]
+                })
+
+        return p,200
+
 
 
 

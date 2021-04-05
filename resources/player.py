@@ -60,18 +60,18 @@ class Player(Resource):
 
 
 class PlayerList(Resource):
-    parser = reqparse.RequestParser()
+    """ parser = reqparse.RequestParser()
     parser.add_argument('tournament_id',
                         type=int,
                         required=True,
                         help="Tournament id cant be blank"
-                        )
+                        ) """
 
-    def get(self):
-        data = PlayerList.parser.parse_args()
-        participants = PlayerModel.findAll(data['tournament_id'],"tour")
+    def get(self,id_):
+        #data = PlayerList.parser.parse_args()
+        participants = PlayerModel.findAll(id_,"tour")
         if not participants:
-            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+            return {"message": "tournament with id: {} does not exist".format(id_)},400
 
         p = { 
             "players": []
@@ -92,7 +92,7 @@ class PlayerList(Resource):
         return p,200
 
 class PlayerSports(Resource):
-    parser = reqparse.RequestParser()
+    """ parser = reqparse.RequestParser()
     parser.add_argument('tournament_id',
                         type=int,
                         required=True,
@@ -102,15 +102,15 @@ class PlayerSports(Resource):
                         type=str,
                         required=True,
                         help="Sport cant be blank"
-                        )           
+                        )  """          
 
-    def get(self):
-        data = PlayerSports.parser.parse_args()
-        t = TournamentModel.check_for_id(data['tournament_id'])      
+    def get(self,id_,sport):
+        #data = PlayerSports.parser.parse_args()
+        t = TournamentModel.check_for_id(id_)      
         if not t:
-            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+            return {"message": "tournament with id: {} does not exist".format(id_)},400
 
-        participants = PlayerModel.find_by_sport(data['tournament_id'], data['sportName'])
+        participants = PlayerModel.find_by_sport(id_, sport)
 
         p = { 
             "players": []
@@ -127,6 +127,6 @@ class PlayerSports(Resource):
                     "team_id":pp[5]
                 })
         else:
-            return {"message": "sport {} does not exist in tournament {}".format(data['sportName'],data['tournament_id'])},400
+            return {"message": "sport {} does not exist in tournament {}".format(sport,id_)},400
 
         return p,200
