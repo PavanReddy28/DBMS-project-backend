@@ -12,11 +12,11 @@ class ResultTeam(Resource):
                         required=True,
                         help="winner_id cant be blank"
                         )
-    parser.add_argument('match_id',
+    """ parser.add_argument('match_id',
                         type=int,
                         required=True,
                         help="match_id cant be blank"
-                        )
+                        ) """
     parser.add_argument('t1Score',
                         type=int,
                         required=True,
@@ -27,21 +27,21 @@ class ResultTeam(Resource):
                         required=True,
                         help="t2Score cant be blank"
                         )
-    parser2 = reqparse.RequestParser()                    
+    """ parser2 = reqparse.RequestParser()                    
     parser2.add_argument('match_id',
                         type=int,
                         required=True,
                         help="match_id cant be blank"
-                        )
+                        ) """
 
     @jwt_required()
-    def post(self):
+    def post(self,mid_):
         data = ResultTeam.parser.parse_args()
-        res = ResultModel(data['winner_id'],data['match_id'])
+        res = ResultModel(data['winner_id'],mid_)
         res.insertTeam(data['t1Score'],data['t2Score'])
 
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=data['winner_id']
@@ -50,13 +50,13 @@ class ResultTeam(Resource):
 
         return m,201
 
-    def get(self):
-        data = ResultTeam.parser2.parse_args()
-        r = ResultModel.get_scores(data['match_id'],'team')
+    def get(self,mid_):
+        #data = ResultTeam.parser2.parse_args()
+        r = ResultModel.get_scores(mid_,'team')
         if not r:
-            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+            return {"message":"match {} has not yet concluded.".format(mid_)},400
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
@@ -66,15 +66,15 @@ class ResultTeam(Resource):
         return m,200
     
     @jwt_required()
-    def put(self):
+    def put(self,mid_):
         data = ResultTeam.parser.parse_args()
-        res = ResultModel(data['winner_id'],data['match_id'])
-        r = ResultModel.check_for_id(data['match_id'],'team')
+        res = ResultModel(data['winner_id'],mid_)
+        r = ResultModel.check_for_id(mid_,'team')
         if not r:
-            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+            return {"message":"match {} has not yet concluded.".format(mid_)},400
         res.updateTeam(data['t1Score'],data['t2Score'])
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=data['winner_id']
@@ -91,11 +91,11 @@ class ResultNet(Resource):
                         required=True,
                         help="winner_id cant be blank"
                         )
-    parser.add_argument('match_id',
+    """ parser.add_argument('match_id',
                         type=int,
                         required=True,
                         help="match_id cant be blank"
-                        )
+                        ) """
     parser.add_argument('set1',
                         type=int,
                         required=True,
@@ -115,24 +115,24 @@ class ResultNet(Resource):
                         help="Set 3 cant be blank"
                         )
 
-    parser2 = reqparse.RequestParser()                    
+    """ parser2 = reqparse.RequestParser()                    
     parser2.add_argument('match_id',
                         type=int,
                         required=True,
                         help="match_id cant be blank"
-                        )
+                        ) """
 
     @jwt_required()
-    def post(self):
+    def post(self,mid_):
         data = ResultNet.parser.parse_args()
-        res = ResultModel(data['winner_id'],data['match_id'])
+        res = ResultModel(data['winner_id'],mid_)
         if data['set3']:
             res.insertNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1],data['set3'][0],data['set3'][1])
         else:
             res.insertNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1])
 
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=data['winner_id']
@@ -143,14 +143,14 @@ class ResultNet(Resource):
 
         return m,201
     
-    def get(self):
-        data = ResultNet.parser2.parse_args()
-        r = ResultModel.get_scores(data['match_id'],'net')
+    def get(self,mid_):
+        #data = ResultNet.parser2.parse_args()
+        r = ResultModel.get_scores(mid_,'net')
         if not r:
-            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+            return {"message":"match {} has not yet concluded.".format(mid_)},400
 
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
@@ -164,20 +164,20 @@ class ResultNet(Resource):
         return m,200
 
     @jwt_required()
-    def put(self):
+    def put(self,mid_):
         data = ResultNet.parser.parse_args()
-        res = ResultModel(data['winner_id'],data['match_id'])
-        r = ResultModel.check_for_id(data['match_id'],'net')
+        res = ResultModel(data['winner_id'],mid_)
+        r = ResultModel.check_for_id(mid_,'net')
         if not r:
-            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+            return {"message":"match {} has not yet concluded.".format(mid_)},400
 
         if data['set3']:
             res.updateNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1],data['set3'][0],data['set3'][1])
         else:
             res.updateNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1])
 
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=data['winner_id']
@@ -196,11 +196,11 @@ class ResultCricket(Resource):
                         required=True,
                         help="winner_id cant be blank"
                         )
-    parser.add_argument('match_id',
+    """ parser.add_argument('match_id',
                         type=int,
                         required=True,
                         help="match_id cant be blank"
-                        )
+                        ) """
     parser.add_argument('t1Innings',
                         type=dict,
                         required=True,
@@ -212,21 +212,21 @@ class ResultCricket(Resource):
                         help="score cant be blank"
                         )
                         
-    parser2 = reqparse.RequestParser()                    
+    """ parser2 = reqparse.RequestParser()                    
     parser2.add_argument('match_id',
                         type=int,
                         required=True,
                         help="match_id cant be blank"
-                        )
+                        ) """
 
     @jwt_required()
-    def post(self):
+    def post(self,mid_):
         data = ResultCricket.parser.parse_args()
-        res = ResultModel(data['winner_id'],data['match_id'])
+        res = ResultModel(data['winner_id'],mid_)
         res.insertCricket(data['t1Innings']['runs'],data['t1Innings']['wickets'],data['t2Innings']['runs'],data['t2Innings']['wickets'])
 
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=data['winner_id']
@@ -235,13 +235,13 @@ class ResultCricket(Resource):
 
         return m,201
 
-    def get(self):
-        data = ResultCricket.parser2.parse_args()
-        r = ResultModel.get_scores(data['match_id'],'cricket')
+    def get(self,mid_):
+        #data = ResultCricket.parser2.parse_args()
+        r = ResultModel.get_scores(mid_,'cricket')
         if not r:
-            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+            return {"message":"match {} has not yet concluded.".format(mid_)},400
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
@@ -255,15 +255,15 @@ class ResultCricket(Resource):
         return m,200
 
     @jwt_required()
-    def put(self):
+    def put(self,mid_):
         data = ResultCricket.parser.parse_args()
-        res = ResultModel(data['winner_id'],data['match_id'])
-        r = ResultModel.check_for_id(data['match_id'],'cricket')
+        res = ResultModel(data['winner_id'],mid_)
+        r = ResultModel.check_for_id(mid_,'cricket')
         if not r:
-            return {"message":"match {} has not yet concluded.".format(data['match_id'])},400
+            return {"message":"match {} has not yet concluded.".format(mid_)},400
         res.updateCricket(data['t1Innings']['runs'],data['t1Innings']['wickets'],data['t2Innings']['runs'],data['t2Innings']['wickets'])
-        m = MatchModel().find_by_id(data['match_id'])
-        teams = MatchModel.findTeamsByMID(data['match_id'])
+        m = MatchModel().find_by_id(mid_)
+        teams = MatchModel.findTeamsByMID(mid_)
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=data['winner_id']

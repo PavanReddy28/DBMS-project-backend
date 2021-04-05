@@ -39,9 +39,9 @@ api.add_resource(PlayerSports, "/<int:id_>/<string:sport>/players")
 api.add_resource(Match, "/match")
 api.add_resource(MatchListBySport,"/matches/<int:id_>/<string:sport>")
 api.add_resource(MatchListByTour, "/<int:id_>/matchList")
-api.add_resource(ResultTeam,"/match/team/result")
-api.add_resource(ResultNet,"/match/net/result")
-api.add_resource(ResultCricket,"/match/cricket/result")
+api.add_resource(ResultTeam,"/match/team/result/<int:mid_>")
+api.add_resource(ResultNet,"/match/net/result/<int:mid_>")
+api.add_resource(ResultCricket,"/match/cricket/result/<int:mid_>")
 api.add_resource(TeamStatus,"/team/<string:status>")
 
 if __name__ == "__main__":

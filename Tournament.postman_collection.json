@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "48ac66e8-5682-4d01-b9b3-1ee34ec389c2",
-		"name": "Tournament",
+		"_postman_id": "4642f841-d75d-43f8-a724-5f62d4d7da34",
+		"name": "Tournament2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -286,7 +286,7 @@
 			"response": []
 		},
 		{
-			"name": "/tournament/getSports",
+			"name": "/tournament/getSports/<id_>",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -307,16 +307,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
+					"raw": "//{\r\n//    \"tournament_id\":\"1\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/tournament/getSports",
+					"raw": "{{url}}/tournament/getSports/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"tournament",
-						"getSports"
+						"getSports",
+						"2"
 					]
 				}
 			},
@@ -341,7 +342,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":2,\r\n    \"team_name\": \"C2\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"Ben\",\r\n        \"lname\":\"R\",\r\n        \"age\":\"23\"\r\n    },\r\n    \"sportName\":\"Cricket\",\r\n    \"contact\":\"9933484744\"\r\n\r\n}"
+					"raw": "{\r\n    \"tournament_id\":2,\r\n    \"team_name\": \"H1\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"Ben\",\r\n        \"lname\":\"R\",\r\n        \"age\":\"23\"\r\n    },\r\n    \"sportName\":\"Hockey\",\r\n    \"contact\":\"9933484744\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -389,7 +390,7 @@
 			"response": []
 		},
 		{
-			"name": "/teams",
+			"name": "/teams/<_id>",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -409,22 +410,23 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\"\r\n}"
+					"raw": "//{\r\n//    \"tournament_id\":\"2\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/teams",
+					"raw": "{{url}}/teams/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"teams"
+						"teams",
+						"2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/team",
+			"name": "/team {REGISTERED}",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -520,7 +522,7 @@
 			"response": []
 		},
 		{
-			"name": "/tournament/playerList",
+			"name": "/tournament/playerList/<id_>",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -535,23 +537,24 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
+					"raw": "//{\r\n  //  \"tournament_id\":\"2\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/tournament/playerList",
+					"raw": "{{url}}/tournament/playerList/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"tournament",
-						"playerList"
+						"playerList",
+						"2"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/team",
+			"name": "/team [[REMOVED]]",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -566,22 +569,23 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"team_id\":\"4\"\r\n}"
+					"raw": "//{\r\n//    \"team_id\":\"11\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/team",
+					"raw": "{{url}}/team/11",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"team"
+						"team",
+						"11"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/sport/teams",
+			"name": "/team/<tid_>",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -596,15 +600,47 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"sportName\":\"Cricket\"\r\n}"
+					"raw": "//{\r\n//    \"team_id\":\"11\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/sport/teams",
+					"raw": "{{url}}/team/11",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"sport",
+						"team",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/<id_>/<sport>/teams",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//{\r\n//    \"tournament_id\":\"2\",\r\n//    \"sportName\":\"Cricket\"\r\n//}"
+				},
+				"url": {
+					"raw": "{{url}}/2/Table%20Tennis/teams",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"2",
+						"Table%20Tennis",
 						"teams"
 					]
 				}
@@ -612,7 +648,7 @@
 			"response": []
 		},
 		{
-			"name": "/sport/players",
+			"name": "/<id_>/<sport>/players",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -627,15 +663,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"sportName\":\"Basketball\"\r\n}"
+					"raw": "//{\r\n//    \"tournament_id\":\"1\",\r\n//    \"sportName\":\"Basketball\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/sport/players",
+					"raw": "{{url}}/2/Basketball/players",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"sport",
+						"2",
+						"Basketball",
 						"players"
 					]
 				}
@@ -739,7 +776,7 @@
 			"response": []
 		},
 		{
-			"name": "/match",
+			"name": "/match [[REMOVED]]",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -775,106 +812,7 @@
 			"response": []
 		},
 		{
-			"name": "/tournament/matchList",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
-				},
-				"url": {
-					"raw": "{{url}}/tournament/matchList",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"tournament",
-						"matchList"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/match/team/result",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"14\",\r\n    \"match_id\":\"7\",\r\n    \"t1Score\":\"104\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
-				},
-				"url": {
-					"raw": "{{url}}/match/team/result",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"match",
-						"team",
-						"result"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/match/team/result",
-			"request": {
-				"method": "PUT",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"14\",\r\n    \"match_id\":\"7\",\r\n    \"t1Score\":\"105\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
-				},
-				"url": {
-					"raw": "{{url}}/match/team/result",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"match",
-						"team",
-						"result"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/match/team/result",
+			"name": "/matches/<id_>/<sport>",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -895,58 +833,114 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"7\"\r\n\r\n}"
+					"raw": "//{\r\n//    \"tournament_id\":\"2\",\r\n//    \"sportName\":\"Basketball\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/match/team/result",
+					"raw": "{{url}}/matches/2/Basketball",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"2",
+						"Basketball"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/<id_>/matchList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//{\r\n//    \"tournament_id\":\"1\"\r\n//}"
+				},
+				"url": {
+					"raw": "{{url}}/2/matchList",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"2",
+						"matchList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/team/<status>",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/team/PENDING",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"team",
+						"PENDING"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/team/result/<mid_>",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"14\",\r\n    \"t1Score\":\"104\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/team/result/7",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"match",
 						"team",
-						"result"
+						"result",
+						"7"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/match/net/result",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{jwt_token}}",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"match_id\":\"6\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
-				},
-				"url": {
-					"raw": "{{url}}/match/net/result",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"match",
-						"net",
-						"result"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/match/net/result",
+			"name": "/match/team/result/<mid_>",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -963,24 +957,134 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"match_id\":\"6\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"14\",\r\n    \"t1Score\":\"93\",\r\n    \"t2Score\":\"61\"\r\n\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/match/net/result",
+					"raw": "{{url}}/match/team/result/7",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"match",
-						"net",
-						"result"
+						"team",
+						"result",
+						"7"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/match/net/result",
+			"name": "/match/team/result/<mid_>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//{\r\n//    \"match_id\":\"7\"\r\n\r\n//}"
+				},
+				"url": {
+					"raw": "{{url}}/match/team/result/7",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"team",
+						"result",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/net/result/<mid_>",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/net/result/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"net",
+						"result",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/net/result/<mid_>",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
+				},
+				"url": {
+					"raw": "{{url}}/match/net/result/6",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"match",
+						"net",
+						"result",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/match/net/result/<mid_>",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1000,24 +1104,25 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"6\"\r\n\r\n}"
+					"raw": "//{\r\n//    \"match_id\":\"6\"\r\n\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/match/net/result",
+					"raw": "{{url}}/match/net/result/6",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"match",
 						"net",
-						"result"
+						"result",
+						"6"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/match/cricket/result",
+			"name": "/match/cricket/result/<mid_>",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -1034,24 +1139,25 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"15\", \r\n    \"match_id\":\"8\",\r\n    \"t1Innings\":{\"runs\":155,\"wickets\":5},\r\n    \"t2Innings\":{\"runs\":132,\"wickets\":10}\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"15\", \r\n    \"t1Innings\":{\"runs\":155,\"wickets\":5},\r\n    \"t2Innings\":{\"runs\":132,\"wickets\":10}\r\n\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/match/cricket/result",
+					"raw": "{{url}}/match/cricket/result/8",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"match",
 						"cricket",
-						"result"
+						"result",
+						"8"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/match/cricket/result",
+			"name": "/match/cricket/result/<mid_>",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -1068,24 +1174,25 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"16\", \r\n    \"match_id\":\"8\",\r\n    \"t1Innings\":{\"runs\":155,\"wickets\":5},\r\n    \"t2Innings\":{\"runs\":157,\"wickets\":2}\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"16\",\r\n    \"t1Innings\":{\"runs\":155,\"wickets\":5},\r\n    \"t2Innings\":{\"runs\":157,\"wickets\":2}\r\n\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/match/cricket/result",
+					"raw": "{{url}}/match/cricket/result/8",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"match",
 						"cricket",
-						"result"
+						"result",
+						"8"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "/match/cricket/result",
+			"name": "/match/cricket/result/<mid_>",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1105,17 +1212,18 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"8\" \r\n\r\n}"
+					"raw": "//{\r\n//    \"match_id\":\"8\" \r\n\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/match/cricket/result",
+					"raw": "{{url}}/match/cricket/result/8",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"match",
 						"cricket",
-						"result"
+						"result",
+						"8"
 					]
 				}
 			},

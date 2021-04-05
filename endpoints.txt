@@ -24,15 +24,15 @@ DEL /match : delete a match of given id    [jwt req]]
 GET /matches/<id_>/<sport> : get all matches of a sport from a tournament
 GET /<id_>/matchList : get all matches in a tournament in order
 GET /team/<status>: gets teams of a particular status   [[jwt req]]
-POST /match/team/result : enter the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
-PUT /match/team/result : update the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
-GET /match/team/result : returns the score of a match of sport Football,basketbal,hockey given the match ID
-POST /match/net/result : enter the scores for a match of sport tennis,badminton,tabletennis   [[jwt req]]
-PUT /match/net/result : update the scores for a match of sport tennis,badminton,tabletennis   [[jwt req]]
-GET /match/net/result : returns the score for a match of sport tennis,badminton,tabletennis  given the match ID
-POST /match/cricket/result : enter the scores for a match of sport cricket   [[jwt req]]
-PUT /match/cricket/result : update the scores for a match of sport cricket   [[jwt req]]
-GET /match/cricket/result : returns the score for a match of sport cricket  given the match ID
+POST /match/team/result/<mid_> : enter the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
+PUT /match/team/result/<mid_> : update the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
+GET /match/team/result/<mid_> : returns the score of a match of sport Football,basketbal,hockey given the match ID
+POST /match/net/result/<mid_> : enter the scores for a match of sport tennis,badminton,tabletennis   [[jwt req]]
+PUT /match/net/result/<mid_> : update the scores for a match of sport tennis,badminton,tabletennis   [[jwt req]]
+GET /match/net/result/<mid_> : returns the score for a match of sport tennis,badminton,tabletennis  given the match ID
+POST /match/cricket/result/<mid_> : enter the scores for a match of sport cricket   [[jwt req]]
+PUT /match/cricket/result/<mid_> : update the scores for a match of sport cricket   [[jwt req]]
+GET /match/cricket/result/<mid_> : returns the score for a match of sport cricket  given the match ID
 
 
 
