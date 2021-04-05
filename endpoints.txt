@@ -7,22 +7,23 @@ GET /tournament : get tournament details organized by the user     [[jwt req]]
 DEL /tournament : delete tournament (deletes all corresponding entries)   [[jwt req]]
 GET /tournamentList : returns list of tournaments
 GET /sports : returns all sports available for organizing a tournament   [[jwt req]]
-GET /tournament/getSports : returns sports in a given tournament  
+GET /tournament/getSports/<id_> : returns sports in a given tournament  
 POST /team : enter team and captain details   
 POST /player : enter remaining player details
 GET /teams : returns teams in a tournament     [[jwt req]]
 PUT /team : update status of team by organizers  [[jwt req]]
 DEL /team : delete a team of given teamID     [[jwt req]]
 DEL /teams : deletes all teams with status 'REJECTED' in a given tournament   [[jwt req]]
-GET /tournament/playerList : all participants in a tournament
-GET /team : gets team details along with all players in the team in a given tournament
-GET /sport/teams : gets all teams of a given sport in a given tournament
-GET /sport/players : gets all players of a given sport in a given tournament
+GET /tournament/playerList/<id_> : all participants in a tournament
+GET /team/<id_> : gets team details along with all players in the team in a given tournament
+GET /<id_>/<sport>/teams : gets all teams of a given sport in a given tournament
+GET /<id_>/<sport>/players : gets all players of a given sport in a given tournament
 POST /match : enter a match of a sport of a tournametn between 2 teams   [[jwt req]]
 PUT /match : update date and time of match   [[jwt req]]
 DEL /match : delete a match of given id    [jwt req]]
-GET /match : get all matches of a sport from a tournament
-GET /tournament/matchList : get all matches in a tournament in order
+GET /matches/<id_>/<sport> : get all matches of a sport from a tournament
+GET /<id_>/matchList : get all matches in a tournament in order
+GET /team/<status>: gets teams of a particular status   [[jwt req]]
 POST /match/team/result : enter the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
 PUT /match/team/result : update the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
 GET /match/team/result : returns the score of a match of sport Football,basketbal,hockey given the match ID
