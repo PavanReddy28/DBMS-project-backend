@@ -57,16 +57,16 @@ class Sport(Resource):
         }
  """
 class SportList(Resource):
-    parser = reqparse.RequestParser()
-    parser.add_argument('tournament_id',
-                        type=int,
-                        required=True,
-                        help="Tournament id cant be blank"
-                        )
+    # parser = reqparse.RequestParser()
+    # parser.add_argument('tournament_id',
+    #                     type=int,
+    #                     required=True,
+    #                     help="Tournament id cant be blank"
+    #                     )
 
-    def get(self):           # gets all sports for a given tournament  # put it in get tournaments
-        data = SportList.parser.parse_args()
-        sports = SportModel.findSports(data["tournament_id"])
+    def get(self,id_):           # gets all sports for a given tournament  # put it in get tournaments
+        # data = SportList.parser.parse_args()
+        sports = SportModel.findSports(id_)
 
         tSports = { 
             "sports": []
