@@ -10,12 +10,12 @@ GET /sports : returns all sports available for organizing a tournament   [[jwt r
 GET /tournament/getSports/<id_> : returns sports in a given tournament  
 POST /team : enter team and captain details   
 POST /player : enter remaining player details
-GET /teams : returns teams in a tournament     [[jwt req]]
+GET /teams/<id_> : returns teams in a tournament     [[jwt req]]
 PUT /team : update status of team by organizers  [[jwt req]]
 DEL /team : delete a team of given teamID     [[jwt req]]
 DEL /teams : deletes all teams with status 'REJECTED' in a given tournament   [[jwt req]]
 GET /tournament/playerList/<id_> : all participants in a tournament
-GET /team/<id_> : gets team details along with all players in the team in a given tournament
+GET /team/<tid_> : gets team details along with all players in the team in a given tournament
 GET /<id_>/<sport>/teams : gets all teams of a given sport in a given tournament
 GET /<id_>/<sport>/players : gets all players of a given sport in a given tournament
 POST /match : enter a match of a sport of a tournametn between 2 teams   [[jwt req]]

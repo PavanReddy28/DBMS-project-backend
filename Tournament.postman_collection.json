@@ -458,7 +458,7 @@
 			"response": []
 		},
 		{
-			"name": "/teams",
+			"name": "/teams/<_id>",
 			"request": {
 				"method": "DELETE",
 				"header": [
@@ -475,15 +475,16 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\"\r\n}"
+					"raw": "//{\r\n//    \"tournament_id\":\"1\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/teams",
+					"raw": "{{url}}/teams/2",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
-						"teams"
+						"teams",
+						"2"
 					]
 				}
 			},

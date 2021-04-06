@@ -135,7 +135,7 @@ class Team(Resource):
 
 class TeamList(Resource):
 
-    @jwt_required()
+    #@jwt_required()
     def get(self,id_):
         teams = TeamModel.findAll(id_)
 
