@@ -51,11 +51,11 @@ class Team(Resource):
                         required=False,
                         help="Tournament id cant be blank"
                         )
-    # parser2.add_argument('team_id',
-    #                     type=int,
-    #                     required=False,
-    #                     help="Team id. cant be blank"
-    #                     )
+    parser2.add_argument('team_id',
+                        type=int,
+                        required=False,
+                        help="Team id. cant be blank"
+                        )
     parser2.add_argument('status_update_to',   # has to be either REJECTED or REGISTERED
                         type=str,
                         required=False,
