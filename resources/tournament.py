@@ -154,7 +154,8 @@ class TournamentList(Resource):
                     "city":t[4],
                     "region":t[5],
                     "zip":t[6],
-                    "country":t[7]
+                    "country":t[7],
+                    "sports": [sport[0] for sport in SportModel.findSports(t[0])]
                 })
 
         
