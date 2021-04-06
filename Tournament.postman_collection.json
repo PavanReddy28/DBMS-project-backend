@@ -23,6 +23,29 @@
 			"response": []
 		},
 		{
+			"name": "/refresh",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{refresh_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/refresh",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/login",
 			"event": [
 				{
@@ -32,8 +55,10 @@
 							"pm.test(\"Access token was not empty\", function () {\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.access_token).to.exist;\r",
+							"    pm.expect(jsonData.refresh_token).to.exist;\r",
 							"\r",
 							"    pm.environment.set(\"jwt_token\", jsonData.access_token);\r",
+							"    pm.environment.set(\"refresh_token\", jsonData.refresh_token);\r",
 							"});\r",
 							""
 						],
@@ -61,6 +86,29 @@
 					],
 					"path": [
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/logout",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{jwt_token}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"logout"
 					]
 				}
 			},
@@ -400,7 +448,8 @@
 					{
 						"key": "Authorization",
 						"value": "Bearer {{jwt_token}}",
-						"type": "text"
+						"type": "text",
+						"disabled": true
 					},
 					{
 						"key": "Content-Type",
