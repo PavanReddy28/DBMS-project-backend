@@ -2,8 +2,10 @@ import psycopg2
 import os
 from flask_restful import Resource, reqparse
 from models.user import UserModel
-from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required
+from blacklist import BLACKLIST
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity, get_jwt
 from flask_bcrypt import check_password_hash, generate_password_hash
+
 
 class UserRegister(Resource):
 
@@ -103,6 +105,21 @@ class UserLogin(Resource):
             return {
                 "message": "username not found"
             },400
+
+class UserLogout(Resource):
+    @jwt_required()
+    def post(self):
+        jti = get_jwt()['jti']
+        BLACKLIST.add(jti)
+        return {'message':'Successfully logged out.'},200
+
+
+class TokenRefresh(Resource):
+    @jwt_required(refresh=True)
+    def post(self):
+        current_user = get_jwt_identity()
+        new_token = create_access_token(identity=current_user,fresh=False)
+        return {'access_token':new_token},200
 
 class VerifyJWT(Resource):
     
