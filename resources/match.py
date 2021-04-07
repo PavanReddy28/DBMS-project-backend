@@ -32,7 +32,7 @@ class Match(Resource):
                         help="sport cant be blank"
                         )
     parser.add_argument('date',
-                        type=str,#inputs.datetime_from_iso8601,
+                        type=str,#inputs.datetime_from_iso8601, 2021-03-31T17:45:00+05:30
                         required=True,
                         help="date cant be blank"
                         ) 

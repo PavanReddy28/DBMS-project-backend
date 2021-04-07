@@ -163,11 +163,11 @@ class TeamList(Resource):
 
         t = TournamentModel.check_for_id(id_)
         if not t:
-            return {"message": "tournament with id: {} does not exist".format(data['tournament_id'])},400
+            return {"message": "tournament with id: {} does not exist".format(id_)},400
 
-        TeamModel().removeRejected(data['tournament_id'])
+        TeamModel().removeRejected(id_)
 
-        return {"message": "rejected teams in tournament with id: {} deleted".format(data['tournament_id'])},201
+        return {"message": "rejected teams in tournament with id: {} deleted".format(id_)},201
 
     
 class TeamSports(Resource):
