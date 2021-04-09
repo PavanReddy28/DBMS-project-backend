@@ -133,16 +133,62 @@ class Match(Resource):
 
 
 class MatchListByTour(Resource):
-    """ parser = reqparse.RequestParser()
-    parser.add_argument('tournament_id',
-                        type=int,
-                        required=True,
-                        help="Tournament id cant be blank"
-                        ) """
 
     def get(self,id_):
         #data = MatchList.parser.parse_args()
         matches = MatchModel.findMatchesTour(id_)
+
+        tourMatches = { 
+            "matches": []
+        }
+        
+        if matches:
+            for m in matches:
+                teams = MatchModel.findTeamsByMID(m[0])
+                mat = {
+                    "match_id":m[0],
+                    "date":str(m[1]),
+                    "startTime":str(m[2]),
+                    "sportName":m[4],
+                    "round":m[5],
+                    "team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
+                    "team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
+                }
+                tourMatches['matches'].append(mat)
+
+        return tourMatches,200
+
+class CompMatchListByTour(Resource):
+
+    def get(self,id_):
+        #data = MatchList.parser.parse_args()
+        matches = MatchModel.findMatchesTour(id_,"comp")
+
+        tourMatches = { 
+            "matches": []
+        }
+        
+        if matches:
+            for m in matches:
+                teams = MatchModel.findTeamsByMID(m[0])
+                mat = {
+                    "match_id":m[0],
+                    "date":str(m[1]),
+                    "startTime":str(m[2]),
+                    "sportName":m[4],
+                    "round":m[5],
+                    "team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
+                    "team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
+                }
+                tourMatches['matches'].append(mat)
+
+        return tourMatches,200
+
+class PendMatchListByTour(Resource):
+
+    def get(self,id_):
+        #data = MatchList.parser.parse_args()
+        matches = MatchModel.findMatchesTour(id_,"pend")
 
         tourMatches = { 
             "matches": []

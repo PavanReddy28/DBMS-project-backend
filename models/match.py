@@ -38,8 +38,10 @@ class MatchModel:
         
         if cond==None:
             cur.execute("SELECT * from match where tournament_id = %s ORDER BY match_date,start_time",(tID,))
-        #elif cond=="comp":
-        #    cur.execute("SELECT *")
+        elif cond=="comp":
+            cur.execute("SELECT * from match where tournament_id =%s and matchStatus = %s ORDER BY match_date DESC ,start_time DESC",(tID,"COMPLETED"))
+        elif cond == "pend":
+            cur.execute("SELECT * from match where tournament_id = %s and matchStatus = %s ORDER BY match_date,start_time",(tID,"SCHEDULED"))
         rows = cur.fetchall()
 
         conn.close()
@@ -55,7 +57,12 @@ class MatchModel:
         conn = psycopg2.connect(url)
         cur = conn.cursor()
         
-        cur.execute("SELECT * from match where tournament_id = %s and sportName = %s ORDER BY match_date,start_time",(tID,sport))
+        if cond==None:
+            cur.execute("SELECT * from match where tournament_id = %s and sportName = %s ORDER BY match_date,start_time",(tID,sport))
+        elif cond=="comp":
+            cur.execute("SELECT * from match where tournament_id =%s,sportName = %s and matchStatus = %s ORDER BY match_date DESC ,start_time DESC",(tID, sport,"COMPLETED"))
+        elif cond == "pend":
+            cur.execute("SELECT * from match where tournament_id = %s,sportName = %s and matchStatus = %s ORDER BY match_date,start_time",(tID, sport,"SCHEDULED"))
         rows = cur.fetchall()
 
         conn.close()
