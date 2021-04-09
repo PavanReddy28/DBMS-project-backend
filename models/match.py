@@ -20,7 +20,7 @@ class MatchModel:
         conn = psycopg2.connect(url)
         cur = conn.cursor()
 
-        cur.execute("INSERT INTO match VALUES (DEFAULT,%s,%s,%s,%s,%s) RETURNING match_id", (self.date,self.startTime,self.tournament_id,self.sportName,self.round))
+        cur.execute("INSERT INTO match VALUES (DEFAULT,%s,%s,%s,%s,%s,%s) RETURNING match_id", (self.date,self.startTime,self.tournament_id,self.sportName,self.round,"SCHEDULED"))
         match_num = cur.fetchone()[0]
         conn.commit()
         cur.execute("INSERT INTO teamMatch VALUES (%s,%s)",(t1,match_num))
@@ -30,13 +30,16 @@ class MatchModel:
 
         return self.json(match_num)
 
-    def findMatchesTour(tID):
+    def findMatchesTour(tID,cond=None):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
         
-        cur.execute("SELECT * from match where tournament_id = %s ORDER BY match_date,start_time",(tID,))
+        if cond==None:
+            cur.execute("SELECT * from match where tournament_id = %s ORDER BY match_date,start_time",(tID,))
+        #elif cond=="comp":
+        #    cur.execute("SELECT *")
         rows = cur.fetchall()
 
         conn.close()
@@ -46,7 +49,7 @@ class MatchModel:
         else:
             return None
     
-    def findMatchesSport(tID,sport):
+    def findMatchesSport(tID,sport,cond=None):
         url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
 
         conn = psycopg2.connect(url)

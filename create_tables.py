@@ -27,7 +27,7 @@ cur.execute("ALTER TABLE player ADD FOREIGN KEY (tournament_id) REFERENCES tourn
 cur.execute("CREATE TABLE IF NOT EXISTS team (team_id serial PRIMARY KEY, team_name text, college text, num_players integer, captain integer, sportName text, status text, contact text, FOREIGN KEY (sportName) REFERENCES sport (sportName))")
 cur.execute("ALTER TABLE team ADD FOREIGN KEY (captain) REFERENCES player (pnum) ON DELETE CASCADE")
 cur.execute("ALTER TABLE player ADD FOREIGN KEY (team_id) REFERENCES team (team_id) ON DELETE CASCADE")
-cur.execute("CREATE TABLE IF NOT EXISTS match (match_id serial PRIMARY KEY, match_date date, start_time time with time zone, tournament_id integer, sportName text, round text, FOREIGN KEY (tournament_id) REFERENCES tournament (tournament_id) ON DELETE CASCADE, FOREIGN KEY (sportName) REFERENCES sport (sportName))")
+cur.execute("CREATE TABLE IF NOT EXISTS match (match_id serial PRIMARY KEY, match_date date, start_time time with time zone, tournament_id integer, sportName text, round text, matchStatus text, FOREIGN KEY (tournament_id) REFERENCES tournament (tournament_id) ON DELETE CASCADE, FOREIGN KEY (sportName) REFERENCES sport (sportName))")
 cur.execute("CREATE TABLE IF NOT EXISTS teamMatch (team_id integer, match_id integer, PRIMARY KEY (team_id,match_id), FOREIGN KEY (team_id) REFERENCES team (team_id) ON DELETE CASCADE, FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
 cur.execute("CREATE TYPE scoreNet AS (s1t1 integer,s1t2 integer,s2t1 integer,s2t2 integer,s3t1 integer,s3t2 integer)")
 cur.execute("CREATE TYPE scoreCricket AS (t1runs integer, t1wickets integer, t2runs integer, t2wickets integer)")

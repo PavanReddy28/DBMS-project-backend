@@ -15,6 +15,7 @@ class ResultModel:
         cur = conn.cursor()
 
         cur.execute("INSERT INTO resultTeam VALUES (%s,%s,ROW(%s,%s))",(self.winner,self.match_id,t1,t2))
+        cur.execute("UPDATE match SET matchStatus =%s where match_id =%s",("COMPLETED",self.match_id))
         
         conn.commit()
         conn.close()
@@ -26,6 +27,7 @@ class ResultModel:
         cur = conn.cursor()
 
         cur.execute("INSERT INTO resultNet VALUES (%s,%s,ROW(%s,%s,%s,%s,%s,%s))",(self.winner,self.match_id,s1t1,s1t2,s2t1,s2t2,s3t1,s3t2))
+        cur.execute("UPDATE match SET matchStatus =%s where match_id =%s",("COMPLETED",self.match_id))
         
         conn.commit()
         conn.close()
@@ -37,6 +39,7 @@ class ResultModel:
         cur = conn.cursor()
 
         cur.execute("INSERT INTO resultCricket VALUES (%s,%s,ROW(%s,%s,%s,%s))",(self.winner,self.match_id,t1r,t1w,t2r,t2w))
+        cur.execute("UPDATE match SET matchStatus =%s where match_id =%s",("COMPLETED",self.match_id))
         
         conn.commit()
         conn.close()
