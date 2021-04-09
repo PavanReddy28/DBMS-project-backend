@@ -22,7 +22,11 @@ POST /match : enter a match of a sport of a tournametn between 2 teams   [[jwt r
 PUT /match : update date and time of match   [[jwt req]]
 DEL /match : delete a match of given id    [jwt req]]
 GET /matches/<id_>/<sport> : get all matches of a sport from a tournament
+GET /matches/completed/<id_>/<sport> : get cmpleted matches of a sport from a tournament
+GET /matches/pending/<id_>/<sport> : get pending matches of a sport from a tournament
 GET /<id_>/matchList : get all matches in a tournament in order
+GET /<id_>/matchList/completed : get completed matches in a tournament in order
+GET /<id_>/matchList/pending : get pending matches in a tournament in order
 GET /team/<status>: gets teams of a particular status   [[jwt req]]
 POST /match/team/result/<mid_> : enter the scores for a match of sport Football,basketbal,hockey   [[jwt req]]
 PUT /match/team/result/<mid_> : update the scores for a match of sport Football,basketbal,hockey   [[jwt req]]

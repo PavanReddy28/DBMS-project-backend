@@ -235,6 +235,56 @@ class MatchListBySport(Resource):
 
         return sMatches,200
 
+class PendMatchListBySport(Resource):
+    def get(self,id_,sport):
+        #data = Match.parser2.parse_args()
+        matches = MatchModel.findMatchesSport(id_,sport,"pend")
+
+        sMatches = { 
+            "matches": []
+        }
+        
+        if matches:
+            for m in matches:
+                teams = MatchModel.findTeamsByMID(m[0])
+                mat = {
+                    "match_id":m[0],
+                    "date":str(m[1]),
+                    "startTime":str(m[2]),
+                    #"sportName":m[4],
+                    "round":m[5],
+                    "team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
+                    "team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
+                }
+                sMatches['matches'].append(mat)
+
+        return sMatches,200
+
+class CompMatchListBySport(Resource):
+    def get(self,id_,sport):
+        #data = Match.parser2.parse_args()
+        matches = MatchModel.findMatchesSport(id_,sport,"comp")
+
+        sMatches = { 
+            "matches": []
+        }
+        
+        if matches:
+            for m in matches:
+                teams = MatchModel.findTeamsByMID(m[0])
+                mat = {
+                    "match_id":m[0],
+                    "date":str(m[1]),
+                    "startTime":str(m[2]),
+                    #"sportName":m[4],
+                    "round":m[5],
+                    "team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
+                    "team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
+                }
+                sMatches['matches'].append(mat)
+
+        return sMatches,200
+
 
 
 

@@ -9,7 +9,7 @@ from resources.tournament import Tournament, TournamentList
 from resources.sport import Sport, SportList
 from resources.team import TeamList,Team, TeamSports, TeamStatus,TeamDetails
 from resources.player import Player, PlayerList, PlayerSports
-from resources.match import Match, MatchListByTour,MatchListBySport,CompMatchListByTour,PendMatchListByTour
+from resources.match import Match, MatchListByTour,MatchListBySport,CompMatchListByTour,PendMatchListByTour,CompMatchListBySport,PendMatchListBySport
 from resources.result import ResultTeam,ResultNet,ResultCricket
 
 app = Flask(__name__)
@@ -90,9 +90,11 @@ api.add_resource(TeamSports, "/<int:id_>/<string:sport>/teams")
 api.add_resource(PlayerSports, "/<int:id_>/<string:sport>/players")
 api.add_resource(Match, "/match")
 api.add_resource(MatchListBySport,"/matches/<int:id_>/<string:sport>")
+api.add_resource(CompMatchListBySport,"/matches/completed/<int:id_>/<string:sport>")
+api.add_resource(PendMatchListBySport,"/matches/pending/<int:id_>/<string:sport>")
 api.add_resource(MatchListByTour, "/<int:id_>/matchList")
-api.add_resource(CompMatchListByTour, "/<int:id_>/completedMatchList")
-api.add_resource(PendMatchListByTour, "/<int:id_>/pendingMatchList")
+api.add_resource(CompMatchListByTour, "/<int:id_>/matchList/completed")
+api.add_resource(PendMatchListByTour, "/<int:id_>/matchList/pending")
 api.add_resource(ResultTeam,"/match/team/result/<int:mid_>")
 api.add_resource(ResultNet,"/match/net/result/<int:mid_>")
 api.add_resource(ResultCricket,"/match/cricket/result/<int:mid_>")

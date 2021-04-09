@@ -747,7 +747,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team1_id\":\"15\",\r\n    \"team2_id\":\"16\",\r\n    \"sportName\":\"Cricket\",\r\n    \"date\":\"2021-04-10T11:30:00+05:30\",\r\n    \"round\":\"Final\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team1_id\":\"11\",\r\n    \"team2_id\":\"12\",\r\n    \"sportName\":\"Table Tennis\",\r\n    \"date\":\"2021-04-12T11:30\",\r\n    \"round\":\"Final\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -811,7 +811,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"match_id\":\"2\"\r\n}"
+					"raw": "{\r\n    \"match_id\":\"13\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -900,6 +900,84 @@
 			"response": []
 		},
 		{
+			"name": "/matches/completed/<id_>/<sport>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//{\r\n//    \"tournament_id\":\"2\",\r\n//    \"sportName\":\"Basketball\"\r\n//}"
+				},
+				"url": {
+					"raw": "{{url}}/matches/completed/2/Table Tennis",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"completed",
+						"2",
+						"Table Tennis"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/matches/pending/<id_>/<sport>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//{\r\n//    \"tournament_id\":\"2\",\r\n//    \"sportName\":\"Basketball\"\r\n//}"
+				},
+				"url": {
+					"raw": "{{url}}/matches/pending/2/Cricket",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"matches",
+						"pending",
+						"2",
+						"Cricket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/<id_>/matchList",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -925,6 +1003,70 @@
 					"path": [
 						"2",
 						"matchList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/<id_>/matchList/pending",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//{\r\n//    \"tournament_id\":\"1\"\r\n//}"
+				},
+				"url": {
+					"raw": "{{url}}/2/matchList/pending",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"2",
+						"matchList",
+						"pending"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/<id_>/matchList/completed",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "//{\r\n//    \"tournament_id\":\"1\"\r\n//}"
+				},
+				"url": {
+					"raw": "{{url}}/2/matchList/completed",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"2",
+						"matchList",
+						"completed"
 					]
 				}
 			},
@@ -1084,7 +1226,7 @@
 					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/match/net/result/6",
+					"raw": "{{url}}/match/net/result/14",
 					"host": [
 						"{{url}}"
 					],
@@ -1092,7 +1234,7 @@
 						"match",
 						"net",
 						"result",
-						"6"
+						"14"
 					]
 				}
 			},
