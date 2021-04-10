@@ -886,14 +886,14 @@
 					"raw": "//{\r\n//    \"tournament_id\":\"2\",\r\n//    \"sportName\":\"Basketball\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/matches/2/Basketball",
+					"raw": "{{url}}/matches/2/Cricket",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"matches",
 						"2",
-						"Basketball"
+						"Cricket"
 					]
 				}
 			},
@@ -1223,7 +1223,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"set1\":{\"team1\":\"11\",\"team2\":\"2\"},\r\n    \"set2\":{\"team1\":\"3\",\"team2\":\"11\"},\r\n    \"set3\":{\"team1\":\"11\",\"team2\":\"9\"}\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match/net/result/14",
@@ -1258,10 +1258,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"set1\":[\"11\",\"2\"],\r\n    \"set2\":[3,11],\r\n    \"set3\":[11,9]\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"set1\":{\"team1\":\"11\",\"team2\":\"2\"},\r\n    \"set2\":{\"team1\":\"13\",\"team2\":\"11\"}\r\n\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/match/net/result/6",
+					"raw": "{{url}}/match/net/result/14",
 					"host": [
 						"{{url}}"
 					],
@@ -1269,7 +1269,7 @@
 						"match",
 						"net",
 						"result",
-						"6"
+						"14"
 					]
 				}
 			},
@@ -1299,7 +1299,7 @@
 					"raw": "//{\r\n//    \"match_id\":\"6\"\r\n\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/match/net/result/6",
+					"raw": "{{url}}/match/net/result/14",
 					"host": [
 						"{{url}}"
 					],
@@ -1307,7 +1307,7 @@
 						"match",
 						"net",
 						"result",
-						"6"
+						"14"
 					]
 				}
 			},

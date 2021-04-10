@@ -97,21 +97,21 @@ class ResultNet(Resource):
                         help="match_id cant be blank"
                         ) """
     parser.add_argument('set1',
-                        type=int,
+                        type=dict,
                         required=True,
-                        action='append',
+                        #action='append',
                         help="Set 1 cant be blank"
                         )
     parser.add_argument('set2',
-                        type=int,
+                        type=dict,
                         required=True,
-                        action='append',
+                        #action='append',
                         help="Set 2 cant be blank"
                         )
     parser.add_argument('set3',
-                        type=int,
+                        type=dict,
                         required=False,
-                        action='append',
+                        #action='append',
                         help="Set 3 cant be blank"
                         )
 
@@ -127,9 +127,9 @@ class ResultNet(Resource):
         data = ResultNet.parser.parse_args()
         res = ResultModel(data['winner_id'],mid_)
         if data['set3']:
-            res.insertNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1],data['set3'][0],data['set3'][1])
+            res.insertNet(data['set1']['team1'],data['set1']['team2'],data['set2']['team1'],data['set2']['team2'],data['set3']['team1'],data['set3']['team2'])
         else:
-            res.insertNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1])
+            res.insertNet(data['set1']['team1'],data['set1']['team2'],data['set2']['team1'],data['set2']['team2'])
 
         m = MatchModel().find_by_id(mid_)
         teams = MatchModel.findTeamsByMID(mid_)
@@ -154,13 +154,15 @@ class ResultNet(Resource):
         m['team1ID']=teams[0][0]
         m['team2ID']=teams[1][0]
         m['winner_id']=r[0]
-        m['set1']=[]
-        m['set2']=[]
-        m['set3']=[]
-        m['set1'].extend([r[1],r[2]])
-        m['set2'].extend([r[3],r[4]])
-        m['set3'].extend([r[5],r[6]])
-
+        m['set1']={}
+        m['set2']={}
+        m['set3']={}
+        m['set1']['team1']=r[1]
+        m['set1']['team2']=r[2]
+        m['set2']['team1']=r[3]
+        m['set2']['team2']=r[4]
+        m['set3']['team1']=r[5]
+        m['set3']['team2']=r[6]
         return m,200
 
     @jwt_required()
@@ -172,9 +174,9 @@ class ResultNet(Resource):
             return {"message":"match {} has not yet concluded.".format(mid_)},400
 
         if data['set3']:
-            res.updateNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1],data['set3'][0],data['set3'][1])
+            res.updateNet(data['set1']['team1'],data['set1']['team2'],data['set2']['team1'],data['set2']['team2'],data['set3']['team1'],data['set3']['team2'])
         else:
-            res.updateNet(data['set1'][0],data['set1'][1],data['set2'][0],data['set2'][1])
+            res.updateNet(data['set1']['team1'],data['set1']['team2'],data['set2']['team1'],data['set2']['team2'])
 
         m = MatchModel().find_by_id(mid_)
         teams = MatchModel.findTeamsByMID(mid_)
