@@ -293,8 +293,8 @@ class ResultListBySport(Resource):
                 #teams = MatchModel.findTeamsByMID(m[0])
                 if sport=="Tennis" or sport=="Table Tennis" or sport == "Badminton":
                     eachRes = {
-                        "match_id":r[1],
-                        "winner_id":r[0],
+                        "match_id":r[0],
+                        "winner_id":r[1],
                         'set1':{},
                         'set2':{},
                         'set3':{}
@@ -314,16 +314,16 @@ class ResultListBySport(Resource):
                     res['results'].append(eachRes)  
                 elif sport=="Football" or sport=="Basketball" or sport =="Hockey":
                     eachRes = {
-                        "match_id":r[1],
-                        "winner_id":r[0],
+                        "match_id":r[0],
+                        "winner_id":r[1],
                         't1score':r[2],
                         't2score':r[3]
                     }
                     res['results'].append(eachRes)  
                 elif sport=="Cricket":
                     eachRes = {
-                        "match_id":r[1],
-                        "winner_id":r[0],
+                        "match_id":r[0],
+                        "winner_id":r[1],
                         't1Innings':{},
                         't2Innings':{}
                     }
@@ -359,8 +359,8 @@ class ResultListByTourn(Resource):
                         #teams = MatchModel.findTeamsByMID(m[0])
                         if sport=="Tennis" or sport=="Table Tennis" or sport == "Badminton":
                             eachRes = {
-                                "match_id":r[1],
-                                "winner_id":r[0],
+                                "match_id":r[0],
+                                "winner_id":r[1],
                                 'set1':{},
                                 'set2':{},
                                 'set3':{}
@@ -380,16 +380,16 @@ class ResultListByTourn(Resource):
                             res['results'].append(eachRes)  
                         elif sport=="Football" or sport=="Basketball" or sport =="Hockey":
                             eachRes = {
-                                "match_id":r[1],
-                                "winner_id":r[0],
+                                "match_id":r[0],
+                                "winner_id":r[1],
                                 't1score':r[2],
                                 't2score':r[3]
                             }
                             res['results'].append(eachRes)  
                         elif sport=="Cricket":
                             eachRes = {
-                                "match_id":r[1],
-                                "winner_id":r[0],
+                                "match_id":r[0],
+                                "winner_id":r[1],
                                 't1Innings':{},
                                 't2Innings':{}
                             }
