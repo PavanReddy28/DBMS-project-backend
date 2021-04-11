@@ -339,11 +339,11 @@ class ResultListBySport(Resource):
 class ResultListByTourn(Resource):
     def get(self,id_):
         #data = Match.parser2.parse_args()
-        sportsL = SportModel.findSports(id_)
+        sportsL= SportModel.findSports(id_)
 
         sports = {}
 
-        if sports:
+        if sportsL:
 
             for i in sportsL:
                 sport = i[0]
@@ -399,7 +399,7 @@ class ResultListByTourn(Resource):
                             eachRes['t2Innings']['wickets']=r[5]
                             res['results'].append(eachRes)
                             
-                sports[sport[0]] = res["results"]
+                sports[sport] = res["results"]
 
             return sports,200
         
