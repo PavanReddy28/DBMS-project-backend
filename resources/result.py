@@ -3,6 +3,7 @@ import os
 from flask_restful import Resource, reqparse
 from models.match import MatchModel
 from models.result import ResultModel
+from models.sport import SportModel
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
 class ResultTeam(Resource):
@@ -334,3 +335,73 @@ class ResultListBySport(Resource):
 
 
         return res,200
+
+class ResultListByTourn(Resource):
+    def get(self,id_):
+        #data = Match.parser2.parse_args()
+        sportsL= SportModel.findSports(id_)
+
+        sports = {}
+
+        if sportsL:
+
+            for i in sportsL:
+                sport = i[0]
+                results = ResultModel.findResultsSport(id_,sport)
+
+                res = { 
+                    "results": []
+                }
+                
+                if results:
+                    for r in results:
+                        #print(r)
+                        #teams = MatchModel.findTeamsByMID(m[0])
+                        if sport=="Tennis" or sport=="Table Tennis" or sport == "Badminton":
+                            eachRes = {
+                                "match_id":r[1],
+                                "winner_id":r[0],
+                                'set1':{},
+                                'set2':{},
+                                'set3':{}
+                                
+                                #"startTime":str(m[2]),
+                                #"sportName":m[4],
+                                #"round":m[5],
+                                #"team1": {"team_id":teams[0][0],"teamName":TeamModel.find_by_id(teams[0][0])[1]},
+                                #"team2": {"team_id":teams[1][0],"teamName":TeamModel.find_by_id(teams[1][0])[1]}
+                            }
+                            eachRes['set1']['team1']=r[2]
+                            eachRes['set1']['team2']=r[3]
+                            eachRes['set2']['team1']=r[4]
+                            eachRes['set2']['team2']=r[5]
+                            eachRes['set3']['team1']=r[6]
+                            eachRes['set3']['team2']=r[7]
+                            res['results'].append(eachRes)  
+                        elif sport=="Football" or sport=="Basketball" or sport =="Hockey":
+                            eachRes = {
+                                "match_id":r[1],
+                                "winner_id":r[0],
+                                't1score':r[2],
+                                't2score':r[3]
+                            }
+                            res['results'].append(eachRes)  
+                        elif sport=="Cricket":
+                            eachRes = {
+                                "match_id":r[1],
+                                "winner_id":r[0],
+                                't1Innings':{},
+                                't2Innings':{}
+                            }
+                            eachRes['t1Innings']['runs']=r[2]
+                            eachRes['t1Innings']['wickets']=r[3]
+                            eachRes['t2Innings']['runs']=r[4]
+                            eachRes['t2Innings']['wickets']=r[5]
+                            res['results'].append(eachRes)
+                            
+                sports[sport] = res["results"]
+
+            return sports,200
+        
+        else:
+            return {"message":"tournament {} doesnot have sports.".format(id_)},400

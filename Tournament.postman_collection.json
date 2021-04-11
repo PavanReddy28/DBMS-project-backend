@@ -191,7 +191,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\": 3,\r\n    \"t_name\": \"Apogee\",\r\n    \"address\": \" place 3\",\r\n    \"college\": \"BITS\",\r\n    \"city\": \"Pilani\",\r\n    \"region\": \"Rajasthan\",\r\n    \"zip\": \"12121212\",\r\n    \"country\": \"India\",\r\n    \"sports\":[\"Badminton\",\"Basketball\",\"Tennis\",\"Hockey\"]\r\n}"
+					"raw": "{\r\n    \"tournament_id\": 2,\r\n    \"t_name\":\"Arena\",\r\n    \"address\":\"Shamirpet\",\r\n    \"college\":\"BITS\",\r\n    \"city\":\"Hyderabad\",\r\n    \"region\":\"Telangana\",\r\n    \"zip\":\"5000028\",\r\n    \"country\":\"India\",\r\n    \"sports\":[\"Cricket\",\"Basketball\",\"Table Tennis\",\"Hockey\"]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/tournament",
@@ -1435,6 +1435,25 @@
 						"results",
 						"2",
 						"Cricket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/tourn/results/<id_>",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/tourn/results/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"tourn",
+						"results",
+						"2"
 					]
 				}
 			},
