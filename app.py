@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from flask import Flask, request,jsonify
 from flask_restful import Resource, Api, reqparse
 from flask_cors import CORS
@@ -12,12 +13,14 @@ from resources.player import Player, PlayerList, PlayerSports
 from resources.match import Match, MatchListByTour,MatchListBySport,CompMatchListByTour,PendMatchListByTour,CompMatchListBySport,PendMatchListBySport
 from resources.result import ResultTeam,ResultNet,ResultCricket,ResultListBySport,ResultListByTourn
 
+ACCESS_EXPIRES = timedelta(hours=1)
+
 app = Flask(__name__)
 
 app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET_KEY')
 #app.config["JWT_BLACKLIST_ENABLED"]=True
 #app.config["JWT_BLACKLIST_TOKEN_CHECKS"]=['access','refresh']
-#app.config["JWT_ACCESS_TOKEN_EXPIRES"] = ACCESS_EXPIRES
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = ACCESS_EXPIRES
 
 api = Api(app)
 
