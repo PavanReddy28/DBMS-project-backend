@@ -390,7 +390,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":2,\r\n    \"team_name\": \"H1\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"Ben\",\r\n        \"lname\":\"R\",\r\n        \"age\":\"23\"\r\n    },\r\n    \"sportName\":\"Hockey\",\r\n    \"contact\":\"9933484744\"\r\n\r\n}"
+					"raw": "{\r\n    \"tournament_id\":2,\r\n    \"team_name\": \"TT4\",\r\n    \"college\": \"BITS\",\r\n    \"num_players\": \"1\",\r\n    \"captain\": {\r\n        \"fname\":\"Bobb\",\r\n        \"lname\":\"R\",\r\n        \"age\":\"23\"\r\n    },\r\n    \"sportName\":\"Table Tennis\",\r\n    \"contact\":\"9935456744\"\r\n\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/team",
@@ -423,7 +423,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"4\",\r\n    \"players\":[\r\n        {\"fname\":\"S\",\"lname\":\"Rao\",\"age\":22},\r\n        {\"fname\":\"P\",\"lname\":\"Reddy\",\"age\":18},\r\n        {\"fname\":\"M\",\"lname\":\"damodar\",\"age\":22},\r\n        {\"fname\":\"R\",\"lname\":\"Rao\",\"age\":23}\r\n    ]\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"1\",\r\n    \"team_id\":\"18\",\r\n    \"players\":[\r\n        {\"fname\":\"S\",\"lname\":\"Rao\",\"age\":22},\r\n        {\"fname\":\"P\",\"lname\":\"Reddy\",\"age\":18},\r\n        {\"fname\":\"M\",\"lname\":\"damodar\",\"age\":22},\r\n        {\"fname\":\"R\",\"lname\":\"Rao\",\"age\":23}\r\n    ]\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/player",
@@ -653,13 +653,13 @@
 					"raw": "//{\r\n//    \"team_id\":\"11\"\r\n//}"
 				},
 				"url": {
-					"raw": "{{url}}/team/11",
+					"raw": "{{url}}/team/12",
 					"host": [
 						"{{url}}"
 					],
 					"path": [
 						"team",
-						"11"
+						"12"
 					]
 				}
 			},
@@ -747,7 +747,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team1_id\":\"11\",\r\n    \"team2_id\":\"12\",\r\n    \"sportName\":\"Table Tennis\",\r\n    \"date\":\"2021-04-12T11:30\",\r\n    \"round\":\"Final\"\r\n}"
+					"raw": "{\r\n    \"tournament_id\":\"2\",\r\n    \"team1_id\":\"19\",\r\n    \"team2_id\":\"20\",\r\n    \"sportName\":\"Table Tennis\",\r\n    \"date\":\"2021-04-12T13:30\",\r\n    \"round\":\"SF\"\r\n}"
 				},
 				"url": {
 					"raw": "{{url}}/match",
@@ -1223,10 +1223,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"11\",\r\n    \"set1\":{\"team1\":\"11\",\"team2\":\"2\"},\r\n    \"set2\":{\"team1\":\"3\",\"team2\":\"11\"},\r\n    \"set3\":{\"team1\":\"11\",\"team2\":\"9\"}\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"19\",\r\n    \"set1\":{\"team1\":\"11\",\"team2\":\"2\"},\r\n    \"set2\":{\"team1\":\"13\",\"team2\":\"11\"}\r\n\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/match/net/result/14",
+					"raw": "{{url}}/match/net/result/16",
 					"host": [
 						"{{url}}"
 					],
@@ -1234,7 +1234,7 @@
 						"match",
 						"net",
 						"result",
-						"14"
+						"16"
 					]
 				}
 			},
@@ -1331,10 +1331,10 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"winner_id\":\"15\", \r\n    \"t1Innings\":{\"runs\":155,\"wickets\":5},\r\n    \"t2Innings\":{\"runs\":132,\"wickets\":10}\r\n\r\n}"
+					"raw": "{\r\n    \"winner_id\":\"11\", \r\n    \"t1Innings\":{\"runs\":155,\"wickets\":5},\r\n    \"t2Innings\":{\"runs\":132,\"wickets\":10}\r\n\r\n}"
 				},
 				"url": {
-					"raw": "{{url}}/match/cricket/result/8",
+					"raw": "{{url}}/match/cricket/result/12",
 					"host": [
 						"{{url}}"
 					],
@@ -1342,7 +1342,7 @@
 						"match",
 						"cricket",
 						"result",
-						"8"
+						"12"
 					]
 				}
 			},
@@ -1416,6 +1416,25 @@
 						"cricket",
 						"result",
 						"8"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/results/<id_>/<sport>",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/results/2/Cricket",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"results",
+						"2",
+						"Cricket"
 					]
 				}
 			},

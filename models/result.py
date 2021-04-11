@@ -118,3 +118,25 @@ class ResultModel:
         
         conn.commit()
         conn.close()
+
+    def findResultsSport(t_id,sport):
+        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+
+        conn = psycopg2.connect(url)
+        cur = conn.cursor()
+        
+        if sport=="Football" or sport=="Basketball" or sport =="Hockey":
+            cur.execute("SELECT r.match_id,r.winner,(score).t1,(score).t2 from resultTeam r where r.match_id in (SELECT m.match_id from match m where m.sportName=%s and m.tournament_id=%s)",(sport,t_id))
+        elif sport=="Tennis" or sport=="Table Tennis" or sport == "Badminton":
+            cur.execute("SELECT r.match_id,r.winner,(score).s1t1,(score).s1t2,(score).s2t1,(score).s2t2,(score).s3t1,(score).s3t2 from resultNet r where r.match_id in (SELECT m.match_id from match m where m.sportName=%s and m.tournament_id=%s)",(sport,t_id))
+        elif sport=="Cricket":
+            cur.execute("SELECT r.match_id,r.winner,(score).t1runs,(score).t1wickets,(score).t2runs,(score).t2wickets from resultCricket r where r.match_id in (SELECT m.match_id from match m where m.sportName=%s and m.tournament_id=%s)",(sport,t_id))
+        
+        rows =cur.fetchall()
+
+        conn.close()
+
+        if rows:
+            return rows
+        else :
+            return None
