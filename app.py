@@ -100,7 +100,7 @@ api.add_resource(ResultNet,"/match/net/result/<int:mid_>")
 api.add_resource(ResultCricket,"/match/cricket/result/<int:mid_>")
 api.add_resource(TeamStatus,"/team/<string:status>")
 api.add_resource(ResultListBySport, "/results/<int:id_>/<string:sport>")
-api.add_resource(ResultListByTourn, "/results/<int:id_>")
+api.add_resource(ResultListByTourn, "/tourn/results/<int:id_>")
 
 
 if __name__ == "__main__":
