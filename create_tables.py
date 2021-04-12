@@ -42,17 +42,17 @@ def initialize():
     conn.commit()
     conn.close()
 
-def get_db():
+# def get_db():
 
-    url = urlparse.urlparse(os.environ['DATABASE_URL'])
-    dbname = url.path[1:]
-    user = url.username
-    password = url.password
-    host = url.hostname
-    port = url.port
+#     url = urlparse.urlparse(os.environ['DATABASE_URL'])
+#     dbname = url.path[1:]
+#     user = url.username
+#     password = url.password
+#     host = url.hostname
+#     port = url.port
 
-    return url, dbname, user, password, host, port
+#     return url, dbname, user, password, host, port
 
 
 if __name__ == "__main__":
-    create_tables()
+    initialize()
