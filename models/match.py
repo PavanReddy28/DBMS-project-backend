@@ -33,7 +33,7 @@ class MatchModel:
         return self.json(match_num)
 
     def findMatchesTour(tID,cond=None):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -56,7 +56,7 @@ class MatchModel:
             return None
     
     def findMatchesSport(tID,sport,cond=None):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -79,7 +79,7 @@ class MatchModel:
             return None
 
     def findTeamsByMID(mID):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -98,7 +98,7 @@ class MatchModel:
             return None
 
     def update(self,mID,dt,tm):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -121,7 +121,7 @@ class MatchModel:
         return self.json(row[0])
 
     def delete_from_db(mID):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -134,7 +134,7 @@ class MatchModel:
         conn.close()
 
     def find_by_id(self,mID):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 

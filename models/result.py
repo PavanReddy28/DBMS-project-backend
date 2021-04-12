@@ -9,7 +9,7 @@ class ResultModel:
         #self.score=score
 
     def insertTeam(self,t1,t2):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -23,7 +23,7 @@ class ResultModel:
         conn.close()
 
     def insertNet(self,s1t1,s1t2,s2t1,s2t2,s3t1=None,s3t2=None):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -37,7 +37,7 @@ class ResultModel:
         conn.close()
 
     def insertCricket(self,t1r,t1w,t2r,t2w):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -51,7 +51,7 @@ class ResultModel:
         conn.close()
 
     def check_for_id(mID,type):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -74,7 +74,7 @@ class ResultModel:
             return None
 
     def get_scores(mID,type):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -97,7 +97,7 @@ class ResultModel:
             return None
 
     def updateTeam(self,t1,t2):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -110,7 +110,7 @@ class ResultModel:
         conn.close()
 
     def updateNet(self,s1t1,s1t2,s2t1,s2t2,s3t1=None,s3t2=None):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -123,7 +123,7 @@ class ResultModel:
         conn.close()
 
     def updateCricket(self,t1r,t1w,t2r,t2w):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -136,7 +136,7 @@ class ResultModel:
         conn.close()
 
     def findResultsSport(t_id,sport):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 

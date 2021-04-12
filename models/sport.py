@@ -8,7 +8,7 @@ class SportModel:
         self.sportType = sportType
 
     def getAllSports():
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -24,7 +24,7 @@ class SportModel:
         return rows 
 
     def save_to_db(id, sportName):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -37,7 +37,7 @@ class SportModel:
         conn.close()
 
     def findSport(self,id):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -55,7 +55,7 @@ class SportModel:
             return None
 
     def findSports(id_):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -73,7 +73,7 @@ class SportModel:
             return None
 
     def update(id, sports):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 

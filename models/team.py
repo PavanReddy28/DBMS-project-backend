@@ -16,7 +16,7 @@ class TeamModel:
         return {"team_id":tID, "team_name": self.team_name, "college": self.college, "num_players":self.num_players, "captain_ID":cID, "sportName":self.sportName, "contact":self.contact}
 
     def save_to_db(self,tID):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -39,7 +39,7 @@ class TeamModel:
         return id_of_new_team
 
     def find_by_id(id):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -58,7 +58,7 @@ class TeamModel:
             return None
 
     def updateCaptainID(self, cID,tID):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -71,7 +71,7 @@ class TeamModel:
         conn.close()
 
     def findCaptainID(self,tID):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -86,7 +86,7 @@ class TeamModel:
         return row
 
     def findAll(ID):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -105,7 +105,7 @@ class TeamModel:
             return None
 
     def updateStatus( id, stat):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -118,7 +118,7 @@ class TeamModel:
         conn.close()
         
     def removeRejected(self,id):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -132,7 +132,7 @@ class TeamModel:
         conn.close() 
 
     def removeTeam(self,tId):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -146,7 +146,7 @@ class TeamModel:
         conn.close()
 
     def find_by_sport(tID,sport):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -164,7 +164,7 @@ class TeamModel:
             return None
 
     def find_by_status(username,status):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 

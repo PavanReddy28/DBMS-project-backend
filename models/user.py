@@ -11,7 +11,7 @@ class UserModel:
         self.password = password
 
     def save_to_db(self):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -27,7 +27,7 @@ class UserModel:
 
     @classmethod
     def find_by_name(cls,name):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 

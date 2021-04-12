@@ -13,7 +13,7 @@ class PlayerModel:
 
     def save_to_db(self):
         # 
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -29,7 +29,7 @@ class PlayerModel:
 
     def get_player_details(self,ID):
         # 
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -45,7 +45,7 @@ class PlayerModel:
 
     def findAll(id, type):
         # 
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -68,7 +68,7 @@ class PlayerModel:
 
     def find_by_sport(tID,sport):
         # 
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 

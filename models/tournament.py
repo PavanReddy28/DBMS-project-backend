@@ -20,7 +20,7 @@ class TournamentModel:
         return {"tournament_id":id, "t_name": self.t_name, "address": self.address, "college": self.college, "city":self.city, "region":self.region, "zip":self.zip, "country":self.country}
 
     def save_to_db(self,username):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -37,7 +37,7 @@ class TournamentModel:
 
     @classmethod
     def find_by_user(cls, username):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -56,7 +56,7 @@ class TournamentModel:
             return None
     
     def findAll():
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -75,7 +75,7 @@ class TournamentModel:
             return None
 
     def delete_from_db(id):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -91,7 +91,7 @@ class TournamentModel:
         conn.close()
 
     def check_for_id(id):
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
@@ -115,7 +115,7 @@ class TournamentModel:
         self.region = region
         self.zip = zip_
 
-        params = get_db()
+        
 
         DATABASE_URL = os.environ['DATABASE_URL']
 
