@@ -12,7 +12,8 @@ class PlayerModel:
         self.team_id=team_id
 
     def save_to_db(self):
-        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+        # 
+        url = os.environ.get['DATABASE_URL']
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -25,7 +26,8 @@ class PlayerModel:
         return id_of_player
 
     def get_player_details(self,ID):
-        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+        # 
+        url = os.environ.get['DATABASE_URL']
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -38,7 +40,8 @@ class PlayerModel:
         return row
 
     def findAll(id, type):
-        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+        # 
+        url = os.environ.get['DATABASE_URL']
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -58,7 +61,8 @@ class PlayerModel:
             return None
 
     def find_by_sport(tID,sport):
-        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
+        # 
+        url = os.environ.get['DATABASE_URL']
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
