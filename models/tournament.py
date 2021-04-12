@@ -23,14 +23,9 @@ class TournamentModel:
     def save_to_db(self,username):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("INSERT INTO tournament (tournament_id, t_name, address, college, city, region, zip, country, username) VALUES (DEFAULT,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING tournament_id",(self.t_name, self.address, self.college, self.city, self.region, self.zip, self.country,username))
@@ -45,14 +40,9 @@ class TournamentModel:
     def find_by_user(cls, username):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM tournament where username = %s",(username,))
@@ -69,14 +59,9 @@ class TournamentModel:
     def findAll():
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM tournament")
@@ -93,14 +78,9 @@ class TournamentModel:
     def delete_from_db(id):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("DELETE FROM tourn_sport where tournament_id = %s",(id,))
@@ -114,14 +94,9 @@ class TournamentModel:
     def check_for_id(id):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM tournament where tournament_id = %s",(id,))
@@ -143,14 +118,9 @@ class TournamentModel:
 
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("UPDATE tournament SET t_name= %s, address = %s, college = %s, city = %s, region = %s, zip = %s WHERE tournament_id = %s",(t_name,address,college,city,region,zip_,id))

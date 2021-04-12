@@ -46,14 +46,9 @@ class UserList(Resource):
             "users": []
         }
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM organizer")

@@ -16,14 +16,9 @@ class PlayerModel:
         # 
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("INSERT INTO player (pnum, firstName, lastName, age, tournament_id, team_id) VALUES (DEFAULT,%s,%s,%s,%s,%s) RETURNING pnum", (self.firstName,self.lastName,self.age,self.tournament_id,self.team_id))
@@ -37,14 +32,9 @@ class PlayerModel:
         # 
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * from player where pnum = %s", (ID,))
@@ -58,14 +48,9 @@ class PlayerModel:
         # 
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
         
         if type == "tour":
@@ -86,14 +71,9 @@ class PlayerModel:
         # 
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM player p where p.tournament_id = %s AND p.team_id IN (SELECT t.team_id from team t where t.sportName = %s)",(tID,sport))

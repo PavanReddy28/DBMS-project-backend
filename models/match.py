@@ -17,16 +17,10 @@ class MatchModel:
 
     def save_to_db(self, t1,t2):
 
-        params = get_db()
+        DATABASE_URL = os.environ['DATABASE_URL']
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+
         cur = conn.cursor()
 
         cur.execute("INSERT INTO match VALUES (DEFAULT,%s,%s,%s,%s,%s,%s) RETURNING match_id", (self.date,self.startTime,self.tournament_id,self.sportName,self.round,"SCHEDULED"))
@@ -42,14 +36,9 @@ class MatchModel:
     def findMatchesTour(tID,cond=None):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
         
         if cond==None:
@@ -70,14 +59,9 @@ class MatchModel:
     def findMatchesSport(tID,sport,cond=None):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
         
         if cond==None:
@@ -98,14 +82,9 @@ class MatchModel:
     def findTeamsByMID(mID):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
         
         cur.execute("SELECT team_id from teamMatch where match_id = %s ",(mID,))
@@ -122,14 +101,9 @@ class MatchModel:
     def update(self,mID,dt,tm):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("UPDATE match set match_date=%s, start_time = %s where match_id = %s",(dt,tm,mID))
@@ -150,14 +124,9 @@ class MatchModel:
     def delete_from_db(mID):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("DELETE from match where match_id = %s",(mID,))
@@ -168,14 +137,9 @@ class MatchModel:
     def find_by_id(self,mID):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * from match where match_id = %s",(mID,))

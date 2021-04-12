@@ -19,14 +19,9 @@ class TeamModel:
     def save_to_db(self,tID):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
         cur.execute("SELECT team_name FROM team where captain IN (SELECT pnum FROM player where tournament_id = %s)",(tID,))
         teams = cur.fetchall()
@@ -47,14 +42,9 @@ class TeamModel:
     def find_by_id(id):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM team where team_id = %s",(id,))
@@ -71,14 +61,9 @@ class TeamModel:
     def updateCaptainID(self, cID,tID):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("UPDATE team SET captain = %s where team_id = %s",(cID,tID))
@@ -89,14 +74,9 @@ class TeamModel:
     def findCaptainID(self,tID):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT captain FROM team where team_id = %s",(tID,))
@@ -109,14 +89,9 @@ class TeamModel:
     def findAll(ID):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM team where captain in(SELECT pnum from PLAYER where tournament_id = %s)",(ID,))
@@ -133,14 +108,9 @@ class TeamModel:
     def updateStatus( id, stat):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("UPDATE team SET status = %s where team_id = %s",(stat,id))
@@ -151,14 +121,9 @@ class TeamModel:
     def removeRejected(self,id):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("DELETE FROM team t where t.status = 'REJECTED' AND t.team_id IN (SELECT p.team_id from player p where p.tournament_id =%s)",(id,))
@@ -170,14 +135,9 @@ class TeamModel:
     def removeTeam(self,tId):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("DELETE FROM team t where t.team_id=%s",(tId,))
@@ -189,14 +149,9 @@ class TeamModel:
     def find_by_sport(tID,sport):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM team t where t.sportName = %s AND t.captain IN (SELECT p.pnum from player p where p.tournament_id =%s)",(sport,tID))
@@ -212,14 +167,9 @@ class TeamModel:
     def find_by_status(username,status):
         params = get_db()
 
-        conn = psycopg2.connect(
-            dbname=params[0],
-            user=params[1],
-            password=params[2],
-            host=params[3],
-            port=params[4],
-            sslmode='require'
-            )
+        DATABASE_URL = os.environ['DATABASE_URL']
+
+        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         cur = conn.cursor()
 
         cur.execute("SELECT te.team_id, te.team_name, te.college, te.num_players, te.sportname, p.firstname, p.lastname, te.contact, t.tournament_id, t.t_name from team te,tournament t,player p WHERE te.captain = p.pnum and t.tournament_id = p.tournament_id and te.status =%s and t.username = %s",(status,username))
