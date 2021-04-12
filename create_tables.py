@@ -1,12 +1,9 @@
 import psycopg2
 import os
-from dotenv import load_dotenv
-import urllib.parse as urlparse
 
 
-def create_tables():
+def initialize():
 
-    load_dotenv()
 
     url = url = os.environ.get('DATABASE_URL')
 

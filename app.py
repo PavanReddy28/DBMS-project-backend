@@ -12,7 +12,7 @@ from resources.team import TeamList,Team, TeamSports, TeamStatus,TeamDetails
 from resources.player import Player, PlayerList, PlayerSports
 from resources.match import Match, MatchListByTour,MatchListBySport,CompMatchListByTour,PendMatchListByTour,CompMatchListBySport,PendMatchListBySport
 from resources.result import ResultTeam,ResultNet,ResultCricket,ResultListBySport,ResultListByTourn
-from create_tables import create_tables
+from create_tables import initialize
 
 ACCESS_EXPIRES = timedelta(hours=1)
 
@@ -27,7 +27,7 @@ api = Api(app)
 
 @app.before_first_request
 def init_db():
-    create_tables()
+    initialize()
 
 
 jwt = JWTManager(app)
