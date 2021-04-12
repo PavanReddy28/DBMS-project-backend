@@ -46,9 +46,14 @@ class UserList(Resource):
             "users": []
         }
 
-        url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
-
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4],
+            sslmode='require'
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM organizer")
