@@ -1,7 +1,6 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
-from create_tables import get_db
 
 class ResultModel:
     def __init__(self,winner=None,match_id=None,score=None):

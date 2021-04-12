@@ -1,7 +1,6 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
-from create_tables import get_db 
 
 class MatchModel:
     def __init__(self,date=None,startTime=None,tournament_id=None,sportName=None,round=None):

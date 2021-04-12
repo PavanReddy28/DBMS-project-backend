@@ -1,7 +1,6 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
-from create_tables import get_db
 
 class TournamentModel:
     def __init__(self,t_name=None,college=None,address=None,city=None,region=None,zip_=None,country=None):

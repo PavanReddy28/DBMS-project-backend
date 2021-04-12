@@ -1,7 +1,6 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
-from create_tables import get_db
 
 class TeamModel:
     def __init__(self,team_name=None,college=None,num_players=None,sportName=None,contact=None):
