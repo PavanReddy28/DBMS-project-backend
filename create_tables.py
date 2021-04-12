@@ -54,7 +54,7 @@ def get_db():
     host = url.hostname
     port = url.port
 
-    return dbname, user, password, host, port
+    return url, dbname, user, password, host, port
 
 
 if __name__ == "__main__":

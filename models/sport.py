@@ -16,7 +16,8 @@ class SportModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -36,7 +37,8 @@ class SportModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -53,7 +55,8 @@ class SportModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -75,7 +78,8 @@ class SportModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -97,7 +101,8 @@ class SportModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 

@@ -24,7 +24,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
         cur.execute("SELECT team_name FROM team where captain IN (SELECT pnum FROM player where tournament_id = %s)",(tID,))
@@ -51,7 +52,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -74,7 +76,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -91,7 +94,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -110,7 +114,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -133,7 +138,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -150,7 +156,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -168,7 +175,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -186,7 +194,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
@@ -208,7 +217,8 @@ class TeamModel:
             user=params[1],
             password=params[2],
             host=params[3],
-            port=params[4]
+            port=params[4],
+            sslmode='require'
             )
         cur = conn.cursor()
 
