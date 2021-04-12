@@ -12,6 +12,7 @@ from resources.team import TeamList,Team, TeamSports, TeamStatus,TeamDetails
 from resources.player import Player, PlayerList, PlayerSports
 from resources.match import Match, MatchListByTour,MatchListBySport,CompMatchListByTour,PendMatchListByTour,CompMatchListBySport,PendMatchListBySport
 from resources.result import ResultTeam,ResultNet,ResultCricket,ResultListBySport,ResultListByTourn
+from create_tables import create_tables
 
 ACCESS_EXPIRES = timedelta(hours=1)
 
@@ -23,6 +24,11 @@ app.config["JWT_SECRET_KEY"] = os.environ.get('JWT_SECRET_KEY')
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = ACCESS_EXPIRES
 
 api = Api(app)
+
+@app.before_first_request
+def init_db():
+    create_tables()
+
 
 jwt = JWTManager(app)
 

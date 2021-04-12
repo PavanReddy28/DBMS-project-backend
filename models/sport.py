@@ -8,7 +8,7 @@ class SportModel:
         self.sportType = sportType
 
     def getAllSports():
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -22,7 +22,7 @@ class SportModel:
         return rows 
 
     def save_to_db(id, sportName):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -33,7 +33,7 @@ class SportModel:
         conn.close()
 
     def findSport(self,id):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -49,7 +49,7 @@ class SportModel:
             return None
 
     def findSports(id_):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -65,7 +65,7 @@ class SportModel:
             return None
 
     def update(id, sports):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()

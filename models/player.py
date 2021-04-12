@@ -13,7 +13,7 @@ class PlayerModel:
 
     def save_to_db(self):
         # 
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -27,7 +27,7 @@ class PlayerModel:
 
     def get_player_details(self,ID):
         # 
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -41,7 +41,7 @@ class PlayerModel:
 
     def findAll(id, type):
         # 
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -62,7 +62,7 @@ class PlayerModel:
 
     def find_by_sport(tID,sport):
         # 
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()

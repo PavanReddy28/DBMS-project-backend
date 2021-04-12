@@ -11,7 +11,7 @@ class UserModel:
         self.password = password
 
     def save_to_db(self):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -25,7 +25,7 @@ class UserModel:
 
     @classmethod
     def find_by_name(cls,name):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()

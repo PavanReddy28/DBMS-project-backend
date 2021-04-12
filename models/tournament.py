@@ -20,7 +20,7 @@ class TournamentModel:
         return {"tournament_id":id, "t_name": self.t_name, "address": self.address, "college": self.college, "city":self.city, "region":self.region, "zip":self.zip, "country":self.country}
 
     def save_to_db(self,username):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -35,7 +35,7 @@ class TournamentModel:
 
     @classmethod
     def find_by_user(cls, username):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -52,7 +52,7 @@ class TournamentModel:
             return None
     
     def findAll():
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -69,7 +69,7 @@ class TournamentModel:
             return None
 
     def delete_from_db(id):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -83,7 +83,7 @@ class TournamentModel:
         conn.close()
 
     def check_for_id(id):
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
@@ -105,7 +105,7 @@ class TournamentModel:
         self.region = region
         self.zip = zip_
 
-        url = os.environ.get['DATABASE_URL']
+        url = os.environ.get('DATABASE_URL')
 
         conn = psycopg2.connect(url)
         cur = conn.cursor()
