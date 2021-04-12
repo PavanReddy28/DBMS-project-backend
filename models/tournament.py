@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
+from create_tables import get_db
 
 class TournamentModel:
     def __init__(self,t_name=None,college=None,address=None,city=None,region=None,zip_=None,country=None):
@@ -20,9 +21,15 @@ class TournamentModel:
         return {"tournament_id":id, "t_name": self.t_name, "address": self.address, "college": self.college, "city":self.city, "region":self.region, "zip":self.zip, "country":self.country}
 
     def save_to_db(self,username):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("INSERT INTO tournament (tournament_id, t_name, address, college, city, region, zip, country, username) VALUES (DEFAULT,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING tournament_id",(self.t_name, self.address, self.college, self.city, self.region, self.zip, self.country,username))
@@ -35,9 +42,15 @@ class TournamentModel:
 
     @classmethod
     def find_by_user(cls, username):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM tournament where username = %s",(username,))
@@ -52,9 +65,15 @@ class TournamentModel:
             return None
     
     def findAll():
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM tournament")
@@ -69,9 +88,15 @@ class TournamentModel:
             return None
 
     def delete_from_db(id):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("DELETE FROM tourn_sport where tournament_id = %s",(id,))
@@ -83,9 +108,15 @@ class TournamentModel:
         conn.close()
 
     def check_for_id(id):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM tournament where tournament_id = %s",(id,))
@@ -105,9 +136,15 @@ class TournamentModel:
         self.region = region
         self.zip = zip_
 
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("UPDATE tournament SET t_name= %s, address = %s, college = %s, city = %s, region = %s, zip = %s WHERE tournament_id = %s",(t_name,address,college,city,region,zip_,id))

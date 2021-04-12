@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
+from create_tables import get_db 
 
 class MatchModel:
     def __init__(self,date=None,startTime=None,tournament_id=None,sportName=None,round=None):
@@ -10,15 +11,21 @@ class MatchModel:
         self.tournament_id=tournament_id
         self.sportName=sportName
         self.round=round
-    
+
     def json(self,ID):
         return {"date":str(self.date), "startTime": str(self.startTime), "tournament_id": self.tournament_id, "sportName":self.sportName,"round":self.round,"match_id":ID}
 
     def save_to_db(self, t1,t2):
-        # url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
-        url = os.environ.get('DATABASE_URL')
 
-        conn = psycopg2.connect(url)
+        params = get_db()
+
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("INSERT INTO match VALUES (DEFAULT,%s,%s,%s,%s,%s,%s) RETURNING match_id", (self.date,self.startTime,self.tournament_id,self.sportName,self.round,"SCHEDULED"))
@@ -32,10 +39,15 @@ class MatchModel:
         return self.json(match_num)
 
     def findMatchesTour(tID,cond=None):
-        # url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
         
         if cond==None:
@@ -54,10 +66,15 @@ class MatchModel:
             return None
     
     def findMatchesSport(tID,sport,cond=None):
-        # url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
         
         if cond==None:
@@ -76,10 +93,15 @@ class MatchModel:
             return None
 
     def findTeamsByMID(mID):
-        # url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
         
         cur.execute("SELECT team_id from teamMatch where match_id = %s ",(mID,))
@@ -94,10 +116,15 @@ class MatchModel:
             return None
 
     def update(self,mID,dt,tm):
-        # url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("UPDATE match set match_date=%s, start_time = %s where match_id = %s",(dt,tm,mID))
@@ -116,10 +143,15 @@ class MatchModel:
         return self.json(row[0])
 
     def delete_from_db(mID):
-        # url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("DELETE from match where match_id = %s",(mID,))
@@ -128,10 +160,15 @@ class MatchModel:
         conn.close()
 
     def find_by_id(self,mID):
-        # url = "postgresql://"+ str(os.getenv("DB_USERNAME")) + ":"+ str(os.getenv("DB_PASSWORD")) + "@localhost:5432/tournament"
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * from match where match_id = %s",(mID,))

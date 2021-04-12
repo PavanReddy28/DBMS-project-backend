@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
+from create_tables import get_db
 
 class SportModel:
     def __init__(self,sportName=None,sportType=None):
@@ -8,9 +9,15 @@ class SportModel:
         self.sportType = sportType
 
     def getAllSports():
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM sport")
@@ -22,9 +29,15 @@ class SportModel:
         return rows 
 
     def save_to_db(id, sportName):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("INSERT INTO tourn_sport VALUES (%s,%s)",(id, sportName))
@@ -33,9 +46,15 @@ class SportModel:
         conn.close()
 
     def findSport(self,id):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * from tourn_sport where tournament_id = %s and sportName = %s",(id,self.sportName))
@@ -49,9 +68,15 @@ class SportModel:
             return None
 
     def findSports(id_):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT sportName from tourn_sport where tournament_id = %s",(id_,))
@@ -65,9 +90,15 @@ class SportModel:
             return None
 
     def update(id, sports):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("DELETE from tourn_sport where tournament_id = %s",(id,))

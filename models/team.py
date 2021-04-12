@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
+from create_tables import get_db
 
 class TeamModel:
     def __init__(self,team_name=None,college=None,num_players=None,sportName=None,contact=None):
@@ -16,9 +17,15 @@ class TeamModel:
         return {"team_id":tID, "team_name": self.team_name, "college": self.college, "num_players":self.num_players, "captain_ID":cID, "sportName":self.sportName, "contact":self.contact}
 
     def save_to_db(self,tID):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
         cur.execute("SELECT team_name FROM team where captain IN (SELECT pnum FROM player where tournament_id = %s)",(tID,))
         teams = cur.fetchall()
@@ -37,9 +44,15 @@ class TeamModel:
         return id_of_new_team
 
     def find_by_id(id):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM team where team_id = %s",(id,))
@@ -54,9 +67,15 @@ class TeamModel:
             return None
 
     def updateCaptainID(self, cID,tID):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("UPDATE team SET captain = %s where team_id = %s",(cID,tID))
@@ -65,9 +84,15 @@ class TeamModel:
         conn.close()
 
     def findCaptainID(self,tID):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT captain FROM team where team_id = %s",(tID,))
@@ -78,9 +103,15 @@ class TeamModel:
         return row
 
     def findAll(ID):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM team where captain in(SELECT pnum from PLAYER where tournament_id = %s)",(ID,))
@@ -95,9 +126,15 @@ class TeamModel:
             return None
 
     def updateStatus( id, stat):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("UPDATE team SET status = %s where team_id = %s",(stat,id))
@@ -106,9 +143,15 @@ class TeamModel:
         conn.close()
         
     def removeRejected(self,id):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("DELETE FROM team t where t.status = 'REJECTED' AND t.team_id IN (SELECT p.team_id from player p where p.tournament_id =%s)",(id,))
@@ -118,9 +161,15 @@ class TeamModel:
         conn.close() 
 
     def removeTeam(self,tId):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("DELETE FROM team t where t.team_id=%s",(tId,))
@@ -130,9 +179,15 @@ class TeamModel:
         conn.close()
 
     def find_by_sport(tID,sport):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM team t where t.sportName = %s AND t.captain IN (SELECT p.pnum from player p where p.tournament_id =%s)",(sport,tID))
@@ -146,9 +201,15 @@ class TeamModel:
             return None
 
     def find_by_status(username,status):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT te.team_id, te.team_name, te.college, te.num_players, te.sportname, p.firstname, p.lastname, te.contact, t.tournament_id, t.t_name from team te,tournament t,player p WHERE te.captain = p.pnum and t.tournament_id = p.tournament_id and te.status =%s and t.username = %s",(status,username))

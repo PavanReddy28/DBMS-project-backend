@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
+import urllib.parse as urlparse
 
 
 def create_tables():
@@ -43,6 +44,17 @@ def create_tables():
 
     conn.commit()
     conn.close()
+
+def get_db():
+
+    url = urlparse.urlparse(os.environ['DATABASE_URL'])
+    dbname = url.path[1:]
+    user = url.username
+    password = url.password
+    host = url.hostname
+    port = url.port
+
+    return dbname, user, password, host, port
 
 
 if __name__ == "__main__":

@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
+from create_tables import get_db
 
 class ResultModel:
     def __init__(self,winner=None,match_id=None,score=None):
@@ -9,9 +10,15 @@ class ResultModel:
         #self.score=score
 
     def insertTeam(self,t1,t2):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("INSERT INTO resultTeam VALUES (%s,%s,ROW(%s,%s))",(self.winner,self.match_id,t1,t2))
@@ -21,9 +28,15 @@ class ResultModel:
         conn.close()
 
     def insertNet(self,s1t1,s1t2,s2t1,s2t2,s3t1=None,s3t2=None):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("INSERT INTO resultNet VALUES (%s,%s,ROW(%s,%s,%s,%s,%s,%s))",(self.winner,self.match_id,s1t1,s1t2,s2t1,s2t2,s3t1,s3t2))
@@ -33,9 +46,15 @@ class ResultModel:
         conn.close()
 
     def insertCricket(self,t1r,t1w,t2r,t2w):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("INSERT INTO resultCricket VALUES (%s,%s,ROW(%s,%s,%s,%s))",(self.winner,self.match_id,t1r,t1w,t2r,t2w))
@@ -45,9 +64,15 @@ class ResultModel:
         conn.close()
 
     def check_for_id(mID,type):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         if type=='net':
@@ -66,9 +91,15 @@ class ResultModel:
             return None
 
     def get_scores(mID,type):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         if type=='net':
@@ -87,9 +118,15 @@ class ResultModel:
             return None
 
     def updateTeam(self,t1,t2):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("UPDATE resultTeam SET winner =%s,score = ROW(%s,%s) where match_id = %s",(self.winner,t1,t2,self.match_id))
@@ -98,9 +135,15 @@ class ResultModel:
         conn.close()
 
     def updateNet(self,s1t1,s1t2,s2t1,s2t2,s3t1=None,s3t2=None):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("UPDATE resultNet SET winner =%s,score =ROW(%s,%s,%s,%s,%s,%s) where match_id =%s",(self.winner,s1t1,s1t2,s2t1,s2t2,s3t1,s3t2,self.match_id))
@@ -109,9 +152,15 @@ class ResultModel:
         conn.close()
 
     def updateCricket(self,t1r,t1w,t2r,t2w):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("UPDATE resultCricket SET winner =%s,score =ROW(%s,%s,%s,%s) where match_id = %s",(self.winner,t1r,t1w,t2r,t2w,self.match_id))
@@ -120,9 +169,15 @@ class ResultModel:
         conn.close()
 
     def findResultsSport(t_id,sport):
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
         
         if sport=="Football" or sport=="Basketball" or sport =="Hockey":

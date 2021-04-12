@@ -1,6 +1,7 @@
 import psycopg2
 import os
 from dotenv import load_dotenv
+from create_tables import get_db
 
 class PlayerModel:
     def __init__(self,firstName=None,lastName=None,age=None,tournament_id=None,team_id=None):
@@ -13,9 +14,15 @@ class PlayerModel:
 
     def save_to_db(self):
         # 
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("INSERT INTO player (pnum, firstName, lastName, age, tournament_id, team_id) VALUES (DEFAULT,%s,%s,%s,%s,%s) RETURNING pnum", (self.firstName,self.lastName,self.age,self.tournament_id,self.team_id))
@@ -27,9 +34,15 @@ class PlayerModel:
 
     def get_player_details(self,ID):
         # 
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * from player where pnum = %s", (ID,))
@@ -41,9 +54,15 @@ class PlayerModel:
 
     def findAll(id, type):
         # 
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
         
         if type == "tour":
@@ -62,9 +81,15 @@ class PlayerModel:
 
     def find_by_sport(tID,sport):
         # 
-        url = os.environ.get('DATABASE_URL')
+        params = get_db()
 
-        conn = psycopg2.connect(url)
+        conn = psycopg2.connect(
+            dbname=params[0],
+            user=params[1],
+            password=params[2],
+            host=params[3],
+            port=params[4]
+            )
         cur = conn.cursor()
 
         cur.execute("SELECT * FROM player p where p.tournament_id = %s AND p.team_id IN (SELECT t.team_id from team t where t.sportName = %s)",(tID,sport))
