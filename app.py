@@ -32,9 +32,9 @@ def init_db():
     conn = psycopg2.connect(url)
     cur = conn.cursor()
 
-    cur.execute("DROP TYPE IF EXISTS scoreNet CASCADE")
-    cur.execute("DROP TYPE IF EXISTS scoreCricket CASCADE")
-    cur.execute("DROP TYPE IF EXISTS scoreTeams CASCADE")
+    # cur.execute("DROP TYPE IF EXISTS scoreNet CASCADE")
+    # cur.execute("DROP TYPE IF EXISTS scoreCricket CASCADE")
+    # cur.execute("DROP TYPE IF EXISTS scoreTeams CASCADE")
     
     cur.execute("CREATE TABLE IF NOT EXISTS organizer (username text PRIMARY KEY, password text)")
     #replace all varchars with text, id ints with serial, lowercase all table names, add on delete cascade to some fks [[IMPORTANT]], change time to time with timezone
@@ -56,12 +56,12 @@ def init_db():
     cur.execute("ALTER TABLE player ADD FOREIGN KEY (team_id) REFERENCES team (team_id) ON DELETE CASCADE")
     cur.execute("CREATE TABLE IF NOT EXISTS match (match_id serial PRIMARY KEY, match_date date, start_time time with time zone, tournament_id integer, sportName text, round text, matchStatus text, FOREIGN KEY (tournament_id) REFERENCES tournament (tournament_id) ON DELETE CASCADE, FOREIGN KEY (sportName) REFERENCES sport (sportName))")
     cur.execute("CREATE TABLE IF NOT EXISTS teamMatch (team_id integer, match_id integer, PRIMARY KEY (team_id,match_id), FOREIGN KEY (team_id) REFERENCES team (team_id) ON DELETE CASCADE, FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
-    cur.execute("CREATE TYPE scoreNet AS (s1t1 integer,s1t2 integer,s2t1 integer,s2t2 integer,s3t1 integer,s3t2 integer)")
-    cur.execute("CREATE TYPE scoreCricket AS (t1runs integer, t1wickets integer, t2runs integer, t2wickets integer)")
-    cur.execute("CREATE TYPE scoreTeams AS (t1 integer, t2 integer)")
-    cur.execute("CREATE TABLE IF NOT EXISTS resultNet (winner integer, match_id integer, score scoreNet, PRIMARY KEY(winner, match_id), FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
-    cur.execute("CREATE TABLE IF NOT EXISTS resultCricket (winner integer, match_id integer, score scoreCricket, PRIMARY KEY(winner, match_id), FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
-    cur.execute("CREATE TABLE IF NOT EXISTS resultTeam (winner integer, match_id integer, score scoreTeams, PRIMARY KEY(winner, match_id), FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
+    # cur.execute("CREATE TYPE scoreNet AS (s1t1 integer,s1t2 integer,s2t1 integer,s2t2 integer,s3t1 integer,s3t2 integer)")
+    # cur.execute("CREATE TYPE scoreCricket AS (t1runs integer, t1wickets integer, t2runs integer, t2wickets integer)")
+    # cur.execute("CREATE TYPE scoreTeams AS (t1 integer, t2 integer)")
+    cur.execute("CREATE TABLE IF NOT EXISTS resultNet (winner integer, match_id integer, s1t1 integer, s1t2 integer, s2t1 integer, s2t2 integer,s3t1 integer,s3t2 integer, PRIMARY KEY(winner, match_id), FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
+    cur.execute("CREATE TABLE IF NOT EXISTS resultCricket (winner integer, match_id integer, t1runs integer, t1wickets integer, t2runs integer, t2wickets integer, PRIMARY KEY(winner, match_id), FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
+    cur.execute("CREATE TABLE IF NOT EXISTS resultTeam (winner integer, match_id integer, t1 integer, t2 integer, PRIMARY KEY(winner, match_id), FOREIGN KEY (match_id) REFERENCES match (match_id) ON DELETE CASCADE)")
     # [[REMOVED]] cur.execute("CREATE TABLE IF NOT EXISTS Team1Score (winner integer, match_id integer, score_1 integer, PRIMARY KEY(winner, match_id,score_1), FOREIGN KEY (winner) REFERENCES Result(winner), FOREIGN KEY (match_id) REFERENCES Result (match_id))")
     # [[REMOVED]] cur.execute("CREATE TABLE IF NOT EXISTS Team2Score (winner integer, match_id integer, score_2 integer, PRIMARY KEY(winner, match_id,score_2), FOREIGN KEY (winner) REFERENCES Result(winner), FOREIGN KEY (match_id) REFERENCES Result (match_id))")
 
